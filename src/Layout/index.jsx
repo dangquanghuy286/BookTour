@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/NavBar";
 import Footer from "../components/Footer";
+import ChatBox from "../components/ChatBox";
 
 function Layout() {
   return (
@@ -11,6 +12,7 @@ function Layout() {
           <Outlet />
         </main>
         <Footer />
+        <ChatBox />
       </div>
     </>
   );
