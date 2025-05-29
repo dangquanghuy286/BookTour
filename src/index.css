@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@custom-variant dark (&:where(.dark, .dark *));
+@import "tailwindcss";
+
+* {
+  font-family: "Archivo", sans-serif;
+}
+@layer components {
+  button {
+    @apply cursor-pointer;
+  }
+  .btn-ghost {
+    @apply flex h-10 flex-shrink-0 items-center justify-center gap-x-2 rounded-lg p-2 text-slate-400 transition-colors hover:bg-blue-50 hover:text-slate-500 dark:hover:bg-blue-950 dark:hover:text-slate-300;
+  }
+}

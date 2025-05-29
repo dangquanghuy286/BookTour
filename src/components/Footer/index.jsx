@@ -1,0 +1,111 @@
+import { NavLink } from "react-router-dom";
+import BCT from "../../assets/Img/xac-nhan-bct.png";
+import UserIcon from "../../assets/Img/user.svg";
+import AddressIcon from "../../assets/Img/address.svg";
+import EmailIcon from "../../assets/Img/email.svg";
+import PhoneIcon from "../../assets/Img/phone.svg";
+
+function Footer() {
+  return (
+    <footer className="bg-white dark:bg-slate-900 dark:text-white py-10 px-4 sm:px-6 lg:px-8">
+      <hr className="border-gray-300 dark:border-gray-700" />
+
+      <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-10 py-8 max-w-8xl mx-auto px-2">
+        {/* Giới thiệu */}
+        <div className="flex-1 min-w-[200px] sm:min-w-[250px]">
+          <h3 className="text-lg sm:text-xl font-bold mb-3">GIỚI THIỆU</h3>
+          <p className="text-sm sm:text-base">
+            GoViet là nền tảng chuyên cung cấp các tour du lịch đa dạng và chất
+            lượng, với trụ sở đặt tại tỉnh Quảng Nam. Đến với GoViet, khách hàng
+            thỏa sức khám phá, GoViet tận tâm tư vấn và đồng hành cùng bạn trên
+            mọi hành trình.
+          </p>
+          <img
+            src={BCT}
+            alt="Xác nhận bộ công thương"
+            className="mt-4 w-32 sm:w-44"
+          />
+        </div>
+
+        {/* Chính sách */}
+        <div className="flex-1 min-w-[200px] sm:min-w-[250px]">
+          <h3 className="text-lg sm:text-xl font-bold mb-3">CHÍNH SÁCH</h3>
+          <ul className="space-y-2 text-sm sm:text-base">
+            <li>
+              <NavLink to="/contact" className="hover:text-[#00c0d1]">
+                Liên hệ
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="#" className="hover:text-[#00c0d1]">
+                Hình thức thanh toán
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/intro" className="hover:text-[#00c0d1]">
+                Điều khoản dịch vụ
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="#" className="hover:text-[#00c0d1]">
+                Chính sách vận chuyển
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="#" className="hover:text-[#00c0d1]">
+                Chính sách đổi trả
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="#" className="hover:text-[#00c0d1]">
+                Chính sách bảo mật thông tin
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+
+        {/* Thông tin liên hệ */}
+        <div className="flex-1 min-w-[200px] sm:min-w-[250px]">
+          <h3 className="text-lg sm:text-xl font-bold mb-3">
+            THÔNG TIN LIÊN HỆ
+          </h3>
+          <div className="flex items-start gap-3 mb-3">
+            <img src={AddressIcon} alt="Địa chỉ" className="w-5 sm:w-6" />
+            <p className="text-sm sm:text-base">
+              Điện Nam Trung, Điện Bàn, Quảng Nam, Việt Nam
+            </p>
+          </div>
+          <div className="flex items-start gap-3 mb-3">
+            <img src={PhoneIcon} alt="SĐT" className="w-5 sm:w-6" />
+            <p className="text-sm sm:text-base">
+              <a
+                href="tel:0905920794"
+                className="text-[#00c0d1] font-semibold hover:underline"
+              >
+                0905920794
+              </a>
+            </p>
+          </div>
+          <div className="flex items-start gap-3">
+            <img src={EmailIcon} alt="Email" className="w-5 sm:w-6" />
+            <p className="text-sm sm:text-base">
+              <a
+                href="mailto:sptour@gmail.com"
+                className="text-[#00c0d1] font-semibold hover:underline"
+              >
+                sptour@gmail.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr className="border-gray-300 dark:border-gray-700" />
+      <div className="text-center py-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+        Copy Right © 2025 by Quang Huy
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
