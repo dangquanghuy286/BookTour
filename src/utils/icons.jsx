@@ -6,10 +6,22 @@ import {
   FaRobot,
   FaUser,
   FaWifi,
+  FaRegUser,
+  FaPhone,
 } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
-import { MdFastfood, MdOutlineHotel, MdFlight } from "react-icons/md";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FaLocationDot } from "react-icons/fa6";
+import { CiSearch, CiLocationOn } from "react-icons/ci";
+import { AiOutlineRight } from "react-icons/ai";
+import { IoLocationOutline } from "react-icons/io5";
+import {
+  MdFastfood,
+  MdOutlineHotel,
+  MdFlight,
+  MdFavorite,
+  MdOutlineStarPurple500,
+  MdEmail,
+} from "react-icons/md";
+import { FiMenu, FiX, FiClock } from "react-icons/fi";
 const icons = {
   IoIosSunny,
   IoIosMoon,
@@ -25,5 +37,15 @@ const icons = {
   FiMenu,
   FiX,
   CiSearch,
+  FiClock,
+  FaRegUser,
+  MdFavorite,
+  IoLocationOutline,
+  AiOutlineRight,
+  MdOutlineStarPurple500,
+  CiLocationOn,
+  FaPhone,
+  MdEmail,
+  FaLocationDot,
 };
 export default icons;

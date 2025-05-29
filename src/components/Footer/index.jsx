@@ -1,10 +1,9 @@
 import { NavLink } from "react-router-dom";
 import BCT from "../../assets/Img/xac-nhan-bct.png";
-import UserIcon from "../../assets/Img/user.svg";
-import AddressIcon from "../../assets/Img/address.svg";
-import EmailIcon from "../../assets/Img/email.svg";
-import PhoneIcon from "../../assets/Img/phone.svg";
+import icons from "../../utils/icons";
+
 import { company } from "../../contexts/TourContext";
+const { FaUser, FaLocationDot, FaPhone, MdEmail } = icons;
 function Footer() {
   return (
     <footer className="bg-white dark:bg-slate-900 py-3 dark:text-white  px-4 sm:px-6 lg:px-8">
@@ -70,15 +69,15 @@ function Footer() {
             THÔNG TIN LIÊN HỆ
           </h3>
           <div className="flex items-start gap-3 mb-3">
-            <img src={UserIcon} alt="Tên" className="w-5 sm:w-6" />
+            <FaUser className="dark:text-white size-6" />
             <p className="text-sm sm:text-base">{company.companyName}</p>
           </div>
           <div className="flex items-start gap-3 mb-3">
-            <img src={AddressIcon} alt="Địa chỉ" className="w-5 sm:w-6" />
+            <FaLocationDot className="dark:text-white size-6" />
             <p className="text-sm sm:text-base">{company.address}</p>
           </div>
           <div className="flex items-start gap-3 mb-3">
-            <img src={PhoneIcon} alt="SĐT" className="w-5 sm:w-6" />
+            <FaPhone className="dark:text-white size-6" />
             <p className="text-sm sm:text-base">
               <a
                 href={`tel:${company.phone}`}
@@ -90,7 +89,7 @@ function Footer() {
           </div>
 
           <div className="flex items-start gap-3">
-            <img src={EmailIcon} alt="Email" className="w-5 sm:w-6" />
+            <MdEmail className="size-6 dark:text-white" />
             <p className="text-sm sm:text-base">
               <a
                 href={`mailto:${company.email}`}
