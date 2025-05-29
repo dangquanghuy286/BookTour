@@ -2,7 +2,7 @@ import Layout from "../Layout";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
 import Destination from "../pages/Destination";
-import Error404 from "../pages/Error404";
+import NotFound from "../pages/Error404";
 import Home from "../pages/Home";
 import Intro from "../pages/Intro";
 import Login from "../pages/Login";
@@ -58,7 +58,7 @@ export const routes = [
       },
       {
         path: "*",
-        element: <Error404 />,
+        element: <NotFound />,
       },
       {
         path: "login",

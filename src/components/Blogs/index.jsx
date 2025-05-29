@@ -2,7 +2,7 @@ function BlogCard({ blog }) {
   return (
     <div className="bg-white dark:bg-slate-950 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1">
       <div className="p-4 text-left">
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+        <h3 className="text-xl font-bold text-gray-800 dark:text-[#00c0d1] mb-2">
           {blog.title}
         </h3>
         <p className="text-sm text-gray-500 dark:text-white mb-2">

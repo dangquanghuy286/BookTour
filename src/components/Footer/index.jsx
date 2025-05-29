@@ -4,10 +4,10 @@ import UserIcon from "../../assets/Img/user.svg";
 import AddressIcon from "../../assets/Img/address.svg";
 import EmailIcon from "../../assets/Img/email.svg";
 import PhoneIcon from "../../assets/Img/phone.svg";
-
+import { company } from "../../contexts/TourContext";
 function Footer() {
   return (
-    <footer className="bg-white dark:bg-slate-900 dark:text-white py-10 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-white dark:bg-slate-900 py-3 dark:text-white  px-4 sm:px-6 lg:px-8">
       <hr className="border-gray-300 dark:border-gray-700" />
 
       <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-10 py-8 max-w-8xl mx-auto px-2">
@@ -70,30 +70,33 @@ function Footer() {
             THÔNG TIN LIÊN HỆ
           </h3>
           <div className="flex items-start gap-3 mb-3">
+            <img src={UserIcon} alt="Tên" className="w-5 sm:w-6" />
+            <p className="text-sm sm:text-base">{company.companyName}</p>
+          </div>
+          <div className="flex items-start gap-3 mb-3">
             <img src={AddressIcon} alt="Địa chỉ" className="w-5 sm:w-6" />
-            <p className="text-sm sm:text-base">
-              Điện Nam Trung, Điện Bàn, Quảng Nam, Việt Nam
-            </p>
+            <p className="text-sm sm:text-base">{company.address}</p>
           </div>
           <div className="flex items-start gap-3 mb-3">
             <img src={PhoneIcon} alt="SĐT" className="w-5 sm:w-6" />
             <p className="text-sm sm:text-base">
               <a
-                href="tel:0905920794"
+                href={`tel:${company.phone}`}
                 className="text-[#00c0d1] font-semibold hover:underline"
               >
-                0905920794
+                {company.phone}
               </a>
             </p>
           </div>
+
           <div className="flex items-start gap-3">
             <img src={EmailIcon} alt="Email" className="w-5 sm:w-6" />
             <p className="text-sm sm:text-base">
               <a
-                href="mailto:sptour@gmail.com"
+                href={`mailto:${company.email}`}
                 className="text-[#00c0d1] font-semibold hover:underline"
               >
-                sptour@gmail.com
+                {company.email}
               </a>
             </p>
           </div>
@@ -101,8 +104,8 @@ function Footer() {
       </div>
 
       <hr className="border-gray-300 dark:border-gray-700" />
-      <div className="text-center py-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-        Copy Right © 2025 by Quang Huy
+      <div className="text-center pt-2 text-lg sm:text-sm text-gray-600 dark:text-gray-400">
+        Copyright © 2025 by Quang Huy. All rights reserved.
       </div>
     </footer>
   );
