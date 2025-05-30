@@ -21,7 +21,7 @@ import {
   MdOutlineStarPurple500,
   MdEmail,
 } from "react-icons/md";
-import { FiMenu, FiX, FiClock } from "react-icons/fi";
+import { FiMenu, FiX, FiClock, FiChevronDown } from "react-icons/fi";
 const icons = {
   IoIosSunny,
   IoIosMoon,
@@ -47,5 +47,6 @@ const icons = {
   FaPhone,
   MdEmail,
   FaLocationDot,
+  FiChevronDown,
 };
 export default icons;

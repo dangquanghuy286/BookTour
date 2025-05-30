@@ -70,9 +70,9 @@ function Blog({ blogs = null, showPagination = true }) {
       <div className="max-w-6xl mx-auto">
         {" "}
         {/* Tăng từ max-w-6xl lên max-w-7xl */}
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-8 text-center">
+        <h1 className="tour_tittle py-2 pl-3 my-6 sm:my-8 text-2xl sm:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]">
           Bài viết mới nhất
-        </h2>
+        </h1>
         {loading ? (
           <LoadingSpinner message="Đang tải danh sách bài viết..." />
         ) : error ? (

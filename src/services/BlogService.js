@@ -18,3 +18,19 @@ export const getBlog = async (page = 0, limit = 8) => {
     };
   }
 };
+
+export const getBlogById = async (id) => {
+  try {
+    const res = await get(`blogs/${id}`);
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    console.error("Error fetching blog by id:", error);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || { error: "Lỗi khi lấy bài viết" },
+    };
+  }
+};

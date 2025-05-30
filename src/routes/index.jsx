@@ -1,4 +1,4 @@
-import { element } from "prop-types";
+import BlogDetail from "../components/Blogs/BlogDetail";
 import Layout from "../Layout";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
@@ -78,6 +78,10 @@ export const routes = [
       {
         path: "blog",
         element: <Blog />,
+      },
+      {
+        path: "blogs/:id",
+        element: <BlogDetail />,
       },
     ],
   },
