@@ -212,7 +212,6 @@ export const data = [
   },
 ];
 export const durations = [
-  { value: "", label: "Số ngày" },
   { value: "3 ngày 2 đêm", label: "3 ngày 2 đêm" },
   { value: "4 ngày 3 đêm", label: "4 ngày 3 đêm" },
   { value: "5 ngày 4 đêm", label: "5 ngày 4 đêm" },

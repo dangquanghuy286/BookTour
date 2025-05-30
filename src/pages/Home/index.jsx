@@ -5,6 +5,7 @@ import Places from "../../components/Card/Places";
 import BannerIMG from "../../components/Home/BannerIMG";
 import TourPopuLar from "../../components/TourPopular/TourPopuLar";
 import Tape from "../../components/Home/Tape";
+import Review from "../../components/Reviews/Review";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <BannerIMG />
       <TourPopuLar />
       <Banner />
+      <Review />
       <Tape />
     </div>
   );

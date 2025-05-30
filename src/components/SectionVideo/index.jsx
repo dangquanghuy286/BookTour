@@ -1,4 +1,5 @@
 import MainVD from "../../assets/Video/Video.mp4";
+import HeroFilter from "../Home/HeroFilter";
 
 function SectionVideo() {
   return (
@@ -13,6 +14,7 @@ function SectionVideo() {
         <source src={MainVD} type="video/mp4" />
         Trình duyệt của bạn không hỗ trợ video HTML5.
       </video>
+      <HeroFilter />
     </div>
   );
 }

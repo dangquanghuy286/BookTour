@@ -1,47 +1,35 @@
+import { useEffect, useState } from "react";
 import { getDataTourPopular } from "../../services/TourService";
 
-import { useEffect, useState } from "react";
 import LoadingSpinner from "../LoadingSniper";
 import ErrorMessage from "../ErrorMessage";
 import CardTourPopular from "./CardTourPopular";
 
 const TourPopuLar = () => {
-  const [data, setData] = useState([]); // Khởi tạo là mảng rỗng
-  const [loading, setLoading] = useState(true); // Trạng thái loading
-  const [error, setError] = useState(null); // Trạng thái lỗi
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchApi = async () => {
+    const fetchData = async () => {
       try {
-        setLoading(true); // Bắt đầu tải dữ liệu
-        setError(null); // Reset lỗi
-        const res = await getDataTourPopular(); // Gọi API
+        setLoading(true);
+        setError(null);
+        const res = await getDataTourPopular();
         if (res.status === 200) {
-          setData(res.data || []); // Lưu dữ liệu vào state
+          setData(res.data || []);
         } else {
           setError(res.data?.error || "Không thể tải danh sách tour phổ biến.");
         }
       } catch (err) {
         setError(err.message || "Đã xảy ra lỗi khi tải dữ liệu.");
       } finally {
-        setLoading(false); // Kết thúc tải dữ liệu
+        setLoading(false);
       }
     };
-    fetchApi();
-  }, []); // Chỉ chạy một lần khi component mount
 
-  // Hiển thị trạng thái loading
-  if (loading) return <LoadingSpinner message="Đang tải danh sách tour..." />;
-
-  // Hiển thị thông báo lỗi nếu có
-  if (error) return <ErrorMessage isWarning={false} message={error} />;
-
-  // Hiển thị khi không có dữ liệu
-  if (!data || data.length === 0) {
-    return (
-      <ErrorMessage isWarning={true} message="Không có tour phổ biến nào." />
-    );
-  }
+    fetchData();
+  }, []);
 
   return (
     <div className="py-4 sm:py-6 md:py-8 lg:py-10 dark:bg-slate-900 bg-white dark:text-white">
@@ -54,13 +42,21 @@ const TourPopuLar = () => {
           Tour Phổ Biến
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-          {data.map((tour) => (
-            <div key={tour.id} data-aos="fade-up" data-aos-delay="100">
-              <CardTourPopular tour={tour} />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <LoadingSpinner message="Đang tải danh sách tour..." />
+        ) : error ? (
+          <ErrorMessage error={error} />
+        ) : data.length === 0 ? (
+          <ErrorMessage error="Không tìm thấy tour nào." isWarning={true} />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+            {data.map((tour) => (
+              <div key={tour.id} data-aos="fade-up" data-aos-delay="100">
+                <CardTourPopular tour={tour} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
