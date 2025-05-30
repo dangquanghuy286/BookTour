@@ -3,7 +3,7 @@ import HeroFilter from "../Home/HeroFilter";
 
 function SectionVideo() {
   return (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden">
+    <div className="relative w-full h-[400px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-hidden">
       <video
         autoPlay
         loop

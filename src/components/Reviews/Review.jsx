@@ -99,7 +99,7 @@ const Review = () => {
         ) : (
           <div className="relative py-4">
             <Slider {...sliderSettings}>
-              {review.map((item) => (
+              {review.slice(0, 5).map((item) => (
                 <div key={item.review_id} className="px-2 py-4">
                   <ReviewCard review={item} />
                 </div>

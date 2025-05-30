@@ -13,7 +13,6 @@ export const dataRegion = [
 ];
 
 export const destinations = [
-  { value: "", label: "Chọn điểm đến" },
   { value: "An Giang", label: "An Giang" },
   { value: "Bà Rịa - Vũng Tàu", label: "Bà Rịa - Vũng Tàu" },
   { value: "Bắc Giang", label: "Bắc Giang" },
@@ -218,7 +217,6 @@ export const durations = [
 ];
 
 export const prices = [
-  { value: "", label: "Tất cả mức giá" },
   { value: "1.000.000 - 3.000.000 Vnd", label: "1.000.000 - 3.000.000 Vnd" },
   { value: "3.000.000 - 6.000.000 Vnd", label: "3.000.000 - 6.000.000 Vnd" },
   { value: "6.000.000 - 8.000.000 Vnd", label: "6.000.000 - 8.000.000 Vnd" },

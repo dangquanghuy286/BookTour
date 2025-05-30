@@ -20,6 +20,9 @@ import {
   MdFavorite,
   MdOutlineStarPurple500,
   MdEmail,
+  MdLocationOn,
+  MdAccessTime,
+  MdAttachMoney,
 } from "react-icons/md";
 import { FiMenu, FiX, FiClock, FiChevronDown } from "react-icons/fi";
 const icons = {
@@ -48,5 +51,8 @@ const icons = {
   MdEmail,
   FaLocationDot,
   FiChevronDown,
+  MdLocationOn,
+  MdAccessTime,
+  MdAttachMoney,
 };
 export default icons;
