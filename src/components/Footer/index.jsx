@@ -6,7 +6,10 @@ const { FaUser, FaLocationDot, FaPhone, MdEmail } = icons;
 
 function Footer() {
   return (
-    <footer className="bg-white dark:bg-slate-900 py-3 sm:py-4 md:py-6 dark:text-white px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+    <footer
+      className="bg-white dark:bg-slate-900 py-3 sm:py-4 md:py-6 dark:text-white px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20"
+      data-aos="fade-up"
+    >
       <hr className="border-gray-300 dark:border-gray-700" />
 
       {/* Main Footer Content */}

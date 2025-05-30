@@ -34,3 +34,19 @@ export const getDataTour = async (page = 0, limit = 8, filters = {}) => {
     };
   }
 };
+
+export const getDataTourPopular = async () => {
+  try {
+    const res = await get("tours/top-booked");
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    console.error("Lỗi khi lấy dữ liệu!", error);
+    return {
+      status: error.res?.status || 500,
+      data: error.res?.data || "Lỗi khi lấy danh sách tour !",
+    };
+  }
+};

@@ -3,6 +3,7 @@ import Header from "../components/NavBar";
 import Footer from "../components/Footer";
 import ChatBox from "../components/ChatBox";
 import Breadcrumb from "../components/Breadcrumb";
+import BackToTop from "../components/BackToTop";
 
 function Layout() {
   return (
@@ -14,6 +15,7 @@ function Layout() {
           <Outlet />
         </main>
         <Footer />
+        <BackToTop />
         <ChatBox />
       </div>
     </>

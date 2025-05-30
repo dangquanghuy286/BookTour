@@ -61,11 +61,16 @@ const Places = ({
   return (
     <div className="py-4 sm:py-6 md:py-8 lg:py-10 dark:bg-slate-900 bg-white dark:text-white">
       <section
-        data-aos="fade-up"
         className={container ? "container mx-auto px-4 sm:px-6 md:px-8" : ""}
+        data-aos="fade-up"
+        data-aos-duration="800"
       >
         {hideTitle && (
-          <h1 className="tour_tittle py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]">
+          <h1
+            className="tour_tittle py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
             {title}
           </h1>
         )}
@@ -78,15 +83,21 @@ const Places = ({
           <ErrorMessage error="Không tìm thấy tour nào." isWarning={true} />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 min-w-0">
-            {placesData.map((item) => (
-              <PlacesCard
+            {placesData.map((item, index) => (
+              <div
                 key={item.id}
-                item={item}
-                booking={booking}
-                size={size}
-                left={left}
-                star={star}
-              />
+                data-aos="fade-up"
+                data-aos-delay={index * 100} // delay tăng dần theo index
+                data-aos-duration="600"
+              >
+                <PlacesCard
+                  item={item}
+                  booking={booking}
+                  size={size}
+                  left={left}
+                  star={star}
+                />
+              </div>
             ))}
           </div>
         )}

@@ -288,7 +288,7 @@ const ChatBox = () => {
     });
   };
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 left-6 z-50">
       {/* Floating chat button */}
       {!isOpen && (
         <div className="relative">
@@ -300,7 +300,7 @@ const ChatBox = () => {
           </div>
 
           {/* Tooltip - Rộng hơn */}
-          <div className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-white px-6 py-3 rounded-lg shadow-lg border animate-pulse min-w-max">
+          <div className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-white px-6 py-3 rounded-lg shadow-lg border animate-pulse min-w-max">
             <div className="flex items-center space-x-3">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               <span className="text-base font-medium text-gray-700 whitespace-nowrap">
@@ -310,7 +310,7 @@ const ChatBox = () => {
                 <p>Quý khách đang cần thông tin gì ạ?</p>
               </span>
             </div>
-            <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 w-0 h-0 border-l-8 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+            <div className="absolute top-1/2 -left-2 transform -translate-y-1/2 w-0 h-0 border-r-8 border-r-white border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
           </div>
         </div>
       )}
