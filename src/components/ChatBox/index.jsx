@@ -310,7 +310,7 @@ const ChatBox = () => {
                 <p>Quý khách đang cần thông tin gì ạ?</p>
               </span>
             </div>
-            <div className="absolute top-1/2 -left-2 transform -translate-y-1/2 w-0 h-0 border-r-8 border-r-white border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+            <div className="absolute top-1/2 -left-2 transform -translate-y-1/2 w-0 h-0 border-r-8 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
           </div>
         </div>
       )}

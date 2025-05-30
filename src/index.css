@@ -12,4 +12,54 @@
   .btn-ghost {
     @apply flex h-10 flex-shrink-0 items-center justify-center gap-x-2 rounded-lg p-2 text-slate-400 transition-colors hover:bg-blue-50 hover:text-slate-500 dark:hover:bg-blue-950 dark:hover:text-slate-300;
   }
+  /* Animation scroll được tối ưu */
+  /* Hiệu ứng cuộn ngang vô hạn cho nội dung */
+  .animate-scroll {
+    animation: scroll 25s linear infinite; /* Áp dụng animation 'scroll', 25s, tốc độ tuyến tính, lặp vô hạn */
+    display: inline-flex; /* Hiển thị phần tử như một dòng linh hoạt (phù hợp với nội dung cuộn) */
+    width: max-content; /* Chiều rộng vừa đủ để chứa toàn bộ nội dung bên trong */
+
+    /* Tối ưu hiệu suất hiển thị chuyển động */
+    will-change: transform; /* Gợi ý trình duyệt tối ưu hiệu suất cho transform */
+    backface-visibility: hidden; /* Ẩn mặt sau để tránh lỗi hiển thị khi transform */
+    perspective: 1000px; /* Tạo chiều sâu cho hiệu ứng transform 3D */
+    transform: translateZ(
+      0
+    ); /* Buộc phần tử dùng GPU để render (tăng hiệu suất) */
+  }
+
+  /* Định nghĩa các bước animation cho hiệu ứng cuộn */
+  @keyframes scroll {
+    0% {
+      transform: translate3d(0, 0, 0); /* Bắt đầu từ vị trí ban đầu */
+    }
+    100% {
+      transform: translate3d(
+        -33.333%,
+        0,
+        0
+      ); /* Dịch chuyển sang trái 1/3 chiều dài (nếu có 3 bản sao) */
+    }
+  }
+
+  /* Ưu tiên animation nhanh hơn cho thiết bị có refresh rate cao */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-scroll {
+      animation-duration: 25s; /* Tốc độ mặc định */
+    }
+  }
+
+  /* Giảm tốc độ animation nếu người dùng muốn hạn chế chuyển động */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-scroll {
+      animation-duration: 60s; /* Tăng thời gian để giảm tốc độ cuộn */
+    }
+  }
+
+  /* Tối ưu trải nghiệm trên thiết bị di động */
+  @media (max-width: 768px) {
+    .animate-scroll {
+      animation-duration: 20s; /* Tăng tốc độ cuộn nhẹ cho thiết bị nhỏ hơn */
+    }
+  }
 }

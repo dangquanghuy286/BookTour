@@ -4,6 +4,7 @@ import SectionVideo from "../../components/SectionVideo";
 import Places from "../../components/Card/Places";
 import BannerIMG from "../../components/Home/BannerIMG";
 import TourPopuLar from "../../components/TourPopular/TourPopuLar";
+import Tape from "../../components/Home/Tape";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <BannerIMG />
       <TourPopuLar />
       <Banner />
+      <Tape />
     </div>
   );
 };

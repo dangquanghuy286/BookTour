@@ -1,3 +1,11 @@
+import VN from "../assets/Img/VietNam.png";
+import VJ from "../assets/Img/VJ.png";
+import TVLK from "../assets/Img/TVLK.png";
+import SGTR from "../assets/Img/SGTR.png";
+import IVV from "../assets/Img/IVV.png";
+import MT from "../assets/Img/MT.png";
+import AGD from "../assets/Img/AGD.png";
+
 export const dataRegion = [
   { displayName: "Miền Bắc", value: "NORTH" },
   { displayName: "Miền Trung", value: "CENTRAL" },
@@ -148,3 +156,72 @@ export const company = {
   phone: "0901234567",
   email: "support@goviet.com",
 };
+export const data = [
+  {
+    id: 1,
+    logoLink:
+      "https://cdn.haitrieu.com/wp-content/uploads/2022/01/Icono-VNA.png",
+  },
+  {
+    id: 2,
+    logoLink: SGTR,
+  },
+  {
+    id: 3,
+    logoLink: VN,
+  },
+  {
+    id: 4,
+    logoLink: VJ,
+  },
+  {
+    id: 5,
+    logoLink:
+      "https://hoppho.com/wp-content/uploads/2020/07/Logo-Vinpearl-full-color-1-1.png",
+  },
+  {
+    id: 6,
+    logoLink:
+      "https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg",
+  },
+  {
+    id: 7,
+    logoLink:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Expedia_2012_logo.svg/2560px-Expedia_2012_logo.svg.png",
+  },
+  {
+    id: 8,
+    logoLink:
+      "https://saigonrealestate.vn/wp-content/uploads/2021/08/Muong-Thanh-Group-logo-1.png",
+  },
+  {
+    id: 9,
+    logoLink: IVV,
+  },
+  {
+    id: 10,
+    logoLink: TVLK,
+  },
+  {
+    id: 11,
+    logoLink: MT,
+  },
+  {
+    id: 12,
+    logoLink: AGD,
+  },
+];
+export const durations = [
+  { value: "", label: "Số ngày" },
+  { value: "3 ngày 2 đêm", label: "3 ngày 2 đêm" },
+  { value: "4 ngày 3 đêm", label: "4 ngày 3 đêm" },
+  { value: "5 ngày 4 đêm", label: "5 ngày 4 đêm" },
+];
+
+export const prices = [
+  { value: "", label: "Tất cả mức giá" },
+  { value: "1.000.000 - 3.000.000 Vnd", label: "1.000.000 - 3.000.000 Vnd" },
+  { value: "3.000.000 - 6.000.000 Vnd", label: "3.000.000 - 6.000.000 Vnd" },
+  { value: "6.000.000 - 8.000.000 Vnd", label: "6.000.000 - 8.000.000 Vnd" },
+  { value: "8.000.000 - 10.000.000 Vnd", label: "8.000.000 - 10.000.000 Vnd" },
+];
