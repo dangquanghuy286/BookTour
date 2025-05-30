@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StarDisplay from "../Star";
 import icons from "../../utils/icons";
-const { FiClock, MdFavorite, FaRegUser, IoLocationOutline, AiOutlineRight } =
-  icons;
+const { FiClock, MdFavorite, FaRegUser, IoLocationOutline } = icons;
 const PlacesCard = ({
   item,
   booking = true,
@@ -20,7 +19,8 @@ const PlacesCard = ({
 
   return (
     <div
-      className={`p-4 sm:p-5 dark:bg-slate-950 transition-all duration-500 shadow-2xl cursor-pointer rounded-3xl hover:shadow-xl border border-gray-300 flex flex-col h-full ${sizeClasses} ${
+      className={`p-4 sm:p-5 dark:bg-slate-950 transition-all duration-500 shadow-[0_1px_4px_rgba(0,0,0,0.16)]
+ cursor-pointer rounded-3xl  border border-gray-300 flex flex-col h-full ${sizeClasses} ${
         left ? "sm:ml-4" : ""
       }`}
     >
@@ -44,7 +44,7 @@ const PlacesCard = ({
       {/* Phần nội dung */}
       <div className="flex-grow p-2 mt-2 space-y-2">
         <div className="flex gap-2 opacity-70 items-center">
-          <IoLocationOutline className="w-5 h-5 sm:w-6 sm:h-6" />
+          <IoLocationOutline className="w-6 h-6 sm:w-6 sm:h-6" />
           <p className="text-sm sm:text-base line-clamp-1">
             {item.destination}
           </p>

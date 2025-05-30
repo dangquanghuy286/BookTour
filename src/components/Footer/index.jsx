@@ -1,35 +1,31 @@
 import { NavLink } from "react-router-dom";
 import BCT from "../../assets/Img/xac-nhan-bct.png";
 import icons from "../../utils/icons";
-
 import { company } from "../../contexts/TourContext";
 const { FaUser, FaLocationDot, FaPhone, MdEmail } = icons;
+
 function Footer() {
   return (
-    <footer className="bg-white dark:bg-slate-900 py-3 dark:text-white  px-4 sm:px-6 lg:px-8">
+    <footer className="bg-white dark:bg-slate-900 py-3 dark:text-white px-4">
       <hr className="border-gray-300 dark:border-gray-700" />
 
-      <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-10 py-8 max-w-8xl mx-auto px-2">
+      <div className="flex flex-row justify-between gap-4 py-8 max-w-8xl mx-auto px-2">
         {/* Giới thiệu */}
-        <div className="flex-1 min-w-[200px] sm:min-w-[250px]">
-          <h3 className="text-lg sm:text-xl font-bold mb-3">GIỚI THIỆU</h3>
-          <p className="text-sm sm:text-base">
+        <div className="flex-1 min-w-[120px]">
+          <h3 className="text-base font-bold mb-2">GIỚI THIỆU</h3>
+          <p className="text-xs">
             GoViet là nền tảng chuyên cung cấp các tour du lịch đa dạng và chất
             lượng, với trụ sở đặt tại tỉnh Quảng Nam. Đến với GoViet, khách hàng
             thỏa sức khám phá, GoViet tận tâm tư vấn và đồng hành cùng bạn trên
             mọi hành trình.
           </p>
-          <img
-            src={BCT}
-            alt="Xác nhận bộ công thương"
-            className="mt-4 w-32 sm:w-44"
-          />
+          <img src={BCT} alt="Xác nhận bộ công thương" className="mt-3 w-24" />
         </div>
 
         {/* Chính sách */}
-        <div className="flex-1 min-w-[200px] sm:min-w-[250px]">
-          <h3 className="text-lg sm:text-xl font-bold mb-3">CHÍNH SÁCH</h3>
-          <ul className="space-y-2 text-sm sm:text-base">
+        <div className="flex-1 min-w-[120px]">
+          <h3 className="text-base font-bold mb-2">CHÍNH SÁCH</h3>
+          <ul className="space-y-1 text-xs">
             <li>
               <NavLink to="/contact" className="hover:text-[#00c0d1]">
                 Liên hệ
@@ -64,21 +60,19 @@ function Footer() {
         </div>
 
         {/* Thông tin liên hệ */}
-        <div className="flex-1 min-w-[200px] sm:min-w-[250px]">
-          <h3 className="text-lg sm:text-xl font-bold mb-3">
-            THÔNG TIN LIÊN HỆ
-          </h3>
-          <div className="flex items-start gap-3 mb-3">
-            <FaUser className="dark:text-white size-6" />
-            <p className="text-sm sm:text-base">{company.companyName}</p>
+        <div className="flex-1 min-w-[120px]">
+          <h3 className="text-base font-bold mb-2">THÔNG TIN LIÊN HỆ</h3>
+          <div className="flex items-start gap-2 mb-2">
+            <FaUser className="dark:text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
+            <p className="text-xs">{company.companyName}</p>
           </div>
-          <div className="flex items-start gap-3 mb-3">
-            <FaLocationDot className="dark:text-white size-6" />
-            <p className="text-sm sm:text-base">{company.address}</p>
+          <div className="flex items-start gap-2 mb-2">
+            <FaLocationDot className="dark:text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
+            <p className="text-xs">{company.address}</p>
           </div>
-          <div className="flex items-start gap-3 mb-3">
-            <FaPhone className="dark:text-white size-6" />
-            <p className="text-sm sm:text-base">
+          <div className="flex items-start gap-2 mb-2">
+            <FaPhone className="dark:text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
+            <p className="text-xs">
               <a
                 href={`tel:${company.phone}`}
                 className="text-[#00c0d1] font-semibold hover:underline"
@@ -87,10 +81,9 @@ function Footer() {
               </a>
             </p>
           </div>
-
-          <div className="flex items-start gap-3">
-            <MdEmail className="size-6 dark:text-white" />
-            <p className="text-sm sm:text-base">
+          <div className="flex items-start gap-2">
+            <MdEmail className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 dark:text-white flex-shrink-0 mt-0.5" />
+            <p className="text-xs">
               <a
                 href={`mailto:${company.email}`}
                 className="text-[#00c0d1] font-semibold hover:underline"
@@ -103,7 +96,7 @@ function Footer() {
       </div>
 
       <hr className="border-gray-300 dark:border-gray-700" />
-      <div className="text-center pt-2 text-lg sm:text-sm text-gray-600 dark:text-gray-400">
+      <div className="text-center pt-2 text-xs text-gray-600 dark:text-gray-400">
         Copyright © 2025 by Quang Huy. All rights reserved.
       </div>
     </footer>

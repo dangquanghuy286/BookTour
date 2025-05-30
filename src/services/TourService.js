@@ -1,11 +1,26 @@
 import { get } from "../utils/requestserver";
 
-// Lấy tất cả tour
-export const getDataTour = async (page, limit = 8) => {
+// Lấy tất cả tour với các tham số lọc và phân trang
+export const getDataTour = async (page = 0, limit = 8, filters = {}) => {
   try {
-    const res = await get("tours", {
-      params: { page, limit },
-    });
+    // Tạo object params cơ bản
+    const params = {
+      page,
+      limit,
+      ...filters,
+    };
+
+    // Xử lý đặc biệt cho region (chuyển thành UPPER_CASE nếu có)
+    if (params.region) {
+      params.region = params.region.toUpperCase();
+    }
+
+    // Xử lý đặc biệt cho duration (thêm hậu tố nếu cần)
+    if (params.duration && typeof params.duration === "number") {
+      params.duration = `${params.duration}_days`;
+    }
+
+    const res = await get("tours", { params });
 
     return {
       status: res.status,

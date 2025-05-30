@@ -1,3 +1,4 @@
+import { element } from "prop-types";
 import Layout from "../Layout";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
@@ -52,6 +53,7 @@ export const routes = [
         path: "destination",
         element: <Destination />,
       },
+
       {
         path: "contact",
         element: <Contact />,
