@@ -1,7 +1,9 @@
 import AboutUs from "../components/About/AboutUs";
-import CancellationPolicy from "../components/About/CancellationPolicy";
+import CancellationPolicy from "../components/TermsOfService/CancellationPolicy";
 import PrivacyPolicy from "../components/About/PrivacyPolicy";
+
 import BlogDetail from "../components/Blogs/BlogDetail";
+import TermsOfService from "../components/TermsOfService";
 import Layout from "../Layout";
 import Blog from "../pages/Blog";
 import Contact from "../pages/Contact";
@@ -37,6 +39,10 @@ export const routes = [
       {
         path: "/cancellation",
         element: <CancellationPolicy />,
+      },
+      {
+        path: "/termsofservice",
+        element: <TermsOfService />,
       },
       {
         path: "/privacy",

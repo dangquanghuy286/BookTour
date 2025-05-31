@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { getDataGuide } from "../../services/GuideService";
 import LoadingSpinner from "../LoadingSniper";
 import ErrorMessage from "../ErrorMessage";
-
 import icons from "../../utils/icons";
 import EntriesFilter from "../Pagination";
+
 const { MdEmail, FaFacebook } = icons;
 
 const AboutTeam = ({
@@ -43,13 +43,11 @@ const AboutTeam = ({
 
   useEffect(() => {
     if (guides) {
-      // Nếu có dữ liệu tĩnh từ props
       setData(guides);
       setTotalPages(1);
       setError(null);
       setLoading(false);
     } else {
-      // Gọi API nếu không có dữ liệu tĩnh
       fetchApi(currentPage);
     }
   }, [guides, currentPage]);
@@ -57,15 +55,6 @@ const AboutTeam = ({
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
-  if (loading) return <LoadingSpinner message="Đang tải hướng dẫn viên..." />;
-  if (error) return <ErrorMessage isWarning={false} message={error} />;
-  if (data.length === 0)
-    return (
-      <div className="text-center text-lg">
-        Không có hướng dẫn viên nào để hiển thị.
-      </div>
-    );
 
   return (
     <div
@@ -81,49 +70,61 @@ const AboutTeam = ({
         >
           {title}
         </h2>
-        <div className="grid items-center justify-center grid-cols-1 gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3">
-          {data.map((member, index) => (
-            <div
-              key={member.guideId}
-              className="w-[240px] bg-white dark:bg-slate-950 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)] overflow-hidden transform transition duration-300"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-              data-aos-duration="600"
-            >
-              <div className="p-3">
-                <div className="w-full h-[280px] mx-auto">
-                  <img
-                    src={member.photo}
-                    alt={member.fullName}
-                    className="w-full h-full object-cover rounded-lg"
-                    onError={(e) =>
-                      (e.target.src = "/path/to/fallback-image.jpg")
-                    }
-                  />
+
+        {loading ? (
+          <LoadingSpinner message="Đang tải hướng dẫn viên..." />
+        ) : error ? (
+          <ErrorMessage isWarning={false} message={error} />
+        ) : data.length === 0 ? (
+          <p className="text-center text-gray-500">
+            Không có hướng dẫn viên nào!
+          </p>
+        ) : (
+          <div className="grid items-center justify-center grid-cols-1 gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {data.map((member, index) => (
+              <div
+                key={member.guideId}
+                className="w-[240px] bg-white dark:bg-slate-950 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)] overflow-hidden transform transition duration-300"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                data-aos-duration="600"
+              >
+                <div className="p-3">
+                  <div className="w-full h-[280px] mx-auto">
+                    <img
+                      src={member.photo}
+                      alt={member.fullName}
+                      className="w-full h-full object-cover rounded-lg"
+                      onError={(e) =>
+                        (e.target.src = "/path/to/fallback-image.jpg")
+                      }
+                    />
+                  </div>
+                </div>
+                <div className="p-3 text-center">
+                  <h1 className="text-base font-semibold text-[#00c0d1]">
+                    {member.fullName}
+                  </h1>
+                  <div className="flex justify-center space-x-4 mt-2 text-[#00c0d1]">
+                    <a
+                      href={`mailto:${member.gmailLink}`}
+                      className="hover:text-[#008c9e] transition-colors"
+                    >
+                      <MdEmail className="text-xl" />
+                    </a>
+                    <a
+                      href={member.databaseLink}
+                      className="hover:text-[#008c9e] transition-colors"
+                    >
+                      <FaFacebook className="text-xl" />
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div className="p-3 text-center">
-                <h1 className="text-base font-semibold text-[#00c0d1]">
-                  {member.fullName}
-                </h1>
-                <div className="flex justify-center space-x-4 mt-2 text-[#00c0d1]">
-                  <a
-                    href={`mailto:${member.gmailLink}`}
-                    className="hover:text-[#008c9e] transition-colors"
-                  >
-                    <MdEmail className="text-xl" />
-                  </a>
-                  <a
-                    href={member.databaseLink}
-                    className="hover:text-[#008c9e] transition-colors"
-                  >
-                    <FaFacebook className="text-xl" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+
         {showPagination && !guides && totalPages > 1 && (
           <EntriesFilter
             currentPage={currentPage}

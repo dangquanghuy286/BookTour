@@ -10,6 +10,12 @@ import {
   FaPhone,
   FaRegCheckCircle,
   FaFacebook,
+  FaInfoCircle,
+  FaCreditCard,
+  FaExclamationTriangle,
+  FaUserShield,
+  FaSyncAlt,
+  FaPhoneAlt,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
@@ -59,5 +65,11 @@ const icons = {
   FaArrowRightLong,
   FaRegCheckCircle,
   FaFacebook,
+  FaInfoCircle,
+  FaCreditCard,
+  FaExclamationTriangle,
+  FaUserShield,
+  FaSyncAlt,
+  FaPhoneAlt,
 };
 export default icons;

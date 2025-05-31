@@ -19,9 +19,10 @@ function Breadcrumb() {
       contact: "Liên Hệ",
       blog: "Blog",
       intro: "Giới Thiệu",
-      aboutus: "Điều Khoản Đặt Tour ",
+      aboutus: "Về Chúng Tôi",
       privacy: "Chính Sách Bảo Mật Thông Tin Khách Hàng",
       cancellation: "Chính Sách Hủy Tour Và Hoàn Tiền",
+      termsofservice: "Điều Khoản & Dịch Vụ",
     };
 
     if (nameMap[name]) return nameMap[name];

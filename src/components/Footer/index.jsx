@@ -6,10 +6,7 @@ const { FaUser, FaLocationDot, FaPhone, MdEmail } = icons;
 
 function Footer() {
   return (
-    <footer
-      className="bg-white dark:bg-slate-900 py-3 sm:py-4 md:py-6 dark:text-white px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20"
-      data-aos="fade-up"
-    >
+    <footer className="bg-white dark:bg-slate-900 py-3 sm:py-4 md:py-6 dark:text-white px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
       <hr className="border-gray-300 dark:border-gray-700" />
 
       {/* Main Footer Content */}
@@ -55,7 +52,7 @@ function Footer() {
                   to="/aboutus"
                   className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
                 >
-                  Điều khoản đặt tour
+                  Về Chúng Tôi
                 </NavLink>
               </li>
               <li>
@@ -73,6 +70,14 @@ function Footer() {
                   className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
                 >
                   Chính sách bảo mật thông tin khách hàng
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/termsofservice"
+                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
+                >
+                  Điều Khoản Và Dịch Vụ
                 </NavLink>
               </li>
             </ul>

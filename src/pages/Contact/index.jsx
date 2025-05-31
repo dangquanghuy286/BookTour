@@ -50,7 +50,7 @@ function Contact() {
   };
   return (
     <div className="flex justify-center items-center py-12 px-5 bg-white dark:bg-slate-900">
-      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div className="container mx-auto px-4 w-full grid grid-cols-1 md:grid-cols-2 gap-10">
         <ContactInfo />
 
         <div className="bg-white dark:bg-slate-950 p-8 rounded-lg shadow-md">

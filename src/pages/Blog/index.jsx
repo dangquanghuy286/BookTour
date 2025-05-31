@@ -66,10 +66,9 @@ function Blog({ blogs = null, showPagination = true }) {
   };
 
   return (
-    <div className="py-12 px-5 bg-white dark:bg-slate-900">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-8  bg-white dark:bg-slate-900">
+      <div className="container mx-auto px-4">
         {" "}
-        {/* Tăng từ max-w-6xl lên max-w-7xl */}
         <h1
           className="tour_tittle py-2 pl-3 my-6 sm:my-8 text-2xl sm:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]"
           data-aos="fade-right"
