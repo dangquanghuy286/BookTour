@@ -9,6 +9,7 @@ import {
   FaRegUser,
   FaPhone,
   FaRegCheckCircle,
+  FaFacebook,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
@@ -57,5 +58,6 @@ const icons = {
   MdAttachMoney,
   FaArrowRightLong,
   FaRegCheckCircle,
+  FaFacebook,
 };
 export default icons;

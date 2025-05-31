@@ -8,7 +8,6 @@ export const getDataReview = async () => {
       data: res.data,
     };
   } catch (er) {
-    console.error("Lỗi", er);
     return {
       status: er.res?.status || "500",
       data: er.res?.data || "Lỗi khi lấy dữ liệu!",

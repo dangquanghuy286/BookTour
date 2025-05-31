@@ -150,28 +150,30 @@ const HeroFilter = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
-                <button
-                  className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 bg-gradient-to-r from-[#019fb5] to-[#00c0d1] hover:from-[#018fa5] hover:to-[#00b0c1] text-white font-semibold rounded-md sm:rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-1 sm:gap-1.5 text-xs sm:text-sm md:text-base"
-                  onClick={handleSearch}
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <LoadingSpinner />
-                  ) : (
-                    <>
-                      <span className="text-sm sm:text-base">🔍</span>
-                      <span>Tìm kiếm ngay</span>
-                    </>
-                  )}
-                </button>
+                <div className="flex gap-2 sm:gap-3 md:gap-4">
+                  <button
+                    className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 bg-gradient-to-r from-[#019fb5] to-[#00c0d1] hover:from-[#018fa5] hover:to-[#00b0c1] text-white font-semibold rounded-md sm:rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-1 sm:gap-1.5 text-xs sm:text-sm md:text-base"
+                    onClick={handleSearch}
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <LoadingSpinner />
+                    ) : (
+                      <>
+                        <span className="text-sm sm:text-base">🔍</span>
+                        <span>Tìm kiếm ngay</span>
+                      </>
+                    )}
+                  </button>
 
-                <button
-                  className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-300 font-medium rounded-md sm:rounded-lg transition-all duration-200 hover:shadow-md text-xs sm:text-sm md:text-base"
-                  onClick={resetFilters}
-                  disabled={loading}
-                >
-                  Đặt lại bộ lọc
-                </button>
+                  <button
+                    className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-300 font-semibold rounded-md sm:rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-1 sm:gap-1.5 text-xs sm:text-sm md:text-base"
+                    onClick={resetFilters}
+                    disabled={loading}
+                  >
+                    Đặt lại bộ lọc
+                  </button>
+                </div>
               </div>
             </div>
           </div>
