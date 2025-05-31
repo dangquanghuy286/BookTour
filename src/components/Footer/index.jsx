@@ -34,59 +34,45 @@ function Footer() {
           </div>
         </div>
 
-        {/* Chính sách */}
+        {/* Chính sách Tour Du Lịch */}
         <div className="flex-1 min-w-0 mb-6 sm:mb-0">
           <h3 className="text-sm xs:text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-gray-900 dark:text-white">
-            CHÍNH SÁCH
+            CHÍNH SÁCH TOUR DU LỊCH
           </h3>
           <nav role="navigation" aria-label="Footer policies">
             <ul className="space-y-1 sm:space-y-2 md:space-y-3">
               <li>
                 <NavLink
                   to="/contact"
-                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform "
+                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
                 >
-                  Liên hệ
+                  Liên hệ & Hỗ trợ khách hàng
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/aboutus"
+                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
+                >
+                  Điều khoản đặt tour
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  to="#"
-                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform "
+                  to="/cancellation"
+                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
                 >
-                  Hình thức thanh toán
+                  Chính sách hủy tour & hoàn tiền
                 </NavLink>
               </li>
+
               <li>
                 <NavLink
-                  to="/intro"
-                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform "
+                  to="/privacy"
+                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform"
                 >
-                  Điều khoản dịch vụ
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="#"
-                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform "
-                >
-                  Chính sách vận chuyển
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="#"
-                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform "
-                >
-                  Chính sách đổi trả
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="#"
-                  className="text-xs xs:text-sm sm:text-base md:text-sm lg:text-base text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-colors duration-300 block py-1 hover:translate-x-1 transform "
-                >
-                  Chính sách bảo mật thông tin
+                  Chính sách bảo mật thông tin khách hàng
                 </NavLink>
               </li>
             </ul>

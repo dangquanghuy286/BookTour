@@ -1,3 +1,6 @@
+import AboutUs from "../components/About/AboutUs";
+import CancellationPolicy from "../components/About/CancellationPolicy";
+import PrivacyPolicy from "../components/About/PrivacyPolicy";
 import BlogDetail from "../components/Blogs/BlogDetail";
 import Layout from "../Layout";
 import Blog from "../pages/Blog";
@@ -26,6 +29,18 @@ export const routes = [
       {
         path: "/intro",
         element: <Intro />,
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />,
+      },
+      {
+        path: "/cancellation",
+        element: <CancellationPolicy />,
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyPolicy />,
       },
       {
         path: "tour",

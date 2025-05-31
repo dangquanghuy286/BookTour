@@ -50,8 +50,13 @@ const TourPopuLar = () => {
           <ErrorMessage error="Không tìm thấy tour nào." isWarning={true} />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
-            {data.map((tour) => (
-              <div key={tour.id} data-aos="fade-up" data-aos-delay="100">
+            {data.map((tour, index) => (
+              <div
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                data-aos-duration="600"
+                key={tour.id}
+              >
                 <CardTourPopular tour={tour} />
               </div>
             ))}

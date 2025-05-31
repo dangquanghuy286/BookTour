@@ -87,7 +87,7 @@ const Review = () => {
           data-aos="fade-right"
           data-aos-delay="200"
         >
-          Đánh giá từ những người đã trải nghiệm!
+          Đánh Giá Từ Những Người Đã Trải Nghiệm!
         </h1>
 
         {loading ? (

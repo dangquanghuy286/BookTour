@@ -32,7 +32,7 @@ const BlogDetail = () => {
     <div className="min-h-screen bg-white dark:bg-slate-900 py-6 sm:py-8 lg:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main content card */}
-        <article className="bg-white dark:bg-slate-950 rounded-xl border border-gray-200  shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,_rgba(0,0,0,0.08)_0px_0px_0px_1px] overflow-hidden">
+        <article className="bg-white dark:bg-slate-950 rounded-xl border border-gray-200  shadow-[rgba(0,0,0,0.16)_0px_1px_4px] overflow-hidden">
           {/* Header section */}
           <div className="p-6 sm:p-8 lg:p-10">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-[#00c0d1] leading-tight">

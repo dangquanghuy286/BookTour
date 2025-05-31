@@ -8,8 +8,9 @@ import {
   FaWifi,
   FaRegUser,
   FaPhone,
+  FaRegCheckCircle,
 } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
 import { AiOutlineRight } from "react-icons/ai";
 import { IoLocationOutline } from "react-icons/io5";
@@ -54,5 +55,7 @@ const icons = {
   MdLocationOn,
   MdAccessTime,
   MdAttachMoney,
+  FaArrowRightLong,
+  FaRegCheckCircle,
 };
 export default icons;

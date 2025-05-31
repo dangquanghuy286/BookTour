@@ -21,11 +21,9 @@ const BlogCard = ({ blog, size = "default", left = false }) => {
 
   return (
     <div
-      className={`p-6 dark:bg-slate-950 transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.15)] 
+      className={`p-6 dark:bg-slate-950 transition-all duration-500 shadow-[rgba(0,0,0,0.16)_0px_1px_4px]
         cursor-pointer rounded-3xl border border-gray-300  flex flex-col h-full 
-        hover:shadow-[0_4px_16px_rgba(0,0,0,0.2)]  ${sizeClasses} ${
-        left ? "sm:ml-4" : ""
-      }`}
+       ${sizeClasses} ${left ? "sm:ml-4" : ""}`}
     >
       {/* Image Section */}
       <div className="relative overflow-hidden rounded-2xl">

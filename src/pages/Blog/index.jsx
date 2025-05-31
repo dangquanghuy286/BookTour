@@ -11,7 +11,7 @@ function Blog({ blogs = null, showPagination = true }) {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0); // Trang hiện tại
   const [totalPages, setTotalPages] = useState(0); // Tổng số trang
-  const limit = 8; // Số blog mỗi trang
+  const limit = 6; // Số blog mỗi trang
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -70,7 +70,11 @@ function Blog({ blogs = null, showPagination = true }) {
       <div className="max-w-6xl mx-auto">
         {" "}
         {/* Tăng từ max-w-6xl lên max-w-7xl */}
-        <h1 className="tour_tittle py-2 pl-3 my-6 sm:my-8 text-2xl sm:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]">
+        <h1
+          className="tour_tittle py-2 pl-3 my-6 sm:my-8 text-2xl sm:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]"
+          data-aos="fade-right"
+          data-aos-delay="200"
+        >
           Bài viết mới nhất
         </h1>
         {loading ? (
@@ -86,8 +90,15 @@ function Blog({ blogs = null, showPagination = true }) {
           // Điều chỉnh grid để có ít cột hơn, card sẽ rộng hơn
           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {" "}
-            {data.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
+            {data.map((blog, index) => (
+              <div
+                key={blog.blogId}
+                data-aos="fade-up"
+                data-aos-delay={index * 100} // delay tăng dần theo index
+                data-aos-duration="600"
+              >
+                <BlogCard key={blog.id} blog={blog} />
+              </div>
             ))}
           </div>
         )}
