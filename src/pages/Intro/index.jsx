@@ -11,9 +11,9 @@ const Intro = () => {
       <HeaderImg />
       <AboutUs />
       <AboutTeam />
-      <div className="bg-white dark:bg-slate-900">
-        <CancellationPolicy />
-      </div>
+
+      <CancellationPolicy />
+
       <PrivacyPolicy />
     </div>
   );
