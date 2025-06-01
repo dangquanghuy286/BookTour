@@ -46,7 +46,7 @@ const Review = () => {
     autoplaySpeed: 3000, // Lướt mỗi 3 giây
     pauseOnHover: true,
     cssEase: "linear", // Hiệu ứng mượt mà
-    arrows: true, // Hiển thị mũi tên điều hướng
+    arrows: false, // Tắt mũi tên để phù hợp với banner
     responsive: [
       {
         breakpoint: 1024,

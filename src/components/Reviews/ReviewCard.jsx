@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Star } from "lucide-react";
-
+import icons from "../../utils/icons";
+const { FaStar } = icons;
 const ReviewCard = ({ review }) => {
   const { comment, rating, created_at, avatar, user_name } = review;
   const [avatarError, setAvatarError] = useState(false);
@@ -51,7 +51,7 @@ const ReviewCard = ({ review }) => {
         </div>
         <div className="flex items-center gap-1 my-2">
           {[...Array(fullStars)].map((_, i) => (
-            <Star
+            <FaStar
               key={`full-${i}`}
               className="text-yellow-400 fill-yellow-400"
               size={20}
@@ -59,17 +59,17 @@ const ReviewCard = ({ review }) => {
           ))}
           {halfStar && (
             <div className="relative">
-              <Star className="text-gray-300" size={20} />
+              <FaStar className="text-gray-300" size={20} />
               <div
                 className="absolute top-0 left-0 overflow-hidden"
                 style={{ width: "50%" }}
               >
-                <Star className="text-yellow-400 fill-yellow-400" size={20} />
+                <FaStar className="text-yellow-400 fill-yellow-400" size={20} />
               </div>
             </div>
           )}
           {[...Array(emptyStars)].map((_, i) => (
-            <Star key={`empty-${i}`} className="text-gray-300" size={20} />
+            <FaStar key={`empty-${i}`} className="text-gray-300" size={20} />
           ))}
         </div>
         <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">

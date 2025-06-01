@@ -10,11 +10,6 @@ export const getDataTour = async (page = 0, limit = 8, filters = {}) => {
       ...filters,
     };
 
-    // Xử lý đặc biệt cho region (chuyển thành UPPER_CASE nếu có)
-    if (params.region) {
-      params.region = params.region.toUpperCase();
-    }
-
     // Xử lý đặc biệt cho duration (thêm hậu tố nếu cần)
     if (params.duration && typeof params.duration === "number") {
       params.duration = `${params.duration}_days`;

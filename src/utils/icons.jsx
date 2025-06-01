@@ -16,6 +16,7 @@ import {
   FaUserShield,
   FaSyncAlt,
   FaPhoneAlt,
+  FaStar,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
@@ -71,5 +72,6 @@ const icons = {
   FaUserShield,
   FaSyncAlt,
   FaPhoneAlt,
+  FaStar,
 };
 export default icons;

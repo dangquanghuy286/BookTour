@@ -222,3 +222,8 @@ export const prices = [
   { value: "6.000.000 - 8.000.000 Vnd", label: "6.000.000 - 8.000.000 Vnd" },
   { value: "8.000.000 - 10.000.000 Vnd", label: "8.000.000 - 10.000.000 Vnd" },
 ];
+export const durationMap = {
+  "3 ngày 2 đêm": 3,
+  "4 ngày 3 đêm": 4,
+  "5 ngày 4 đêm": 5,
+};

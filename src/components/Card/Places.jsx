@@ -11,7 +11,6 @@ const Places = ({
   size = "default",
   left = false,
   container = true,
-  star = false,
   showPagination = true,
   title = "Khám Phá Kho Báu Việt Nam Cùng GoViet",
   tours = null,
@@ -95,7 +94,7 @@ const Places = ({
                   booking={booking}
                   size={size}
                   left={left}
-                  star={star}
+                  star={true}
                 />
               </div>
             ))}

@@ -35,8 +35,10 @@ const PlacesCard = ({
         </Link>
 
         {star && (
-          <div className="absolute flex items-center p-1.5 sm:p-2 justify-center bg-white w-[80px] sm:w-[90px] md:w-[100px] h-[22px] sm:h-[24px] rounded-full bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2">
-            <StarDisplay rating={item.star} />
+          <div className="absolute flex items-center p-1.5 sm:p-2 justify-center w-[80px] sm:w-[90px] md:w-[100px] h-[22px] sm:h-[24px] rounded-full bottom-2 sm:bottom-3 right-2 sm:right-3 bg-black/40 backdrop-blur-sm">
+            <div className="w-[60px] sm:w-[70px] md:w-[80px]  overflow-hidden">
+              <StarDisplay rating={item.star} />
+            </div>
           </div>
         )}
       </div>
