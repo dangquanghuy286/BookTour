@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { getDataTourPopular } from "../../services/TourService";
-
 import LoadingSpinner from "../LoadingSniper";
 import ErrorMessage from "../ErrorMessage";
-import CardTourPopular from "./CardTourPopular";
+import PlacesCard from "../Card/PlacesCard";
 
 const TourPopuLar = () => {
   const [data, setData] = useState([]);
@@ -16,6 +15,8 @@ const TourPopuLar = () => {
         setLoading(true);
         setError(null);
         const res = await getDataTourPopular();
+        console.log(res);
+
         if (res.status === 200) {
           setData(res.data || []);
         } else {
@@ -57,7 +58,13 @@ const TourPopuLar = () => {
                 data-aos-duration="600"
                 key={tour.id}
               >
-                <CardTourPopular tour={tour} />
+                <PlacesCard
+                  item={tour}
+                  booking={true}
+                  size="default"
+                  left={false}
+                  star={true}
+                />
               </div>
             ))}
           </div>

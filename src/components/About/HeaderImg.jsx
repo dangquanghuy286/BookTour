@@ -79,7 +79,6 @@ const HeaderImg = () => {
       ) : (
         <Slider {...sliderSettings}>
           {banners.map((banner) => (
-            // Phiên bản đơn giản hơn:
             <div
               key={banner.id}
               className="relative w-full group overflow-hidden rounded-xl shadow-xl"

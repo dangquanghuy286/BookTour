@@ -6,16 +6,18 @@ import { getDataTour } from "../../services/TourService";
 import EntriesFilter from "../Pagination";
 
 const DestinationCard = () => {
+  // State quản lý dữ liệu, phân trang, trạng thái tải và lỗi
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [selected, setSelected] = useState("Tất cả");
-  const regions = ["Tất cả", "Miền Bắc", "Miền Trung", "Miền Nam"];
   const [error, setError] = useState(null);
+
+  const regions = ["Tất cả", "Miền Bắc", "Miền Trung", "Miền Nam"];
   const limit = 8;
 
-  // Ánh xạ vùng theo định dạng API
+  // Bản đồ ánh xạ tên vùng sang giá trị tương ứng với backend
   const regionMapping = {
     "Miền Bắc": "NORTH",
     "Miền Trung": "CENTRAL",
@@ -23,15 +25,18 @@ const DestinationCard = () => {
     "Tất cả": undefined,
   };
 
+  // Gọi API mỗi khi trang hoặc vùng được thay đổi
   useEffect(() => {
     const fetchTour = async (page = 0, region = "Tất cả") => {
       setIsLoading(true);
       setError(null);
+
       try {
-        // Chỉ thêm trường region vào filters nếu không phải "Tất cả"
         const filters =
           region === "Tất cả" ? {} : { region: regionMapping[region] };
+
         const res = await getDataTour(page, limit, filters);
+
         if (res.status === 200) {
           setData(res.data.tours || []);
           setTotalPages(res.data.totalPages || 0);
@@ -44,10 +49,11 @@ const DestinationCard = () => {
         setIsLoading(false);
       }
     };
+
     fetchTour(currentPage, selected);
   }, [currentPage, selected]);
 
-  // Hàm xử lý thay đổi trang
+  // Xử lý khi chuyển trang
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -59,6 +65,7 @@ const DestinationCard = () => {
         data-aos="fade-up"
         data-aos-delay="300"
       >
+        {/* Tiêu đề */}
         <h2
           className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00c0d1] mt-4 mb-8 border-l-8 border-[#00c0d1] pl-3"
           data-aos="fade-right"
@@ -69,21 +76,27 @@ const DestinationCard = () => {
 
         <div className="pt-6 dark:bg-slate-900 dark:text-white">
           <div className="flex flex-col justify-center">
-            <div className="inline-flex items-center justify-center p-3 bg-white border border-gray-300 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] w-fit mx-auto mb-12">
+            {/* Vùng chọn miền - có responsive */}
+            <div className="flex flex-wrap justify-center gap-3 p-3 bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-10 max-w-4xl">
               {regions.map((region) => (
                 <button
                   key={region}
-                  onClick={() => setSelected(region)}
-                  className={`px-5 text-lg py-2 rounded-full font-semibold transition-all duration-300 ${
+                  onClick={() => {
+                    setSelected(region);
+                    setCurrentPage(0);
+                  }}
+                  className={`px-4 py-2 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 ${
                     selected === region
                       ? "bg-[#00c0d1] text-white"
-                      : "text-gray-700 dark:text-white hover:bg-gray-100 "
+                      : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`}
                 >
                   {region}
                 </button>
               ))}
             </div>
+
+            {/* Hiển thị trạng thái tải, lỗi hoặc dữ liệu */}
             {isLoading ? (
               <LoadingSpinner message="Đang tải danh sách tour..." />
             ) : error ? (
@@ -91,7 +104,8 @@ const DestinationCard = () => {
             ) : data.length === 0 ? (
               <ErrorMessage error="Không tìm thấy tour nào." />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 min-w-0">
+              // Hiển thị danh sách tour
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 min-w-0">
                 {data.map((item, index) => (
                   <div
                     key={item.id}
@@ -110,6 +124,8 @@ const DestinationCard = () => {
                 ))}
               </div>
             )}
+
+            {/* Phân trang nếu có nhiều hơn 1 trang */}
             {totalPages > 1 && (
               <EntriesFilter
                 currentPage={currentPage}
