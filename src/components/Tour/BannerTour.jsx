@@ -5,7 +5,7 @@ import ErrorMessage from "../ErrorMessage";
 import LoadingSpinner from "../LoadingSniper";
 import BannerSlider from "../BannerSlider";
 
-const HeaderImg = () => {
+const BannerTour = () => {
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,7 +22,7 @@ const HeaderImg = () => {
               banner.isActive &&
               new Date(banner.startDate) <= new Date() &&
               new Date(banner.endDate) >= new Date() &&
-              banner.position?.toUpperCase() === "SIDEBAR"
+              banner.position?.toUpperCase() === "TOUR_DETAIL"
           );
           setBanners(activeBanners || []);
         } else {
@@ -52,4 +52,4 @@ const HeaderImg = () => {
   );
 };
 
-export default HeaderImg;
+export default BannerTour;
