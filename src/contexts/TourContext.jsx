@@ -211,11 +211,30 @@ export const data = [
   },
 ];
 export const durations = [
+  { value: "1 ngày", label: "1 ngày" },
+  { value: "2 ngày 1 đêm", label: "2 ngày 1 đêm" },
   { value: "3 ngày 2 đêm", label: "3 ngày 2 đêm" },
   { value: "4 ngày 3 đêm", label: "4 ngày 3 đêm" },
   { value: "5 ngày 4 đêm", label: "5 ngày 4 đêm" },
+  { value: "6 ngày 5 đêm", label: "6 ngày 5 đêm" },
 ];
 
+// Dữ liệu cho các tùy chọn lọc
+export const regions = ["Tất cả khu vực", "Miền Bắc", "Miền Trung", "Miền Nam"];
+
+export const sortOptions = [
+  { value: "newest", label: "Mới nhất" },
+  { value: "price-low", label: "Giá thấp đến cao" },
+  { value: "price-high", label: "Giá cao đến thấp" },
+];
+
+export const priceRanges = [
+  { label: "Dưới 1 triệu", min: 0, max: 1000000 },
+  { label: "1-3 triệu", min: 1000000, max: 3000000 },
+  { label: "3-5 triệu", min: 3000000, max: 5000000 },
+  { label: "5-10 triệu", min: 5000000, max: 10000000 },
+  { label: "Trên 10 triệu", min: 10000000, max: 50000000 },
+];
 export const prices = [
   { value: "1.000.000 - 3.000.000 Vnd", label: "1.000.000 - 3.000.000 Vnd" },
   { value: "3.000.000 - 6.000.000 Vnd", label: "3.000.000 - 6.000.000 Vnd" },
@@ -223,7 +242,11 @@ export const prices = [
   { value: "8.000.000 - 10.000.000 Vnd", label: "8.000.000 - 10.000.000 Vnd" },
 ];
 export const durationMap = {
+  "1 ngày": 1,
+  "2 ngày 1 đêm": 2,
   "3 ngày 2 đêm": 3,
   "4 ngày 3 đêm": 4,
   "5 ngày 4 đêm": 5,
+  "6 ngày 5 đêm": 6,
+  "7 ngày ": 7,
 };
