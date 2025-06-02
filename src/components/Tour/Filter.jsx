@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import icons from "../../utils/icons";
+
 import {
   durations,
   priceRanges,
   regions,
   sortOptions,
 } from "../../contexts/TourContext";
+import StarDisplay from "../Star";
 
 const {
   FiFilter,
@@ -18,10 +20,16 @@ const {
 } = icons;
 
 const Filter = ({ onFilterChange, totalResults = 0 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const [rating, setRating] = useState(0); // State để lưu giá trị rating
 
   const handlePriceRangeChange = (range) => {
     onFilterChange({ priceRange: { ...range, label: range.label } });
+  };
+
+  const handleRatingChange = (value) => {
+    setRating(value);
+    onFilterChange({ rating: value }); // Gửi giá trị rating lên parent component
   };
 
   const clearFilters = () => {
@@ -30,21 +38,18 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
       priceRange: { min: 0, max: 10000000, label: "" },
       duration: "",
       sortBy: "newest",
+      rating: 0, // Reset rating
     };
     onFilterChange(defaultFilters);
+    setRating(0);
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)] border border-gray-300  overflow-hidden">
+    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)] border border-gray-300 overflow-hidden">
       {/* Header */}
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between p-4 cursor-pointer hover:bg-gradient-to-r hover:from-cyan-50 hover:to-teal-50 dark:hover:from-slate-800 dark:hover:to-slate-800 transition-all duration-300"
-        style={{
-          background: isOpen
-            ? "linear-gradient(135deg, #00c0d1/5 0%, #00c0d1/10 100%)"
-            : "",
-        }}
       >
         <div className="flex items-center gap-3">
           <div className="p-1.5 rounded-lg bg-gradient-to-br from-[#00c0d1] to-[#00a0b0] shadow-[0_1px_4px_rgba(0,0,0,0.16)]">
@@ -179,6 +184,53 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
                     <span className="text-sm text-gray-700 dark:text-gray-300 font-medium group-hover/item:text-[#00c0d1] transition-colors duration-200">
                       {range.label}
                     </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Đánh giá */}
+            <div className="group">
+              <label className="flex items-center gap-3 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                <div className="p-1.5 rounded-lg bg-[#00c0d1]/10">
+                  <span className="text-[#00c0d1]">★</span>
+                </div>
+                Đánh giá
+              </label>
+              <div className="space-y-3">
+                {[5, 4, 3, 2, 1].map((star) => (
+                  <label
+                    key={star}
+                    className="flex items-center gap-3 cursor-pointer p-2 rounded-lg hover:bg-[#00c0d1]/5 transition-all duration-200 group/item"
+                  >
+                    <div className="relative">
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={star}
+                        checked={rating === star}
+                        onChange={() => handleRatingChange(star)}
+                        className="sr-only"
+                      />
+                      <div
+                        className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all duration-200 ${
+                          rating === star
+                            ? "border-[#00c0d1]"
+                            : "border-gray-300 group-hover/item:border-[#00c0d1]"
+                        }`}
+                      >
+                        <div
+                          className={`w-2 h-2 rounded-full bg-[#00c0d1] transition-opacity duration-200 ${
+                            rating === star
+                              ? "opacity-100"
+                              : "opacity-0 group-hover/item:opacity-100"
+                          }`}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/item:text-[#00c0d1]">
+                      <StarDisplay rating={star} />
+                    </div>
                   </label>
                 ))}
               </div>

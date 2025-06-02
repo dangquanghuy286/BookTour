@@ -34,6 +34,7 @@ const useNewTourFilterSort = () => {
     priceRange: { min: 0, max: 10000000, label: "" },
     duration: "",
     sortBy: "newest",
+    rating: 0, // Thêm trường rating
   });
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,7 @@ const useNewTourFilterSort = () => {
       priceRange: { min: 0, max: 10000000, label: "" },
       duration: "",
       sortBy: "newest",
+      rating: 0, // Reset rating
     };
     setFilters(defaultFilters);
     setCurrentPage(0); // Reset về trang 1
@@ -76,6 +78,7 @@ const useNewTourFilterSort = () => {
           ? priceMap[filters.priceRange.label]
           : filters.priceRange;
         const duration = durationMap[filters.duration] || null;
+        const starRating = filters.rating > 0 ? filters.rating : null; // Xử lý rating
 
         // Xây dựng object filters cho API
         const apiFilters = {
@@ -83,6 +86,7 @@ const useNewTourFilterSort = () => {
           priceMin: priceMin > 0 ? priceMin : null,
           priceMax: priceMax < 10000000 ? priceMax : null,
           duration: duration,
+          starRating: starRating, // Sử dụng 'starRating' theo backend API
         };
 
         // Xử lý sắp xếp
@@ -104,6 +108,8 @@ const useNewTourFilterSort = () => {
             apiFilters.sortDir = "desc";
             break;
         }
+
+        console.log("API Filters being sent:", apiFilters); // Debug log
 
         const res = await getDataTour(currentPage, 6, apiFilters);
         if (res.status === 200) {
