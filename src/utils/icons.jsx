@@ -17,6 +17,10 @@ import {
   FaSyncAlt,
   FaPhoneAlt,
   FaStar,
+  FaCalendarAlt,
+  FaTimes,
+  FaChevronDown,
+  FaChevronUp,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
@@ -33,7 +37,7 @@ import {
   MdAccessTime,
   MdAttachMoney,
 } from "react-icons/md";
-import { FiMenu, FiX, FiClock, FiChevronDown } from "react-icons/fi";
+import { FiMenu, FiX, FiClock, FiChevronDown, FiFilter } from "react-icons/fi";
 const icons = {
   IoIosSunny,
   IoIosMoon,
@@ -73,5 +77,10 @@ const icons = {
   FaSyncAlt,
   FaPhoneAlt,
   FaStar,
+  FaCalendarAlt,
+  FaTimes,
+  FaChevronDown,
+  FaChevronUp,
+  FiFilter,
 };
 export default icons;

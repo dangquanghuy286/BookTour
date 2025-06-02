@@ -41,7 +41,7 @@ const HeaderImg = () => {
 
   // Cấu hình slider
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: banners.length > 1, // Chỉ bật infinite nếu có nhiều hơn 1 banner
     speed: 500,
     slidesToShow: 1,

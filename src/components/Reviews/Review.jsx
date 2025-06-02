@@ -37,7 +37,7 @@ const Review = () => {
   const canLoop = review.length > slidesToShow;
 
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: canLoop, // Chỉ bật infinite nếu có đủ review
     speed: 500, // Tốc độ chuyển slide mượt mà hơn
     slidesToShow: slidesToShow,
