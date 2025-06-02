@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import useNewTourFilterSort from "../../hooks/useNewTourFilterSort";
-import Filter from "../../components/Tour/Filter";
+
 import LoadingSpinner from "../../components/LoadingSniper";
 import ErrorMessage from "../../components/ErrorMessage";
 import PlacesCard from "../../components/Card/PlacesCard";
 import EntriesFilter from "../../components/Pagination";
 import NoPage from "../../components/NoPage/NoPage";
+import Filter from "../../components/Filter/Filter";
 
 const AllTour = () => {
   const {
