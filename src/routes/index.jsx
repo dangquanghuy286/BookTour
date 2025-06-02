@@ -15,9 +15,10 @@ import Login from "../pages/Login";
 import Logout from "../pages/Logout";
 import Register from "../pages/Register";
 import Tours from "../pages/Tours";
-import DetailTour from "../pages/Tours/DetailTour";
-import FeatureTours from "../pages/Tours/FeatureTours";
-import LatestTour from "../pages/Tours/LatestTour";
+import TourPopuLar from "../components/Tour/TourPopuLar";
+import DetailTour from "../components/Tour/DetailTour";
+import LatestTour from "../components/Tour/LatestTour";
+import AllTour from "../pages/Tours/AllTour";
 
 export const routes = [
   {
@@ -53,19 +54,19 @@ export const routes = [
         element: <Tours />,
         children: [
           {
-            index: true,
-            element: <Tours />,
+            path: "getalltour",
+            element: <AllTour />,
           },
           {
             path: "feature_tours",
-            element: <FeatureTours />,
+            element: <TourPopuLar />,
           },
           {
-            path: "lastest_tours",
+            path: "latest_tours",
             element: <LatestTour />,
           },
           {
-            path: ":id",
+            path: ":slug",
             element: <DetailTour />,
           },
         ],

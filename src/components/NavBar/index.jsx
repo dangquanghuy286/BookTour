@@ -91,11 +91,7 @@ function Header() {
 
           {/* Tour Dropdown */}
           <li className="relative group">
-            <NavLink
-              to="/tour"
-              className={getNavLinkClass}
-              onClick={toggleMenu}
-            >
+            <NavLink className={getNavLinkClass} onClick={toggleMenu}>
               <span className="flex items-center gap-1">
                 Tour
                 <FiChevronDown className="text-sm sm:text-lg transition-transform duration-300 group-hover:rotate-180" />
@@ -104,6 +100,15 @@ function Header() {
 
             {/* Dropdown Menu */}
             <ul className="xl:absolute xl:top-full xl:left-0 bg-white dark:bg-slate-900 xl:shadow-lg xl:rounded-md xl:border xl:border-gray-200 xl:dark:border-slate-700 min-w-[180px] sm:min-w-[200px] flex-col hidden group-hover:flex z-50 xl:mt-[2px] ml-4 xl:ml-0 mt-2 ">
+              <li>
+                <NavLink
+                  to="/tour/getalltour"
+                  className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-black dark:text-white hover:text-[#00c0d1] dark:hover:text-[#00c0d1] hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-300 xl:first:rounded-t-md xl:last:rounded-b-md"
+                  onClick={toggleMenu}
+                >
+                  Tất Cả Tour
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/tour/feature_tours"

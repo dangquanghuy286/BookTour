@@ -78,22 +78,24 @@ const DestinationCard = () => {
           <div className="flex flex-col justify-center">
             {/* Vùng chọn miền - có responsive */}
             <div className="flex flex-wrap justify-center gap-3 p-3 bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-10 max-w-4xl">
-              {regions.map((region) => (
-                <button
-                  key={region}
-                  onClick={() => {
-                    setSelected(region);
-                    setCurrentPage(0);
-                  }}
-                  className={`px-4 py-2 text-sm sm:text-base rounded-full font-semibold transition-all duration-300 ${
-                    selected === region
-                      ? "bg-[#00c0d1] text-white"
-                      : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  }`}
-                >
-                  {region}
-                </button>
-              ))}
+              <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
+                {regions.map((region) => (
+                  <button
+                    key={region}
+                    onClick={() => {
+                      setSelected(region);
+                      setCurrentPage(0);
+                    }}
+                    className={`px-2 xs:px-3 sm:px-4 py-1 xs:py-1.5 sm:py-2 text-xs xs:text-sm sm:text-base rounded-full font-semibold transition-all duration-300 ${
+                      selected === region
+                        ? "bg-[#00c0d1] text-white"
+                        : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                  >
+                    {region}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Hiển thị trạng thái tải, lỗi hoặc dữ liệu */}

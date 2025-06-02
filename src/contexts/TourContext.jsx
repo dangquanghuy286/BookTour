@@ -151,7 +151,7 @@ export const southProvinces = [
 ];
 export const company = {
   companyName: "Công ty Du lịch GoViet",
-  address: "123 Đường Quang Trung, Quận Thanh Khê, TP. Đà Nẵng",
+  address: "Quảng Lăng A , Điện Nam Trung ,Điện Bàn ,Quảng Nam",
   phone: "0901234567",
   email: "support@goviet.com",
 };

@@ -23,6 +23,7 @@ function Breadcrumb() {
       privacy: "Chính Sách Bảo Mật Thông Tin Khách Hàng",
       cancellation: "Chính Sách Hủy Tour Và Hoàn Tiền",
       termsofservice: "Điều Khoản & Dịch Vụ",
+      getalltour: "Tất Cả Tour",
     };
 
     if (nameMap[name]) return nameMap[name];
