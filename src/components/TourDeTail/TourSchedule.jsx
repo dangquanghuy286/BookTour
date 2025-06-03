@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaCheckCircle, FaChevronDown, FaChevronRight } from "react-icons/fa";
-
+import Img from "../../assets/Img/dauphay.webp";
 const TourSchedule = ({ tour }) => {
   const [openDay, setOpenDay] = useState(null);
 
@@ -11,9 +11,14 @@ const TourSchedule = ({ tour }) => {
   return (
     <div className="pt-10">
       <div className="container">
-        <h1 className="text-3xl font-semibold text-gray-900 dark:text-white">
-          Lịch Trình
-        </h1>
+        <div className="flex flex-col ">
+          <h1 className="text-2xl font-bold text-[#00c0d1] mb-4">Lịch Trình</h1>
+          <img
+            src={Img}
+            alt="Tour Policy"
+            className="w-full max-w-[100px] h-auto rounded-lg  mb-6 object-contain"
+          />
+        </div>
         <div className="w-full md:w-3/4 mt-6 space-y-4">
           {tour.itinerary.map((dayItem) => (
             <div

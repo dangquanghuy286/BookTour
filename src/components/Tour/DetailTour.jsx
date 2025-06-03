@@ -10,6 +10,8 @@ import HeaderTitle from "../TourDeTail/HeaderTitle";
 import TourConTent from "../TourDeTail/TourConTent";
 import GoBack from "../GoBack/Goback";
 import TourSchedule from "../TourDeTail/TourSchedule";
+import TourPolicy from "../TourDeTail/TourPolicy";
+import TourFAQ from "../TourDeTail/TourFAQ";
 
 const { IoLocationOutline, FiClock, FaRegUser } = icons;
 
@@ -82,6 +84,8 @@ const DetailTour = () => {
               <TourImg key={images.id} images={images} />
               <TourConTent key={images.id} tour={tour} />
               <TourSchedule key={images.id} tour={tour} />
+              <TourPolicy />
+              <TourFAQ />
             </div>
             <GoBack />
           </>

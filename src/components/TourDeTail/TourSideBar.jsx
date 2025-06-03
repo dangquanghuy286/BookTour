@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { company } from "../../contexts/TourContext";
 import icons from "../../utils/icons";
 
@@ -99,9 +99,11 @@ const TourSidebar = ({ tour }) => {
         >
           Đặt ngay
         </button>
-        <p className="mt-2 text-center cursor-pointer hover:underline">
-          Bạn cần trợ giúp không?
-        </p>
+        <Link to="/contact">
+          <p className="mt-2 text-center cursor-pointer hover:underline">
+            Bạn cần trợ giúp không?
+          </p>
+        </Link>
       </div>
 
       {/* Phần Bạn cần trợ giúp */}

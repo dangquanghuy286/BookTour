@@ -1,6 +1,6 @@
 import React from "react";
 import icons from "../../utils/icons";
-
+import Img from "../../assets/Img/dauphay.webp";
 import TourSidebar from "./TourSideBar";
 const { FaCheck, IoCloseSharp } = icons;
 
@@ -11,9 +11,16 @@ const TourConTent = ({ tour }) => {
         <h1 className="text-3xl font-semibold ">Khám phá Tours</h1>
         <div className="flex flex-col md:flex-row gap-5 mt-5">
           <div className="w-full md:w-3/4">
-            <h1 className="mt-2 text-2xl font-semibold text-[#00c0d1]">
-              Điểm nhấn
-            </h1>
+            <div className="flex flex-col ">
+              <h1 className="text-2xl font-bold text-[#00c0d1] mb-4">
+                Điểm Nhấn
+              </h1>
+              <img
+                src={Img}
+                alt="Tour Policy"
+                className="w-full max-w-[100px] h-auto rounded-lg  mb-6 object-contain"
+              />
+            </div>
             <div className="mt-2 space-y-2 text-lg ">
               {tour.description.split("|").map((part, index) => (
                 <p key={index} className="text-black dark:text-white ">

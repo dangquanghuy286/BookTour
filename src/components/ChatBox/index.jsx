@@ -304,7 +304,7 @@ const ChatBox = () => {
             <div className="flex items-center space-x-3">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               <span className="text-base font-medium text-gray-700 whitespace-nowrap">
-                <p className="font-medium text-primary">
+                <p className="font-medium text-[#00c0d1]">
                   GoViet Tours sẵn sàng hỗ trợ!
                 </p>
                 <p>Quý khách đang cần thông tin gì ạ?</p>
