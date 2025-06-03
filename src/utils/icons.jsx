@@ -25,11 +25,12 @@ import {
   FaMapMarkerAlt,
   FaUsers,
   FaShieldAlt,
+  FaCheck,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
-
-import { IoLocationOutline } from "react-icons/io5";
+import { FiPhoneCall } from "react-icons/fi";
+import { IoLocationOutline, IoCloseSharp } from "react-icons/io5";
 import {
   MdFastfood,
   MdOutlineHotel,
@@ -95,5 +96,8 @@ const icons = {
   FaShieldAlt,
   AiOutlineLeft,
   CiShare1,
+  FaCheck,
+  IoCloseSharp,
+  FiPhoneCall,
 };
 export default icons;

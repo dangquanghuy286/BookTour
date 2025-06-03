@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import icons from "../../utils/icons";
-import StarDisplay from "../Star";
+
 import { getTourById, getTourImages } from "../../services/TourService";
 import LoadingSpinner from "../LoadingSniper";
 import ErrorMessage from "../ErrorMessage";
 import TourImg from "../TourDeTail/TourImg";
 import HeaderTitle from "../TourDeTail/HeaderTitle";
+import TourConTent from "../TourDeTail/TourConTent";
+import GoBack from "../GoBack/Goback";
 
 const { IoLocationOutline, FiClock, FaRegUser } = icons;
 
@@ -77,7 +79,9 @@ const DetailTour = () => {
             <div className="container mx-auto px-4 md:px-8 py-8">
               <HeaderTitle key={tour.id} tour={tour} />
               <TourImg key={images.id} images={images} />
+              <TourConTent key={images.id} tour={tour} />
             </div>
+            <GoBack />
           </>
         )}
       </div>
