@@ -21,6 +21,10 @@ import {
   FaTimes,
   FaChevronDown,
   FaChevronUp,
+  FaQuestionCircle,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaShieldAlt,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
@@ -82,5 +86,9 @@ const icons = {
   FaChevronDown,
   FaChevronUp,
   FiFilter,
+  FaQuestionCircle,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaShieldAlt,
 };
 export default icons;

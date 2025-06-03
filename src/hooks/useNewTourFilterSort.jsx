@@ -109,8 +109,6 @@ const useNewTourFilterSort = () => {
             break;
         }
 
-        console.log("API Filters being sent:", apiFilters); // Debug log
-
         const res = await getDataTour(currentPage, 6, apiFilters);
         if (res.status === 200) {
           setTours(res.data.tours || []);

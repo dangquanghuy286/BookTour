@@ -19,6 +19,7 @@ import TourPopuLar from "../components/Tour/TourPopuLar";
 import DetailTour from "../components/Tour/DetailTour";
 import LatestTour from "../components/Tour/LatestTour";
 import AllTour from "../pages/Tours/AllTour";
+import TourBookingFAQ from "../components/TermsOfService/TourBookingFAQ";
 
 export const routes = [
   {
@@ -50,6 +51,10 @@ export const routes = [
         element: <PrivacyPolicy />,
       },
       {
+        path: "/faq",
+        element: <TourBookingFAQ />,
+      },
+      {
         path: "tour",
         element: <Tours />,
         children: [
@@ -65,11 +70,11 @@ export const routes = [
             path: "latest_tours",
             element: <LatestTour />,
           },
-          {
-            path: ":slug",
-            element: <DetailTour />,
-          },
         ],
+      },
+      {
+        path: "tours/:slug",
+        element: <DetailTour />,
       },
       {
         path: "destination",

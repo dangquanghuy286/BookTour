@@ -79,6 +79,14 @@ function Footer() {
                     Điều khoản dịch vụ
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to="/faq"
+                    className="text-xs sm:text-sm md:text-sm text-gray-700 dark:text-gray-300 hover:text-[#00c0d1] dark:hover:text-[#00c0d1] transition-all duration-300 block py-0.5 hover:translate-x-1 transform hover:pl-1"
+                  >
+                    Câu Hỏi Thường Gặp
+                  </NavLink>
+                </li>
               </ul>
             </nav>
           </div>

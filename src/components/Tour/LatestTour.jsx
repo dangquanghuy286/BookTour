@@ -16,7 +16,6 @@ const LatestTour = () => {
         setLoading(true);
         setError(null);
         const res = await getDataTour();
-        console.log(res);
 
         if (res.status === 200) {
           setData(res.data.tours || []);

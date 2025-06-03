@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StarDisplay from "../Star";
 import icons from "../../utils/icons";
+import { toSlug } from "../../utils/slug";
+
 const { FiClock, FaRegUser, IoLocationOutline } = icons;
 
 const PlacesCard = ({
@@ -18,6 +20,9 @@ const PlacesCard = ({
       ? "w-full"
       : "w-full max-w-[95%] sm:max-w-[320px] md:max-w-[350px]";
 
+  // Tạo slug từ title và id (để đảm bảo tính duy nhất)
+  const slug = `${toSlug(item.title)}-${item.id}`;
+
   return (
     <div
       className={`p-3 sm:p-4 md:p-5 dark:bg-slate-950 transition-all duration-500 shadow-[0_1px_4px_rgba(0,0,0,0.16)]
@@ -25,18 +30,42 @@ const PlacesCard = ({
         left ? "sm:ml-2 md:ml-4" : ""
       }`}
     >
-      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
-        <Link to={`/tours/${item.id}`}>
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl group">
+        {/* Container cho tag */}
+        {item.tag && (
+          <div
+            className={`absolute top-2 left-2 px-3 py-2 rounded-md text-white text-sm font-semibold backdrop-blur-sm z-10
+        ${
+          item.tag === "Economy"
+            ? "bg-green-500/80"
+            : item.tag === "Standard"
+            ? "bg-red-500/80"
+            : item.tag === "Premium"
+            ? "bg-yellow-500/80 text-black"
+            : ""
+        } transition-transform duration-700 group-hover:scale-110`}
+          >
+            {item.tag === "Economy"
+              ? "Tiết kiệm"
+              : item.tag === "Standard"
+              ? "Tiêu chuẩn"
+              : item.tag === "Premium"
+              ? "Cao cấp"
+              : item.tag}
+          </div>
+        )}
+
+        <Link to={`/tours/${slug}`}>
           <img
             src={item.img}
             alt={item.title}
-            className="mx-auto h-[160px] sm:h-[180px] md:h-[200px] lg:h-[220px] w-full object-cover transition duration-700 hover:skew-x-2 hover:scale-110"
+            className="mx-auto h-[160px] sm:h-[180px] md:h-[200px] lg:h-[220px] w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </Link>
 
         {star && (
-          <div className="absolute flex items-center p-1.5 sm:p-2 justify-center w-[80px] sm:w-[90px] md:w-[100px] h-[22px] sm:h-[24px] rounded-full bottom-2 sm:bottom-3 right-2 sm:right-3 bg-black/40 backdrop-blur-sm">
-            <div className="w-[60px] sm:w-[70px] md:w-[80px]  overflow-hidden">
+          <div className="absolute flex items-center p-1.5 sm:p-2 justify-center w-[80px] sm:w-[90px] md:w-[100px] h-[22px] sm:h-[24px] rounded-full bottom-2 sm:bottom-3 right-2 sm:right-3 bg-black/40 backdrop-blur-sm z-10 transition-transform duration-700 group-hover:scale-110">
+            <div className="w-[60px] sm:w-[70px] md:w-[80px] overflow-hidden">
               <StarDisplay rating={item.star} />
             </div>
           </div>
@@ -51,7 +80,7 @@ const PlacesCard = ({
           </p>
         </div>
         <Link
-          to={`/tours/${item.id}`}
+          to={`/tours/${slug}`}
           onClick={() => window.scrollTo(0, 0)}
           className="text-sm sm:text-base md:text-lg font-bold text-left hover:underline line-clamp-2"
         >
@@ -78,7 +107,7 @@ const PlacesCard = ({
         {booking && (
           <div className="flex items-center gap-1.5 sm:gap-2">
             <Link
-              to={`/tours/${item.id}`}
+              to={`/tours/${slug}`}
               onClick={() => window.scrollTo(0, 0)}
               className="px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 rounded-md text-white font-semibold text-xs sm:text-sm bg-[#00c0d1] hover:bg-[#0090a0] transition-colors duration-200 whitespace-nowrap"
             >

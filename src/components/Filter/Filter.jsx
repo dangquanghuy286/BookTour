@@ -75,7 +75,7 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
       </div>
 
       {isOpen && (
-        <div className="border-t dark:border-gray-700 bg-gradient-to-br from-gray-50/50 to-white dark:from-slate-800/50 dark:to-slate-900 p-4 space-y-6">
+        <div className=" dark:border-gray-700 bg-gradient-to-br from-gray-50/50 to-white dark:from-slate-800/50 dark:to-slate-900 p-4 space-y-6">
           {/* Sort */}
           <FilterSelect
             label="Sắp xếp theo"

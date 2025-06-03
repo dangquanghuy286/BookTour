@@ -45,3 +45,39 @@ export const getDataTourPopular = async () => {
     };
   }
 };
+// Lấy thông tin chi tiết của một tour theo id
+export const getTourById = async (id) => {
+  try {
+    // Gọi API với endpoint /tours/:id
+    const res = await get(`tours/${id}`);
+
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    console.error(`Error fetching tour with id ${id}:`, error);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || `Lỗi khi lấy thông tin tour với id ${id}`,
+    };
+  }
+};
+// Lấy danh sách hình ảnh của tour theo id
+export const getTourImages = async (id) => {
+  try {
+    // Gọi API với endpoint /tours/:id/images
+    const res = await get(`/tours/${id}/images`);
+
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    console.error(`Error fetching images for tour with id ${id}:`, error);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || `Lỗi khi lấy hình ảnh tour với id ${id}`,
+    };
+  }
+};

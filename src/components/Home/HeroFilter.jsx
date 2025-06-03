@@ -26,7 +26,6 @@ const HeroFilter = () => {
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Tìm kiếm với:", { destination, duration, price });
     } catch (err) {
       setError("Có lỗi xảy ra khi tìm kiếm");
     } finally {

@@ -15,7 +15,6 @@ const TourPopuLar = () => {
         setLoading(true);
         setError(null);
         const res = await getDataTourPopular();
-        console.log(res);
 
         if (res.status === 200) {
           setData(res.data || []);
