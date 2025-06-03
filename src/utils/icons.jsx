@@ -28,7 +28,7 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
-import { AiOutlineRight } from "react-icons/ai";
+
 import { IoLocationOutline } from "react-icons/io5";
 import {
   MdFastfood,
@@ -42,6 +42,7 @@ import {
   MdAttachMoney,
 } from "react-icons/md";
 import { FiMenu, FiX, FiClock, FiChevronDown, FiFilter } from "react-icons/fi";
+import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 const icons = {
   IoIosSunny,
   IoIosMoon,
@@ -90,5 +91,6 @@ const icons = {
   FaMapMarkerAlt,
   FaUsers,
   FaShieldAlt,
+  AiOutlineLeft,
 };
 export default icons;
