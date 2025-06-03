@@ -1,15 +1,14 @@
 import React from "react";
 import icons from "../../utils/icons";
-import BlogSidebar from "./BlogSideBar";
+
+import TourSidebar from "./TourSideBar";
 const { FaCheck, IoCloseSharp } = icons;
 
 const TourConTent = ({ tour }) => {
   return (
     <div className="pt-10">
       <div className="container">
-        <h1 className="text-3xl font-semibold border-l-8 p-4 border-cyan-300">
-          Khám phá Tours
-        </h1>
+        <h1 className="text-3xl font-semibold ">Khám phá Tours</h1>
         <div className="flex flex-col md:flex-row gap-5 mt-5">
           <div className="w-full md:w-3/4">
             <h1 className="mt-2 text-2xl font-semibold text-[#00c0d1]">
@@ -57,7 +56,7 @@ const TourConTent = ({ tour }) => {
             </div>
           </div>
           <div className="w-full md:w-1/4">
-            <BlogSidebar tour={tour} />
+            <TourSidebar tour={tour} />
           </div>
         </div>
       </div>
