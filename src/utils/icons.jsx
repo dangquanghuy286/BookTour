@@ -26,6 +26,8 @@ import {
   FaUsers,
   FaShieldAlt,
   FaCheck,
+  FaUserAlt,
+  FaEllipsisV,
 } from "react-icons/fa";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
@@ -42,7 +44,14 @@ import {
   MdAccessTime,
   MdAttachMoney,
 } from "react-icons/md";
-import { FiMenu, FiX, FiClock, FiChevronDown, FiFilter } from "react-icons/fi";
+import {
+  FiMenu,
+  FiX,
+  FiClock,
+  FiChevronDown,
+  FiFilter,
+  FiArrowUpRight,
+} from "react-icons/fi";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { CiShare1 } from "react-icons/ci";
 
@@ -99,5 +108,8 @@ const icons = {
   FaCheck,
   IoCloseSharp,
   FiPhoneCall,
+  FaUserAlt,
+  FaEllipsisV,
+  FiArrowUpRight,
 };
 export default icons;

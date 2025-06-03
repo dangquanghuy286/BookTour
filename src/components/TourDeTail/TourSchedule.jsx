@@ -23,7 +23,7 @@ const TourSchedule = ({ tour }) => {
           {tour.itinerary.map((dayItem) => (
             <div
               key={dayItem.day}
-              className="border border-gray-300 bg-white dark:bg-slate-900 p-5 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)]"
+              className="border border-gray-300 bg-white dark:bg-slate-900 p-2  rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)]"
             >
               <div
                 className="flex items-center justify-between cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg"
