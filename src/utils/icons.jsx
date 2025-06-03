@@ -43,6 +43,8 @@ import {
 } from "react-icons/md";
 import { FiMenu, FiX, FiClock, FiChevronDown, FiFilter } from "react-icons/fi";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
+import { CiShare1 } from "react-icons/ci";
+
 const icons = {
   IoIosSunny,
   IoIosMoon,
@@ -92,5 +94,6 @@ const icons = {
   FaUsers,
   FaShieldAlt,
   AiOutlineLeft,
+  CiShare1,
 };
 export default icons;

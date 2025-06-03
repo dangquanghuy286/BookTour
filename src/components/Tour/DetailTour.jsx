@@ -6,6 +6,7 @@ import { getTourById, getTourImages } from "../../services/TourService";
 import LoadingSpinner from "../LoadingSniper";
 import ErrorMessage from "../ErrorMessage";
 import TourImg from "../TourDeTail/TourImg";
+import HeaderTitle from "../TourDeTail/HeaderTitle";
 
 const { IoLocationOutline, FiClock, FaRegUser } = icons;
 
@@ -53,7 +54,6 @@ const DetailTour = () => {
 
     fetchTourAndImages();
   }, [slug]);
-  console.log(images);
 
   return (
     <div className="py-4 sm:py-6 md:py-8 lg:py-10 dark:bg-slate-900 bg-white dark:text-white">
@@ -75,6 +75,7 @@ const DetailTour = () => {
         ) : (
           <>
             <div className="container mx-auto px-4 md:px-8 py-8">
+              <HeaderTitle key={tour.id} tour={tour} />
               <TourImg key={images.id} images={images} />
             </div>
           </>
