@@ -81,3 +81,19 @@ export const getTourImages = async (id) => {
     };
   }
 };
+// Lấy danh sách điểm đi và điểm đến
+export const getLocations = async () => {
+  try {
+    const res = await get("tours/locations");
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    console.error("Error fetching locations:", error);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Lỗi khi lấy danh sách điểm đi và điểm đến",
+    };
+  }
+};

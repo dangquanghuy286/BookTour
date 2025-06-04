@@ -1,4 +1,5 @@
 import { IoIosSunny, IoIosMoon } from "react-icons/io";
+import { RiLockPasswordFill } from "react-icons/ri";
 import {
   FaPaperclip,
   FaPaperPlane,
@@ -29,7 +30,10 @@ import {
   FaUserAlt,
   FaEllipsisV,
   FaTag,
+  FaEye,
+  FaEyeSlash,
 } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
 import { CiSearch, CiLocationOn } from "react-icons/ci";
 import { FiPhoneCall } from "react-icons/fi";
@@ -113,5 +117,9 @@ const icons = {
   FaEllipsisV,
   FiArrowUpRight,
   FaTag,
+  RiLockPasswordFill,
+  FcGoogle,
+  FaEye,
+  FaEyeSlash,
 };
 export default icons;

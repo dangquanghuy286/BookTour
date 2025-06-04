@@ -39,24 +39,24 @@ const HeaderTitle = ({ tour }) => {
         {/* 2 nút */}
         <div className="flex gap-3">
           {/* Nút Share Tour */}
-          <div className="flex items-center justify-center gap-2 bg-white dark:bg-slate-900 p-1 w-[100px] sm:w-[120px] border border-gray-300 h-[36px] sm:h-[40px] rounded-2xl">
+          {/* <div className="flex items-center justify-center gap-2 bg-white dark:bg-slate-900 p-1 w-[100px] sm:w-[120px] border border-gray-300 h-[36px] sm:h-[40px] rounded-2xl">
             <div className="flex items-center justify-center w-5 sm:h-5 sm:w-6 h-6 rounded-full bg-[#00c0d1]">
               <FaFacebook className="w-3 h-3 sm:w-4 sm:h-4 text-white " />
             </div>
             <span className="text-sm sm:text-base dark:text-bg-slate-900">
-              Share Tour
+              Share
             </span>
-          </div>
+          </div> */}
 
           {/* Nút Yêu thích */}
-          <div className="flex items-center gap-2 p-1 justify-center bg-white dark:bg-slate-900 w-[100px] sm:w-[120px] border border-gray-300 h-[36px] sm:h-[40px] rounded-2xl">
+          {/* <div className="flex items-center gap-2 p-1 justify-center bg-white dark:bg-slate-900 w-[100px] sm:w-[120px] border border-gray-300 h-[36px] sm:h-[40px] rounded-2xl">
             <div className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 bg-[#00c0d1] rounded-full">
               <MdFavorite className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
             </div>
             <span className="text-sm sm:text-base dark:text-bg-slate-900">
-              Tour list
+              Tour
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

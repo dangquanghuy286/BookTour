@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { getDataTour } from "../services/TourService";
+import { getDataTour, getLocations } from "../services/TourService";
 
-// Ánh xạ các giá trị bộ lọc cho API
 const regionMap = {
   "Miền Bắc": "NORTH",
   "Miền Trung": "CENTRAL",
   "Miền Nam": "SOUTH",
-  "": null, // Tất cả khu vực
+  "": null,
 };
 
 const durationMap = {
@@ -16,7 +15,7 @@ const durationMap = {
   "4 ngày 3 đêm": "4 ngày 3 đêm",
   "5 ngày 4 đêm": "5 ngày 4 đêm",
   "6 ngày 5 đêm": "6 ngày 5 đêm",
-  "": null, // Tất cả thời gian
+  "": null,
 };
 
 const priceMap = {
@@ -25,14 +24,14 @@ const priceMap = {
   "3-5 triệu": { min: 3000000, max: 5000000 },
   "5-10 triệu": { min: 5000000, max: 10000000 },
   "Trên 10 triệu": { min: 10000000, max: 50000000 },
-  "": { min: 0, max: 10000000 }, // Mặc định
+  "": { min: 0, max: 10000000 },
 };
 
 const tagMap = {
   Economy: "Economy",
   Standard: "Standard",
   Premium: "Premium",
-  "": null, // Tất cả tag
+  "": null,
 };
 
 const useNewTourFilterSort = () => {
@@ -42,21 +41,47 @@ const useNewTourFilterSort = () => {
     duration: "",
     sortBy: "newest",
     rating: 0,
-    tag: "", // Thêm trường tag
+    tag: "",
+    departurePoint: "",
+    destination: "",
   });
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [locations, setLocations] = useState({
+    departurePoints: [],
+    destinations: [],
+  });
 
-  // Hàm cập nhật bộ lọc
+  // Lấy danh sách điểm đi và điểm đến
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const res = await getLocations();
+        if (res.status === 200) {
+          setLocations({
+            departurePoints: res.data.departurePoints,
+            destinations: res.data.destinations,
+          });
+        } else {
+          setError(res.data || "Lỗi khi lấy danh sách điểm đi và điểm đến");
+        }
+      } catch (err) {
+        setError("Lỗi khi tải danh sách điểm đi và điểm đến");
+        console.error("Lỗi khi lấy locations:", err);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
-    setCurrentPage(0); // Reset về trang 1 khi thay đổi bộ lọc
+    setCurrentPage(0);
   };
 
-  // Hàm reset bộ lọc
   const resetFilters = () => {
     const defaultFilters = {
       region: "",
@@ -64,14 +89,15 @@ const useNewTourFilterSort = () => {
       duration: "",
       sortBy: "newest",
       rating: 0,
-      tag: "", // Reset tag
+      tag: "",
+      departurePoint: "",
+      destination: "",
     };
     setFilters(defaultFilters);
-    setCurrentPage(0); // Reset về trang 1
+    setCurrentPage(0);
     return defaultFilters;
   };
 
-  // Hàm thay đổi trang
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -81,26 +107,46 @@ const useNewTourFilterSort = () => {
       setLoading(true);
       setError(null);
       try {
-        // Ánh xạ các giá trị bộ lọc
         const region = regionMap[filters.region] || null;
         const { min: priceMin, max: priceMax } = filters.priceRange.label
           ? priceMap[filters.priceRange.label]
           : filters.priceRange;
         const duration = durationMap[filters.duration] || null;
         const starRating = filters.rating > 0 ? filters.rating : null;
-        const tag = tagMap[filters.tag] || null; // Ánh xạ tag
+        const tag = tagMap[filters.tag] || null;
+        const departurePoint = filters.departurePoint || null;
+        const destination = filters.destination || null;
 
-        // Xây dựng object filters cho API
+        // Kiểm tra departurePoint và destination hợp lệ
+        if (
+          departurePoint &&
+          !locations.departurePoints.includes(departurePoint)
+        ) {
+          setError("Điểm xuất phát không hợp lệ.");
+          setTours([]);
+          setTotalPages(0);
+          setLoading(false);
+          return;
+        }
+        if (destination && !locations.destinations.includes(destination)) {
+          setError("Điểm đến không hợp lệ.");
+          setTours([]);
+          setTotalPages(0);
+          setLoading(false);
+          return;
+        }
+
         const apiFilters = {
           region: region,
           priceMin: priceMin > 0 ? priceMin : null,
           priceMax: priceMax < 10000000 ? priceMax : null,
           duration: duration,
           starRating: starRating,
-          tag: tag, // Thêm tag vào API filters
+          tag: tag,
+          departurePoint: departurePoint,
+          destination: destination,
         };
 
-        // Xử lý sắp xếp
         switch (filters.sortBy) {
           case "newest":
             apiFilters.sortBy = "createdAt";
@@ -142,7 +188,7 @@ const useNewTourFilterSort = () => {
     };
 
     fetchTours();
-  }, [filters, currentPage]);
+  }, [filters, currentPage, locations]);
 
   return {
     filters,
@@ -154,6 +200,7 @@ const useNewTourFilterSort = () => {
     totalPages,
     currentPage,
     handlePageChange,
+    locations, // Trả về locations để component khác có thể sử dụng
   };
 };
 

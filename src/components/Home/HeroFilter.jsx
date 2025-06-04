@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import icons from "../../utils/icons";
 import ErrorMessage from "../ErrorMessage";
 import LoadingSpinner from "../LoadingSniper";
-import { destinations, prices, durations } from "../../contexts/TourContext";
+import { prices, durations } from "../../contexts/TourContext";
+import { getLocations } from "../../services/TourService";
 
 const { MdLocationOn, MdAccessTime, MdAttachMoney, FaSyncAlt, FaMapMarkerAlt } =
   icons;
@@ -12,22 +13,55 @@ const HeroFilter = () => {
   const [destination, setDestination] = useState("");
   const [duration, setDuration] = useState("");
   const [price, setPrice] = useState("");
-  const [departurePoint, setDeparturePoint] = useState(""); // Thêm state cho điểm xuất phát
+  const [departurePoint, setDeparturePoint] = useState("");
+  const [locations, setLocations] = useState({
+    departurePoints: [],
+    destinations: [],
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Danh sách điểm xuất phát (có thể lấy từ backend hoặc định nghĩa tĩnh)
-  const departurePoints = [
-    { value: "", label: "Chọn điểm xuất phát" },
-    { value: "Hà Nội", label: "Hà Nội" },
-    { value: "TP. Hồ Chí Minh", label: "TP. Hồ Chí Minh" },
-    { value: "Đà Nẵng", label: "Đà Nẵng" },
-    { value: "Cần Thơ", label: "Cần Thơ" },
-    // Thêm các điểm xuất phát khác nếu cần
-  ];
+  // Lấy danh sách điểm đi và điểm đến từ backend
+  useEffect(() => {
+    const fetchLocations = async () => {
+      setLoading(true);
+      try {
+        const res = await getLocations();
+        if (res.status === 200) {
+          setLocations({
+            departurePoints: [
+              { value: "", label: "Chọn điểm xuất phát" },
+              ...res.data.departurePoints.map((point) => ({
+                value: point,
+                label: point,
+              })),
+            ],
+            destinations: [
+              { value: "", label: "Chọn điểm đến" },
+              ...res.data.destinations.map((dest) => ({
+                value: dest,
+                label: dest,
+              })),
+            ],
+          });
+        } else {
+          setError(res.data || "Lỗi khi lấy danh sách điểm đi và điểm đến");
+        }
+      } catch (err) {
+        setError("Lỗi khi tải danh sách điểm đi và điểm đến");
+        console.error("Lỗi khi lấy locations:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchLocations();
+  }, []);
+
+  // Xử lý khi người dùng bấm nút "Tìm kiếm"
   const handleSearch = () => {
+    // Nếu chưa chọn tiêu chí nào thì báo lỗi
     if (!destination && !duration && !price && !departurePoint) {
       setError("Vui lòng chọn ít nhất một tiêu chí tìm kiếm");
       return;
@@ -36,15 +70,16 @@ const HeroFilter = () => {
     setLoading(true);
     setError(null);
 
-    // Tạo query parameters
+    // Tạo URL query từ các tiêu chí đã chọn
     const params = new URLSearchParams();
     if (destination) params.append("destination", destination);
     if (duration) params.append("duration", duration);
     if (price) params.append("priceRange", price);
-    if (departurePoint) params.append("departurePoint", departurePoint); // Thêm tham số departurePoint
+    if (departurePoint) params.append("departurePoint", departurePoint);
 
-    // Điều hướng đến TourSearch
+    // Ghép tất cả các tham số ở trên thành một chuỗi query string.Điều hướng sang trang kết quả tìm kiếm kèm theo query
     navigate(`/tourSearch?${params.toString()}`);
+
     setLoading(false);
   };
 
@@ -52,7 +87,7 @@ const HeroFilter = () => {
     setDestination("");
     setDuration("");
     setPrice("");
-    setDeparturePoint(""); // Đặt lại điểm xuất phát
+    setDeparturePoint("");
     setError(null);
   };
 
@@ -84,89 +119,91 @@ const HeroFilter = () => {
                   isWarning={
                     error === "Vui lòng chọn ít nhất một tiêu chí tìm kiếm"
                   }
+                  message={error}
                 />
               )}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
-                <div className="group">
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Điểm xuất phát
-                  </label>
-                  <div className="relative">
-                    <FaMapMarkerAlt className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
-                    <select
-                      className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
-                      value={departurePoint}
-                      onChange={(e) => setDeparturePoint(e.target.value)}
-                    >
-                      {departurePoints.map((item) => (
-                        <option key={item.value} value={item.value}>
-                          {item.label}
-                        </option>
-                      ))}
-                    </select>
+              {loading ? (
+                <LoadingSpinner message="Đang tải danh sách điểm đi và điểm đến..." />
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-2 sm:mb-3 md:mb-4">
+                  <div className="group">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Điểm xuất phát
+                    </label>
+                    <div className="relative">
+                      <FaMapMarkerAlt className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
+                      <select
+                        className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
+                        value={departurePoint}
+                        onChange={(e) => setDeparturePoint(e.target.value)}
+                      >
+                        {locations.departurePoints.map((item) => (
+                          <option key={item.value} value={item.value}>
+                            {item.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="group">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Điểm đến
+                    </label>
+                    <div className="relative">
+                      <MdLocationOn className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
+                      <select
+                        className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                      >
+                        {locations.destinations.map((item) => (
+                          <option key={item.value} value={item.value}>
+                            {item.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="group">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Thời gian
+                    </label>
+                    <div className="relative">
+                      <MdAccessTime className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
+                      <select
+                        className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
+                        value={duration}
+                        onChange={(e) => setDuration(e.target.value)}
+                      >
+                        {durations.map((item) => (
+                          <option key={item.value} value={item.value}>
+                            {item.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="group">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Giá cả
+                    </label>
+                    <div className="relative">
+                      <MdAttachMoney className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
+                      <select
+                        className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                      >
+                        {prices.map((item) => (
+                          <option key={item.value} value={item.value}>
+                            {item.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div className="group">
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Điểm đến
-                  </label>
-                  <div className="relative">
-                    <MdLocationOn className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
-                    <select
-                      className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
-                      value={destination}
-                      onChange={(e) => setDestination(e.target.value)}
-                    >
-                      <option value="">Chọn điểm đến</option>
-                      {destinations.map((item) => (
-                        <option key={item.value} value={item.value}>
-                          {item.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="group">
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Thời gian
-                  </label>
-                  <div className="relative">
-                    <MdAccessTime className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
-                    <select
-                      className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
-                      value={duration}
-                      onChange={(e) => setDuration(e.target.value)}
-                    >
-                      <option value="">Chọn thời gian</option>
-                      {durations.map((item) => (
-                        <option key={item.value} value={item.value}>
-                          {item.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="group">
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Giá cả
-                  </label>
-                  <div className="relative">
-                    <MdAttachMoney className="absolute left-2 sm:left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 sm:w-4 md:w-4 h-3 sm:h-4 md:h-4 text-gray-400 group-focus-within:text-[#019fb5] transition-colors" />
-                    <select
-                      className="w-full pl-6 sm:pl-8 md:pl-9 pr-2 sm:pr-3 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-600 rounded-md sm:rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 hover:bg-gray-100 dark:hover:bg-slate-600"
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                    >
-                      <option value="">Chọn giá</option>
-                      {prices.map((item) => (
-                        <option key={item.value} value={item.value}>
-                          {item.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
+              )}
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
                 <div className="flex gap-2 sm:gap-3 md:gap-4">
                   <button

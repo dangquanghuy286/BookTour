@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import EntriesFilter from "../../components/Pagination";
-import { getDataTour } from "../../services/TourService";
+import { getDataTour, getLocations } from "../../services/TourService";
 import PlacesCard from "../../components/Card/PlacesCard";
 import LoadingSpinner from "../../components/LoadingSniper";
 import ErrorMessage from "../../components/ErrorMessage";
 import NoPage from "../../components/NoPage/NoPage";
-import { destinations } from "../../contexts/TourContext";
 
 const priceMap = {
-  "1.000.000 - 3.000.000 Vnd": { min: 1000000, max: 3000000 },
-  "3.000.000 - 6.000.000 Vnd": { min: 3000000, max: 6000000 },
-  "6.000.000 - 8.000.000 Vnd": { min: 6000000, max: 8000000 },
-  "8.000.000 - 10.000.000 Vnd": { min: 8000000, max: 10000000 },
+  "Dưới 1 triệu": { min: 0, max: 1000000 },
+  "1-3 triệu": { min: 1000000, max: 3000000 },
+  "3-5 triệu": { min: 3000000, max: 5000000 },
+  "5-10 triệu": { min: 5000000, max: 10000000 },
+  "Trên 10 triệu": { min: 10000000, max: 50000000 },
 };
 
 const durationMap = {
@@ -32,7 +31,33 @@ const TourSearch = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const limit = 9; // Số tour mỗi trang
+  const [validLocations, setValidLocations] = useState({
+    departurePoints: [],
+    destinations: [],
+  });
+  const limit = 9;
+
+  // Lấy danh sách điểm đi và điểm đến từ backend
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const res = await getLocations();
+        if (res.status === 200) {
+          setValidLocations({
+            departurePoints: res.data.departurePoints,
+            destinations: res.data.destinations,
+          });
+        } else {
+          setError(res.data || "Lỗi khi lấy danh sách điểm đi và điểm đến");
+        }
+      } catch (err) {
+        setError("Lỗi khi tải danh sách điểm đi và điểm đến");
+        console.error("Lỗi khi lấy locations:", err);
+      }
+    };
+
+    fetchLocations();
+  }, []);
 
   useEffect(() => {
     const fetchTours = async () => {
@@ -46,22 +71,29 @@ const TourSearch = () => {
         const priceRange = searchParams.get("priceRange") || "";
         const departurePoint = searchParams.get("departurePoint") || "";
 
-        // Kiểm tra destination hợp lệ
-        const validDestinations = destinations.map((d) => d.value);
-        if (destination && !validDestinations.includes(destination)) {
+        // Kiểm tra destination và departurePoint hợp lệ
+        if (destination && !validLocations.destinations.includes(destination)) {
           setError("Điểm đến không hợp lệ.");
           setTours([]);
           setTotalPages(0);
           setLoading(false);
           return;
         }
+        if (
+          departurePoint &&
+          !validLocations.departurePoints.includes(departurePoint)
+        ) {
+          setError("Điểm xuất phát không hợp lệ.");
+          setTours([]);
+          setTotalPages(0);
+          setLoading(false);
+          return;
+        }
 
-        // Ánh xạ bộ lọc
         const priceObj = priceMap[priceRange] || {};
         const durationValue = durationMap[duration] || null;
         const { min: priceMin, max: priceMax } = priceObj;
 
-        // Tạo object filters cho getDataTour
         const filters = {
           title: title || null,
           destination: destination || null,
@@ -91,7 +123,7 @@ const TourSearch = () => {
     };
 
     fetchTours();
-  }, [searchParams, currentPage]);
+  }, [searchParams, currentPage, validLocations]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
