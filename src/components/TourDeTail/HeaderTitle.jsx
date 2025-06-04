@@ -2,7 +2,7 @@ import React from "react";
 import icons from "../../utils/icons";
 import StarDisplay from "../Star";
 
-const { IoLocationOutline, CiShare1, MdFavorite } = icons;
+const { IoLocationOutline, FaFacebook, MdFavorite } = icons;
 
 const HeaderTitle = ({ tour }) => {
   return (
@@ -41,7 +41,7 @@ const HeaderTitle = ({ tour }) => {
           {/* Nút Share Tour */}
           <div className="flex items-center justify-center gap-2 bg-white dark:bg-slate-900 p-1 w-[100px] sm:w-[120px] border border-gray-300 h-[36px] sm:h-[40px] rounded-2xl">
             <div className="flex items-center justify-center w-5 sm:h-5 sm:w-6 h-6 rounded-full bg-[#00c0d1]">
-              <CiShare1 className="w-3 h-3 sm:w-4 sm:h-4 text-white " />
+              <FaFacebook className="w-3 h-3 sm:w-4 sm:h-4 text-white " />
             </div>
             <span className="text-sm sm:text-base dark:text-bg-slate-900">
               Share Tour

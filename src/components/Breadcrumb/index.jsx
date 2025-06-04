@@ -24,6 +24,7 @@ function Breadcrumb() {
       cancellation: "Chính Sách Hủy Tour Và Hoàn Tiền",
       termsofservice: "Điều Khoản & Dịch Vụ",
       getalltour: "Tất Cả Tour",
+      tourSearch: "Tìm Kiếm",
     };
 
     if (nameMap[name]) return nameMap[name];

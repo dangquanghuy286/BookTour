@@ -26,7 +26,7 @@ const TourImg = ({ images }) => {
     <div>
       <div className="relative w-full max-w-7xl mx-auto aspect-video overflow-hidden rounded-2xl group bg-white dark:bg-slate-800 shadow-[0_1px_4px_rgba(0,0,0,0.16)] border border-gray-300">
         <img
-          className="w-full h-full object-contain transition duration-500 ease-in-out"
+          className="w-full h-full object-cover transition duration-500 ease-in-out"
           src={selectedImg}
           alt="Anh Tour"
           loading="lazy"

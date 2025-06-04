@@ -25,7 +25,7 @@ function Header() {
           <img
             src={Logo}
             alt="Logo"
-            className="w-full h-auto max-h-[50px] xs:max-h-[60px] sm:max-h-[70px] md:max-h-[80px] lg:max-h-[90px] object-contain transition-all duration-300"
+            className="w-full h-auto max-h-[40px] xs:max-h-[50px] sm:max-h-[60px] md:max-h-[70px] lg:max-h-[80px] object-contain transition-all duration-300"
           />
         </NavLink>
       </div>

@@ -20,6 +20,7 @@ import DetailTour from "../components/Tour/DetailTour";
 import LatestTour from "../components/Tour/LatestTour";
 import AllTour from "../pages/Tours/AllTour";
 import TourBookingFAQ from "../components/TermsOfService/TourBookingFAQ";
+import TourSearch from "../pages/SearchPage";
 
 export const routes = [
   {
@@ -53,6 +54,10 @@ export const routes = [
       {
         path: "/faq",
         element: <TourBookingFAQ />,
+      },
+      {
+        path: "/tourSearch",
+        element: <TourSearch />,
       },
       {
         path: "tour",

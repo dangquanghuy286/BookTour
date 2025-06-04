@@ -26,7 +26,7 @@ const TourSchedule = ({ tour }) => {
               className="border border-gray-300 bg-white dark:bg-slate-900 p-2  rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)]"
             >
               <div
-                className="flex items-center justify-between cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg"
+                className="flex items-center justify-between cursor-pointer  p-2 rounded-lg"
                 onClick={() => toggleDropdown(dayItem.day)}
               >
                 <div className="flex items-center gap-3">

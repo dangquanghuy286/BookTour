@@ -28,13 +28,21 @@ const priceMap = {
   "": { min: 0, max: 10000000 }, // Mặc định
 };
 
+const tagMap = {
+  Economy: "Economy",
+  Standard: "Standard",
+  Premium: "Premium",
+  "": null, // Tất cả tag
+};
+
 const useNewTourFilterSort = () => {
   const [filters, setFilters] = useState({
     region: "",
     priceRange: { min: 0, max: 10000000, label: "" },
     duration: "",
     sortBy: "newest",
-    rating: 0, // Thêm trường rating
+    rating: 0,
+    tag: "", // Thêm trường tag
   });
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,7 +63,8 @@ const useNewTourFilterSort = () => {
       priceRange: { min: 0, max: 10000000, label: "" },
       duration: "",
       sortBy: "newest",
-      rating: 0, // Reset rating
+      rating: 0,
+      tag: "", // Reset tag
     };
     setFilters(defaultFilters);
     setCurrentPage(0); // Reset về trang 1
@@ -78,7 +87,8 @@ const useNewTourFilterSort = () => {
           ? priceMap[filters.priceRange.label]
           : filters.priceRange;
         const duration = durationMap[filters.duration] || null;
-        const starRating = filters.rating > 0 ? filters.rating : null; // Xử lý rating
+        const starRating = filters.rating > 0 ? filters.rating : null;
+        const tag = tagMap[filters.tag] || null; // Ánh xạ tag
 
         // Xây dựng object filters cho API
         const apiFilters = {
@@ -86,7 +96,8 @@ const useNewTourFilterSort = () => {
           priceMin: priceMin > 0 ? priceMin : null,
           priceMax: priceMax < 10000000 ? priceMax : null,
           duration: duration,
-          starRating: starRating, // Sử dụng 'starRating' theo backend API
+          starRating: starRating,
+          tag: tag, // Thêm tag vào API filters
         };
 
         // Xử lý sắp xếp
@@ -109,7 +120,7 @@ const useNewTourFilterSort = () => {
             break;
         }
 
-        const res = await getDataTour(currentPage, 6, apiFilters);
+        const res = await getDataTour(currentPage, 9, apiFilters);
         if (res.status === 200) {
           setTours(res.data.tours || []);
           setTotalPages(res.data.totalPages || 1);

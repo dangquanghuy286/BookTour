@@ -17,11 +17,23 @@ const {
   IoLocationOutline,
   FiClock,
   MdAttachMoney,
+  FaTag,
 } = icons;
 
 const Filter = ({ onFilterChange, totalResults = 0 }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [rating, setRating] = useState(0);
+  const [tag, setTag] = useState("");
+
+  // Kiểm tra xem các component có được import đúng không
+  if (!FilterSelect || !FilterRadioGroup || !StarDisplay) {
+    console.error("Missing components:", {
+      FilterSelect,
+      FilterRadioGroup,
+      StarDisplay,
+    });
+    return <div>Lỗi: Không thể tải bộ lọc</div>;
+  }
 
   const handleChange = (key, value) => {
     onFilterChange({ [key]: value });
@@ -36,20 +48,26 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
     handleChange("rating", value);
   };
 
+  const handleTagChange = (value) => {
+    setTag(value);
+    handleChange("tag", value);
+  };
+
   const clearFilters = () => {
     setRating(0);
+    setTag("");
     onFilterChange({
       region: "",
       priceRange: { min: 0, max: 10000000, label: "" },
       duration: "",
       sortBy: "newest",
       rating: 0,
+      tag: "",
     });
   };
 
   return (
     <div className="bg-white dark:bg-slate-900 rounded-xl shadow border border-gray-300 overflow-hidden">
-      {/* Header */}
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex justify-between items-center p-4 cursor-pointer hover:bg-cyan-50 dark:hover:bg-slate-800 transition"
@@ -75,16 +93,13 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
       </div>
 
       {isOpen && (
-        <div className=" dark:border-gray-700 bg-gradient-to-br from-gray-50/50 to-white dark:from-slate-800/50 dark:to-slate-900 p-4 space-y-6">
-          {/* Sort */}
+        <div className="dark:border-gray-700 bg-gradient-to-br from-gray-50/50 to-white dark:from-slate-800/50 dark:to-slate-900 p-4 space-y-6">
           <FilterSelect
             label="Sắp xếp theo"
             icon={<div className="w-2 h-2 rounded-full bg-[#00c0d1]" />}
             options={sortOptions}
             onChange={(val) => handleChange("sortBy", val)}
           />
-
-          {/* Region */}
           <FilterSelect
             label="Khu vực"
             icon={<IoLocationOutline className="text-[#00c0d1] w-4 h-4" />}
@@ -94,16 +109,12 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
             }))}
             onChange={(val) => handleChange("region", val)}
           />
-
-          {/* Duration */}
           <FilterSelect
             label="Thời gian tour"
             icon={<FiClock className="text-[#00c0d1] w-4 h-4" />}
             options={durations}
             onChange={(val) => handleChange("duration", val)}
           />
-
-          {/* Price Range */}
           <FilterRadioGroup
             label="Khoảng giá"
             icon={<MdAttachMoney className="text-[#00c0d1] w-4 h-4" />}
@@ -111,8 +122,6 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
             name="priceRange"
             onChange={(val) => handlePriceChange(val)}
           />
-
-          {/* Rating */}
           <FilterRadioGroup
             label="Đánh giá"
             icon={<span className="text-[#00c0d1]">★</span>}
@@ -124,8 +133,19 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
             selectedValue={rating}
             onChange={(val) => handleRatingChange(val)}
           />
-
-          {/* Clear Filters */}
+          <FilterRadioGroup
+            label="Loại tour"
+            icon={<FaTag className="text-[#00c0d1] w-4 h-4" />}
+            options={[
+              { label: "Tất cả", value: "" },
+              { label: "Tiết Kiệm", value: "Economy" },
+              { label: "Tiêu Chuẩn", value: "Standard" },
+              { label: "Cao Cấp", value: "Premium" },
+            ]}
+            name="tag"
+            selectedValue={tag}
+            onChange={(val) => handleTagChange(val)}
+          />
           <div className="pt-2 text-right">
             <button
               onClick={clearFilters}
