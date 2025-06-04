@@ -2,16 +2,25 @@ import { post } from "../utils/requestserver";
 
 export const login = async (user_name, password) => {
   try {
-    const res = await post("users/login", { user_name, password });
+    if (!user_name || !password) {
+      throw new Error("Username and password are required");
+    }
+
+    const response = await post("users/login", { user_name, password });
+
+    if (!response?.data) {
+      throw new Error("Invalid response from server");
+    }
+
     return {
-      status: res.status,
-      data: res.data,
+      status: response.status,
+      data: response.data,
     };
   } catch (error) {
-    if (error.res?.data) {
+    if (error.response?.data) {
       throw {
-        status: error.res.status,
-        data: error.res.data,
+        status: error.response.status,
+        data: error.response.data,
       };
     }
 

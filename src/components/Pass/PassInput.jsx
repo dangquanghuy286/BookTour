@@ -13,7 +13,9 @@ function InputPassword({
 
   return (
     <div className="relative">
-      <RiLockPasswordFill className="absolute top-1/2 left-3 -translate-y-1/2 text-xl text-[#019fb5]" />
+      <div className="absolute left-3 top-0 h-12 flex items-center">
+        <RiLockPasswordFill className="text-xl text-[#019fb5]" />
+      </div>
       <input
         type={showPassword ? "text" : "password"}
         name={name}
@@ -24,13 +26,15 @@ function InputPassword({
           error ? "border-red-500" : ""
         }`}
       />
-      <button
-        type="button"
-        onClick={() => setShowPassword(!showPassword)}
-        className="absolute top-1/2 right-4 -translate-y-1/2 text-xl text-[#019fb5] focus:outline-none"
-      >
-        {showPassword ? <FaEyeSlash /> : <FaEye />}
-      </button>
+      <div className="absolute right-4 top-0 h-12 flex items-center">
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="text-xl text-[#019fb5] focus:outline-none"
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
     </div>
   );
 }

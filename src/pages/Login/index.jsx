@@ -3,8 +3,10 @@ import icons from "../../utils/icons";
 import { Link, useNavigate } from "react-router-dom";
 import "sweetalert2/src/sweetalert2.scss";
 import InputPassword from "../../components/Pass/PassInput";
-import { Swal } from "sweetalert2/dist/sweetalert2";
+import Swal from "sweetalert2";
 import { login } from "../../services/UserService";
+import { useDispatch } from "react-redux";
+import { checkLogin } from "../../actions/loginReducers";
 const { FaUserAlt, FcGoogle } = icons;
 
 const Login = () => {
@@ -13,6 +15,7 @@ const Login = () => {
   const [user_name, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const disPatch = useDispatch();
 
   const validate = (user_name, password) => {
     const newErrors = {};
@@ -51,6 +54,8 @@ const Login = () => {
         setLoading(false);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user_id", res.data.user_id);
+        localStorage.setItem("user_name", res.data.user_id);
+        localStorage.setItem("email", res.data.user_id);
         Swal.fire({
           icon: "success",
           title: "Đăng nhập thành công!",
@@ -58,6 +63,7 @@ const Login = () => {
           timer: 1500,
           position: "top-end",
         });
+        disPatch(checkLogin(true));
         setTimeout(() => navigate("/"), 1600);
       } else {
         throw new Error("No token received");
@@ -67,8 +73,8 @@ const Login = () => {
       let errorMessage = "Đã xảy ra lỗi không xác định";
       let errorTitle = "Đăng nhập thất bại";
 
-      if (error.response?.data?.errorCode) {
-        const { errorCode, message } = error.response.data;
+      if (error.data?.errorCode) {
+        const { errorCode, message } = error.data;
         switch (errorCode) {
           case "DATA_NOT_FOUND":
             setErrors({ user_name: "Tên đăng nhập không tồn tại" });
@@ -125,14 +131,16 @@ const Login = () => {
         <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
           {/* Tên đăng nhập */}
           <div className="relative">
-            <FaUserAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#00c0d1]" />
+            <div className="absolute left-3 top-0 h-12 flex items-center">
+              <FaUserAlt className="text-[#00c0d1]" />
+            </div>
             <input
               type="text"
               placeholder="Tên Đăng Nhập"
               value={user_name}
               onChange={(e) => {
                 setUserName(e.target.value);
-                setErrors({ ...errors, user_name: "" }); // Xóa lỗi khi người dùng nhập lại
+                setErrors({ ...errors, user_name: "" });
               }}
               className={`h-12 w-full rounded-2xl border-2 bg-transparent px-12 text-lg dark:text-white text-black border-[#00c0d1] placeholder-[#00c0d1] focus:outline-none ${
                 errors.user_name ? "border-red-500" : ""
@@ -149,7 +157,7 @@ const Login = () => {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                setErrors({ ...errors, password: "" }); // Xóa lỗi khi người dùng nhập lại
+                setErrors({ ...errors, password: "" });
               }}
             />
             {errors.password && (

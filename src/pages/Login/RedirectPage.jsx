@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setToken } from "../../utils/authServices";
+import { checkLogin } from "../../actions/loginReducers";
 
 const RedirectPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -20,10 +23,15 @@ const RedirectPage = () => {
       if (userId && userId !== "null" && !isNaN(userId)) {
         localStorage.setItem("user_id", userId);
       }
+
+      dispatch(checkLogin(true));
+
+      // điều hướng
+      navigate("/", { replace: true });
     } else {
       navigate("/login", { replace: true });
     }
-  }, [location, navigate]);
+  }, [location, navigate, dispatch]);
 
   return <p>Đang xử lý đăng nhập...</p>;
 };

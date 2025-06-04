@@ -5,10 +5,12 @@ import { useState } from "react";
 import icons from "../../utils/icons";
 import Search from "../Search";
 import Avatar from "../Avatar";
+import LoginButton from "../ButtonLogin";
 const { FiMenu, FiX, FiChevronDown } = icons;
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const token = localStorage.getItem("token");
 
   const getNavLinkClass = ({ isActive }) =>
     `text-black dark:text-white no-underline relative block px-2 xs:px-3 py-1 whitespace-nowrap text-sm sm:text-base ${
@@ -173,7 +175,7 @@ function Header() {
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Tài khoản
                 </span>
-                <Avatar />
+                {token ? <Avatar /> : <LoginButton />}
               </div>
             </div>
           </li>
@@ -184,7 +186,7 @@ function Header() {
       <div className="hidden xl:flex items-center gap-3 2xl:gap-4 flex-shrink-0">
         <Search />
         <DarkMode />
-        <Avatar />
+        {token ? <Avatar /> : <LoginButton />}
       </div>
     </header>
   );

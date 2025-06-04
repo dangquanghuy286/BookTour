@@ -1,9 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
+import { checkLogin } from "../../actions/loginReducers";
 const Logout = () => {
   const nav = useNavigate();
+  const disPatch = useDispatch();
   useEffect(() => {
     Swal.fire({
       title: "Xác nhận đăng xuất",
@@ -30,9 +34,9 @@ const Logout = () => {
           showConfirmButton: false,
           position: "top-end",
         });
-
+        disPatch(checkLogin(false));
         setTimeout(() => {
-          nav("/");
+          nav("/login");
         }, 2000);
       } else {
         nav(-1);
