@@ -24,8 +24,10 @@ import TourSearch from "../pages/SearchPage";
 import RedirectPage from "../pages/Login/RedirectPage";
 import UserForm from "../pages/User";
 import ChangePass from "../components/User/ChangePass";
-import PrivateRoutes from "../components/PrivateRoutes";
+
 import SendCodeEmail from "../components/Pass/SendCodeEmail";
+import VerifyCode from "../components/Pass/VerifyCode";
+import ChangePassWithCode from "../components/Pass/ChangePassWithCode";
 
 export const routes = [
   {
@@ -124,14 +126,10 @@ export const routes = [
         path: "blogs/:id",
         element: <BlogDetail />,
       },
+
       {
-        element: <PrivateRoutes />,
-        children: [
-          {
-            path: "user",
-            element: <UserForm />,
-          },
-        ],
+        path: "user",
+        element: <UserForm />,
       },
 
       {
@@ -141,6 +139,14 @@ export const routes = [
       {
         path: "sendEmail",
         element: <SendCodeEmail />,
+      },
+      {
+        path: "verifyCode",
+        element: <VerifyCode />,
+      },
+      {
+        path: "changePasswordCode",
+        element: <ChangePassWithCode />,
       },
     ],
   },

@@ -42,6 +42,7 @@ const SendCodeEmail = () => {
       setLoading(true);
       const res = await sendCodeEmail(email);
       if (res.status === 200) {
+        localStorage.setItem("email", email);
         Swal.fire({
           icon: "success",
           title: "Đã Gửi Code Qua Email Của Bạn!",
@@ -49,6 +50,7 @@ const SendCodeEmail = () => {
           timer: 1500,
           position: "top-end",
         });
+
         setTimeout(() => nav("/verifyCode"), 1600);
       } else {
         setError("Không có dữ liệu blog.");

@@ -105,3 +105,9 @@ export const sendCodeEmail = async (email) => {
     };
   }
 };
+//SendCode Email
+export const getCode = (token) => {
+  return get("users/verify-reset-token", {
+    params: { token },
+  });
+};

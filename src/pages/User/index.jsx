@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../contexts/storeUser";
 import UserAvatar from "../../components/User/UserAvatar";
@@ -30,14 +31,7 @@ const UserForm = () => {
   });
 
   useEffect(() => {
-    if (!userInfo) {
-      setError(
-        "Không thể tải thông tin người dùng. Vui lòng kiểm tra kết nối hoặc thử lại sau."
-      );
-      return;
-    }
-
-    if (userInfo.status !== 200 || !userInfo.data) {
+    if (!userInfo || userInfo.status !== 200 || !userInfo.data) {
       setError(
         "Không thể tải dữ liệu người dùng. Vui lòng kiểm tra kết nối hoặc thử lại sau."
       );
@@ -79,15 +73,18 @@ const UserForm = () => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       if (tempImage && tempImage.startsWith("blob:")) {
-        URL.revokeObjectURL(tempImage); // Cleanup blob cũ
+        URL.revokeObjectURL(tempImage);
       }
       setSelectedImageFile(file);
-      setTempImage(URL.createObjectURL(file)); // Tạo blob URL mới
+      setTempImage(URL.createObjectURL(file));
     }
   };
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const isValidPhoneNumber = (phone) => {
@@ -107,21 +104,18 @@ const UserForm = () => {
         formDataImage.append("avatar", selectedImageFile);
 
         const avatarResponse = await putProfileImg(userId, formDataImage);
-
         if (avatarResponse.status === 200 && avatarResponse.data.avatar_path) {
           setFormData((prev) => ({
             ...prev,
             avatar_path: avatarResponse.data.avatar_path,
           }));
           setTempImage(avatarResponse.data.avatar_path);
-          Swal.fire({
-            title: "Thành công",
-            text: "Cập nhật ảnh đại diện thành công",
-            icon: "success",
-            confirmButtonText: "OK",
-          }).then(() => {
-            refreshUserInfo();
-          });
+          await Swal.fire(
+            "Thành công",
+            "Cập nhật ảnh đại diện thành công",
+            "success"
+          );
+          refreshUserInfo();
         } else {
           Swal.fire("Lỗi", "Cập nhật ảnh đại diện thất bại", "error");
         }
@@ -130,7 +124,7 @@ const UserForm = () => {
       if (!isValidPhoneNumber(formData.phone_number)) {
         Swal.fire(
           "Lỗi",
-          "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng (VD: 0987654321)!",
+          "Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng!",
           "error"
         );
         setLoading(false);
@@ -146,24 +140,16 @@ const UserForm = () => {
       };
 
       const infoResponse = await putChangeInfo(userId, adminData);
-
       if (infoResponse.status === 200) {
-        Swal.fire({
-          title: "Thành công",
-          text: "Thông tin đã được cập nhật",
-          icon: "success",
-          confirmButtonText: "OK",
-        }).then(() => {
-          refreshUserInfo();
-        });
+        await Swal.fire("Thành công", "Thông tin đã được cập nhật", "success");
+        refreshUserInfo();
       } else {
         Swal.fire("Lỗi", "Cập nhật thông tin thất bại", "error");
       }
-    } catch (error) {
-      const errorMessage =
-        error.response?.data?.message ||
-        "Có lỗi xảy ra khi cập nhật thông tin. Vui lòng thử lại!";
-      Swal.fire("Lỗi", errorMessage, "error");
+    } catch (err) {
+      const message =
+        err.response?.data?.message || "Có lỗi xảy ra. Vui lòng thử lại!";
+      Swal.fire("Lỗi", message, "error");
     } finally {
       setLoading(false);
     }
@@ -179,12 +165,9 @@ const UserForm = () => {
         >
           Thông Tin Cá Nhân
         </h1>
+
         {contextLoading || loading ? (
           <LoadingSpinner message="Đang tải dữ liệu..." />
-        ) : error ? (
-          <ErrorMessage message={error} />
-        ) : !userInfo?.data ? (
-          <ErrorMessage isWarning={true} message="Chưa có dữ liệu." />
         ) : (
           <div className="flex flex-col items-center md:flex-row md:items-start">
             <UserAvatar
