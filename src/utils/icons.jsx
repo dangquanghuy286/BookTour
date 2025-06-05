@@ -1,4 +1,4 @@
-import { IoIosSunny, IoIosMoon } from "react-icons/io";
+import { IoIosSunny, IoIosMoon, IoMdCreate } from "react-icons/io";
 import { RiLockPasswordFill } from "react-icons/ri";
 import {
   FaPaperclip,
@@ -48,6 +48,7 @@ import {
   MdLocationOn,
   MdAccessTime,
   MdAttachMoney,
+  MdOutlineAttachFile,
 } from "react-icons/md";
 import {
   FiMenu,
@@ -121,5 +122,7 @@ const icons = {
   FcGoogle,
   FaEye,
   FaEyeSlash,
+  IoMdCreate,
+  MdOutlineAttachFile,
 };
 export default icons;

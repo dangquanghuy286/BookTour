@@ -27,6 +27,7 @@ function Breadcrumb() {
       tourSearch: "Tìm Kiếm",
       login: "Đăng Nhập",
       register: "Đăng Ký",
+      user: "Thông Tin Cá Nhân",
     };
 
     if (nameMap[name]) return nameMap[name];

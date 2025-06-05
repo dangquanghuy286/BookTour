@@ -1,4 +1,4 @@
-import { get, post } from "../utils/requestserver";
+import { edit, get, post } from "../utils/requestserver";
 
 export const login = async (user_name, password) => {
   try {
@@ -43,6 +43,38 @@ export const getInfoUser = async (id) => {
       data: response.data,
     };
   } catch (error) {
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Something went wrong",
+    };
+  }
+};
+export const putProfileImg = async (id, formData) => {
+  try {
+    const response = await edit(`users/${id}/avatar`, formData);
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    console.error(`Lỗi khi cập nhật ảnh đại diện cho user ${id}:`, error);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Đã xảy ra lỗi khi tải ảnh lên",
+    };
+  }
+};
+//Sửa thông tin ADMIN
+export const putChangeInfoAdmin = async (id, data) => {
+  try {
+    const response = await edit(`users/${id}`, data);
+
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    console.error("Lỗi khi gọi API:", error.response?.data);
     return {
       status: error.response?.status || 500,
       data: error.response?.data || "Something went wrong",
