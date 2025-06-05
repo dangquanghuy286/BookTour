@@ -182,11 +182,16 @@ const ChangePass = () => {
               </p>
             )}
           </div>
-          <div className="flex items-center justify-between">
-            <GoBack className="ml-2" disabled={loading} />
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1">
+              <GoBack
+                className="w-full rounded-md bg-gray-300 px-6 py-2 text-center text-white shadow-md transition duration-300 hover:scale-105"
+                disabled={loading}
+              />
+            </div>
             <button
               type="submit"
-              className="rounded-2xl bg-gradient-to-r from-[#019fb5] to-[#00c0d1] px-6 py-2 text-white shadow-md transition duration-300 hover:scale-105"
+              className="flex-1 rounded-md bg-gradient-to-r from-[#019fb5] to-[#00c0d1] px-6 py-2 text-white shadow-md transition duration-300 hover:scale-105"
               disabled={loading}
             >
               {loading ? "Đang Xử Lý..." : "Đổi Mật Khẩu"}

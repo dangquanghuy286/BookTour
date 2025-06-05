@@ -1,21 +1,16 @@
 import { Navigate, Outlet } from "react-router-dom";
-import LayoutDefault from "../../layout/LayoutDefaut";
+import Layout from "../../Layout";
 
 function PrivateRoutes() {
-    const token = localStorage.getItem("token");
-    if (token) {
-        return (
-            <LayoutDefault>
-                <Outlet />
-            </LayoutDefault>
-        );
-    }
-
+  const token = localStorage.getItem("token");
+  if (token) {
     return (
-        <Navigate
-            to="/login"
-            replace
-        />
+      <Layout>
+        <Outlet />
+      </Layout>
     );
+  }
+
+  return <Navigate to="/login" replace />;
 }
 export default PrivateRoutes;

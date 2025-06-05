@@ -24,6 +24,8 @@ import TourSearch from "../pages/SearchPage";
 import RedirectPage from "../pages/Login/RedirectPage";
 import UserForm from "../pages/User";
 import ChangePass from "../components/User/ChangePass";
+import PrivateRoutes from "../components/PrivateRoutes";
+import SendCodeEmail from "../components/Pass/SendCodeEmail";
 
 export const routes = [
   {
@@ -123,12 +125,22 @@ export const routes = [
         element: <BlogDetail />,
       },
       {
-        path: "user",
-        element: <UserForm />,
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: "user",
+            element: <UserForm />,
+          },
+        ],
+      },
+
+      {
+        path: "user/changepassword",
+        element: <ChangePass />,
       },
       {
-        path: "user/change-password",
-        element: <ChangePass />,
+        path: "sendEmail",
+        element: <SendCodeEmail />,
       },
     ],
   },

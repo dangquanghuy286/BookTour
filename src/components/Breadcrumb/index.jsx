@@ -28,6 +28,8 @@ function Breadcrumb() {
       login: "Đăng Nhập",
       register: "Đăng Ký",
       user: "Thông Tin Cá Nhân",
+      changepassword: "Thay Đổi Mật Khẩu",
+      sendEmail: "Tìm Email",
     };
 
     if (nameMap[name]) return nameMap[name];

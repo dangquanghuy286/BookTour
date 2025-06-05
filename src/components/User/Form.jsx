@@ -78,7 +78,7 @@ function Form({ formData, onChange, onSubmit }) {
         </div>
         <div className="mt-2 text-right">
           <NavLink
-            to="/user/change-password"
+            to="/user/changepassword"
             className="text-[#019fb5] hover:underline"
           >
             Thay đổi mật khẩu

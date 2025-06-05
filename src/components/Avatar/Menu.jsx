@@ -24,7 +24,7 @@ function Menu(props) {
             </li>
             <li className="flex items-center gap-2 border-b-2 border-slate-200 px-3 py-2 hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-700">
               <Link
-                to="/user/change-password"
+                to="/user/changepassword"
                 className="block w-full rounded-md px-3 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-700"
               >
                 Thay đổi mật khẩu

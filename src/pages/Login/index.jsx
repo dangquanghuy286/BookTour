@@ -170,7 +170,7 @@ const Login = () => {
               <input type="checkbox" className="accent-cyan-300 rounded" />
               <span>Ghi nhớ tôi</span>
             </label>
-            <Link>
+            <Link to="/sendEmail">
               <span className="text-[#00c0d1] transition-colors hover:underline">
                 Quên mật khẩu
               </span>

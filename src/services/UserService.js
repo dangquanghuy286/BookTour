@@ -81,3 +81,27 @@ export const putChangeInfo = async (id, data) => {
     };
   }
 };
+//SendCode Email
+export const sendCodeEmail = async (email) => {
+  try {
+    const params = new URLSearchParams();
+    params.append("email", email);
+
+    const response = await post("users/forgot-password", params, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    console.error("Lỗi khi gọi API", error.response?.data);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Something went wrong",
+    };
+  }
+};
