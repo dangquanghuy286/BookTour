@@ -3,7 +3,7 @@ import { StoreContext } from "../../contexts/storeUser";
 import UserAvatar from "../../components/User/UserAvatar";
 import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
-import { putChangeInfoAdmin, putProfileImg } from "../../services/UserService";
+import { putChangeInfo, putProfileImg } from "../../services/UserService";
 import Form from "../../components/User/Form";
 import ErrorMessage from "../../components/ErrorMessage";
 import LoadingSpinner from "../../components/LoadingSniper";
@@ -145,7 +145,7 @@ const UserForm = () => {
         date_of_birth: formData.date_of_birth,
       };
 
-      const infoResponse = await putChangeInfoAdmin(userId, adminData);
+      const infoResponse = await putChangeInfo(userId, adminData);
 
       if (infoResponse.status === 200) {
         Swal.fire({

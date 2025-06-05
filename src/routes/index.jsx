@@ -23,6 +23,7 @@ import TourBookingFAQ from "../components/TermsOfService/TourBookingFAQ";
 import TourSearch from "../pages/SearchPage";
 import RedirectPage from "../pages/Login/RedirectPage";
 import UserForm from "../pages/User";
+import ChangePass from "../components/User/ChangePass";
 
 export const routes = [
   {
@@ -124,6 +125,10 @@ export const routes = [
       {
         path: "user",
         element: <UserForm />,
+      },
+      {
+        path: "user/change-password",
+        element: <ChangePass />,
       },
     ],
   },

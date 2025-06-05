@@ -23,7 +23,6 @@ const HeroFilter = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { userInfo } = useContext(StoreContext);
-  console.log(userInfo);
 
   useEffect(() => {
     const fetchLocations = async () => {

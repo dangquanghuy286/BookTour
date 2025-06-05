@@ -65,7 +65,7 @@ export const putProfileImg = async (id, formData) => {
   }
 };
 //Sửa thông tin ADMIN
-export const putChangeInfoAdmin = async (id, data) => {
+export const putChangeInfo = async (id, data) => {
   try {
     const response = await edit(`users/${id}`, data);
 

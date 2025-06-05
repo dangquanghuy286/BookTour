@@ -39,7 +39,7 @@ function Form({ formData, onChange, onSubmit }) {
             name="date_of_birth"
             value={formData.date_of_birth}
             onChange={onChange}
-            className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-cyan-300 focus:outline-none"
+            className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-cyan-300 focus:outline-none accent-cyan-500"
           />
         </div>
 

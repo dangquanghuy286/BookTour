@@ -16,6 +16,7 @@ function Search() {
       // Nếu ô tìm kiếm không rỗng, điều hướng đến trang kết quả với từ khóa truyền vào URL
       // Hàm JavaScript giúp mã hóa an toàn giá trị searchTerm khi đưa vào URL.
       navigate(`/tourSearch?title=${encodeURIComponent(searchTerm)}`);
+      setSearchTerm("");
     }
   };
 
