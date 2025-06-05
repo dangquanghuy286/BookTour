@@ -46,8 +46,8 @@ const TourReviewCustomer = ({ tour }) => {
                 className="w-full max-w-[85%] sm:max-w-[600px] md:max-w-[720px] h-auto min-h-[160px] sm:min-h-[180px] md:min-h-[200px] bg-white dark:bg-slate-900 border border-gray-300 shadow-[0_1px_4px_rgba(0,0,0,0.16)]  rounded-2xl relative p-3 sm:p-4 md:p-5 text-gray-900 dark:text-gray-100"
               >
                 {/* Avatar + Thông tin khách hàng */}
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start">
+                <div className="flex items-start justify-between ">
+                  <div className="flex items-start ">
                     {fb.avatar ? (
                       <img
                         src={fb.avatar}

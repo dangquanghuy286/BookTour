@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import icons from "../../utils/icons";
 import ErrorMessage from "../ErrorMessage";
 import LoadingSpinner from "../LoadingSniper";
 import { prices, durations } from "../../contexts/TourContext";
 import { getLocations } from "../../services/TourService";
+import { StoreContext } from "../../contexts/storeUser";
 
 const { MdLocationOn, MdAccessTime, MdAttachMoney, FaSyncAlt, FaMapMarkerAlt } =
   icons;
@@ -21,8 +22,9 @@ const HeroFilter = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { userInfo } = useContext(StoreContext);
+  console.log(userInfo);
 
-  // Lấy danh sách điểm đi và điểm đến từ backend
   useEffect(() => {
     const fetchLocations = async () => {
       setLoading(true);
@@ -96,9 +98,13 @@ const HeroFilter = () => {
       <div className="absolute inset-0 bg-black/30 sm:bg-black/35 md:bg-black/40 z-10"></div>
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 lg:py-6 relative z-20">
         <div className="max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto">
-          <div className="text-center mb-2 sm:mb-3 md:mb-4 lg:mb-5">
-            <div className="inline-block px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 mb-1 sm:mb-2 text-xs sm:text-sm font-medium text-white bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-              Xin chào và chào mừng bạn đến với GOVIET! 🇻🇳
+          <div className="text-center mb-2 sm:mb-3 md:mb-4 lg:mb-5 ">
+            <div className="inline-block px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 mb-1 sm:mb-2 text-xs sm:text-sm font-medium text-white bg-white/20 backdrop-blur-sm rounded-full border border-white/30 w-fit">
+              Xin chào và chào mừng bạn{" "}
+              <span className="font-bold text-[#00c0d1]">
+                {userInfo?.data.full_name}
+              </span>{" "}
+              đến với GOVIET
             </div>
             <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-1 sm:mb-2 md:mb-3 leading-tight drop-shadow-2xl">
               Khám phá{" "}

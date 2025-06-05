@@ -39,7 +39,7 @@ const AddComment = () => {
       };
 
       const res = await postReview(data);
-      console.log(res.data);
+
       if (res.status === 201) {
         Swal.fire({
           icon: "success",

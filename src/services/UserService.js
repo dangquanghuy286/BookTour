@@ -1,4 +1,4 @@
-import { post } from "../utils/requestserver";
+import { get, post } from "../utils/requestserver";
 
 export const login = async (user_name, password) => {
   try {
@@ -31,6 +31,21 @@ export const login = async (user_name, password) => {
         errorCode: "UNKNOWN_ERROR",
         message: error.message || "Login failed",
       },
+    };
+  }
+};
+// Get admin information
+export const getInfoUser = async (id) => {
+  try {
+    const response = await get(`users/${id}`);
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Something went wrong",
     };
   }
 };

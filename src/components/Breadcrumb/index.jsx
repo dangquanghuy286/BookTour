@@ -25,6 +25,8 @@ function Breadcrumb() {
       termsofservice: "Điều Khoản & Dịch Vụ",
       getalltour: "Tất Cả Tour",
       tourSearch: "Tìm Kiếm",
+      login: "Đăng Nhập",
+      register: "Đăng Ký",
     };
 
     if (nameMap[name]) return nameMap[name];

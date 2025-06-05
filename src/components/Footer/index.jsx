@@ -10,7 +10,7 @@ function Footer() {
       <hr className="border-gray-300 dark:border-gray-700 mb-6 sm:mb-8 lg:mb-10" />
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
           {/* Giới thiệu */}
           <div className="space-y-2 sm:space-y-3">

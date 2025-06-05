@@ -40,21 +40,21 @@ const Banner = () => {
               >
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <MdFlight className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl rounded-full dark:text-bg-slate-900 shadow-sm bg-violet-200" />
+                    <MdFlight className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl rounded-full dark:text-slate-900 shadow-sm bg-violet-200 dark:bg-violet-300" />
                     <p className="text-sm sm:text-base">Chuyến bay</p>
                   </div>
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <MdOutlineHotel className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl dark:text-bg-slate-900 bg-pink-200 rounded-full shadow-sm" />
+                    <MdOutlineHotel className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl dark:text-slate-900 bg-pink-200 dark:bg-pink-300 rounded-full shadow-sm" />
                     <p className="text-sm sm:text-base">Khách sạn</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <FaWifi className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl bg-blue-200 dark:text-bg-slate-900 rounded-full shadow-sm" />
+                    <FaWifi className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl bg-blue-200 dark:bg-blue-300 dark:text-slate-900 rounded-full shadow-sm" />
                     <p className="text-sm sm:text-base">Wi-Fi</p>
                   </div>
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <MdFastfood className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl bg-orange-200 dark:text-bg-slate-900 rounded-full shadow-sm" />
+                    <MdFastfood className="w-10 h-10 sm:w-12 sm:h-12 p-2 sm:p-4 text-3xl sm:text-4xl bg-orange-200  dark:bg-orange-300 dark:text-slate-900 rounded-full shadow-sm" />
                     <p className="text-sm sm:text-base">Thực phẩm</p>
                   </div>
                 </div>

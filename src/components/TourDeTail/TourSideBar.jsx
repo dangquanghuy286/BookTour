@@ -6,8 +6,6 @@ import icons from "../../utils/icons";
 
 const { MdEmail, FiPhoneCall } = icons;
 const TourSidebar = ({ tour }) => {
-  console.log(tour);
-
   const navigate = useNavigate();
 
   const handleClick = () => {

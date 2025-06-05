@@ -54,8 +54,7 @@ const Login = () => {
         setLoading(false);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user_id", res.data.user_id);
-        localStorage.setItem("user_name", res.data.user_id);
-        localStorage.setItem("email", res.data.user_id);
+
         Swal.fire({
           icon: "success",
           title: "Đăng nhập thành công!",
@@ -118,7 +117,7 @@ const Login = () => {
     if (token) navigate("/");
     const query = new URLSearchParams(location.search);
     if (query.get("error")) {
-      console.log("error");
+      console.error();
     }
   }, [navigate]);
 
@@ -195,11 +194,20 @@ const Login = () => {
           <span>— hoặc —</span>
         </div>
         <a
-          href="http://localhost:8088/oauth2/authorization/google"
-          className="flex items-center justify-center gap-3 p-3 border rounded-xl bg-white dark:text-[#101828] font-medium hover:scale-[1.01] transition-transform"
+          href={
+            loading
+              ? undefined
+              : "http://localhost:8088/oauth2/authorization/google"
+          }
+          onClick={(e) => loading && e.preventDefault()}
+          className={`w-full py-3 rounded-2xl font-semibold bg-transparent text-[#00c0d1] flex items-center justify-center gap-2 ${
+            loading
+              ? "bg-white/10 cursor-not-allowed pointer-events-none"
+              : "hover:underline"
+          } transition-colors duration-200`}
         >
-          <FcGoogle className="w-6 h-6" />
-          Đăng nhập với Google
+          <FcGoogle className="text-xl w-6 h-6" />
+          Đăng nhập bằng Google
         </a>
 
         <p className="text-center text-[#00c0d1] mt-6">
