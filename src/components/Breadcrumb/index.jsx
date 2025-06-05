@@ -30,6 +30,7 @@ function Breadcrumb() {
       user: "Thông Tin Cá Nhân",
       changepassword: "Thay Đổi Mật Khẩu",
       sendEmail: "Tìm Email",
+      changePasswordCode: "Đặt Lại Mật Khẩu Mới",
     };
 
     if (nameMap[name]) return nameMap[name];

@@ -111,3 +111,14 @@ export const getCode = (token) => {
     params: { token },
   });
 };
+export const changePassword = (token, newPassword) => {
+  const params = new URLSearchParams();
+  params.append("token", token);
+  params.append("newPassword", newPassword);
+
+  return post("users/reset-password", params, {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  });
+};

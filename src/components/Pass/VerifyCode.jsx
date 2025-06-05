@@ -122,7 +122,7 @@ const VerifyCode = () => {
                 value={digit}
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className="h-12 w-10 rounded border-b-2 border-gray-400 text-center text-xl font-semibold focus:border-orange-500 focus:outline-none dark:bg-white dark:text-black"
+                className="h-12 w-10 rounded border-b-2 border-gray-600 text-center text-xl font-semibold focus:border-orange-500 focus:outline-none dark:bg-white dark:text-black"
                 disabled={isLoading}
                 aria-label={`Mã xác nhận số ${index + 1}`}
               />
