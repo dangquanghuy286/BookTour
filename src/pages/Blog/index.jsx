@@ -70,7 +70,7 @@ function Blog({ blogs = null, showPagination = true }) {
       <div className="container mx-auto px-4">
         {" "}
         <h1
-          className="tour_tittle py-2 pl-3 my-6 sm:my-8 text-2xl sm:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]"
+          className="  py-2 pl-3 my-6 sm:my-8 text-2xl sm:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]"
           data-aos="fade-right"
           data-aos-delay="200"
         >

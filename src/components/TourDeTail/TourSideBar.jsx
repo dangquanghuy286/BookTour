@@ -1,18 +1,19 @@
 import React from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { company } from "../../contexts/TourContext";
 import icons from "../../utils/icons";
 
 const { MdEmail, FiPhoneCall } = icons;
+
 const TourSidebar = ({ tour }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     window.scrollTo(0, 0);
+
     navigate("/payment", {
       state: {
-        item: tour,
+        tour: tour,
       },
     });
   };
@@ -75,13 +76,19 @@ const TourSidebar = ({ tour }) => {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <p className="font-semibold text-[#00c0d1]">Người lớn:</p>
-              <p className="text-base">{tour.price_adult.toLocaleString()}</p>
+              <p className="text-base">
+                {tour.price_adult?.toLocaleString() || "N/A"}
+              </p>
             </div>
             <div className="flex items-center justify-between">
               <p className="font-semibold text-[#00c0d1] ">
                 Trẻ em (3 đến 11 tuổi):
               </p>
-              <p className="text-base">{tour.price_child.toLocaleString()}</p>
+              <p className="text-base">
+                {tour.price_child?.toLocaleString() ||
+                  tour.price_children?.toLocaleString() ||
+                  "N/A"}
+              </p>
             </div>
             <div className="flex items-center justify-between">
               <p className="font-semibold text-[#00c0d1] ">
@@ -93,7 +100,7 @@ const TourSidebar = ({ tour }) => {
         </div>
         <button
           onClick={handleClick}
-          className="w-full py-2 mt-5 font-semibold text-white rounded-lg bg-[#00c0d1]"
+          className="w-full py-2 mt-5 font-semibold text-white rounded-lg bg-[#00c0d1] hover:bg-[#0090a0] transition-colors duration-200"
         >
           Đặt ngay
         </button>

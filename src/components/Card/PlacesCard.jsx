@@ -121,7 +121,8 @@ const PlacesCard = ({
         {booking && (
           <div className="flex items-center gap-1.5 sm:gap-2">
             <Link
-              to={`/tours/${slug}`}
+              to="/payment"
+              state={{ tour: item }}
               onClick={() => window.scrollTo(0, 0)}
               className="px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 lg:px-5 lg:py-2.5 rounded-md text-white font-semibold text-xs sm:text-sm bg-[#00c0d1] hover:bg-[#0090a0] transition-colors duration-200 whitespace-nowrap"
             >

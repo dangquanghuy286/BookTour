@@ -8,7 +8,7 @@ function Menu(props) {
           <ul className="mb-1 flex flex-col gap-1 text-sm text-slate-700 dark:text-slate-200">
             <li className="flex items-center gap-2 border-b-2 border-slate-200 px-3 py-2 hover:bg-slate-100 dark:border-slate-600 dark:hover:bg-slate-700">
               <Link
-                to="/user/booked"
+                to="tourBooked"
                 className="block w-full rounded-md px-3 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-700"
               >
                 Tour đã đặt

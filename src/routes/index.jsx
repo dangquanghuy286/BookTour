@@ -28,6 +28,9 @@ import VerifyCode from "../components/Pass/VerifyCode";
 import ChangePassWithCode from "../components/Pass/ChangePassWithCode";
 import RegisterPage from "../pages/Register";
 import PrivateRoutes from "../components/PrivateRoutes";
+import Booking from "../pages/Booking";
+import TourBooked from "../components/TourBooked";
+import VnPayCallback from "../components/Payment/VnPayCallback";
 
 export const routes = [
   {
@@ -80,6 +83,18 @@ export const routes = [
           {
             path: "logout",
             element: <Logout />,
+          },
+          {
+            path: "/payment",
+            element: <Booking />,
+          },
+          {
+            path: "/tourBooked",
+            element: <TourBooked />,
+          },
+          {
+            path: "/vnPayCallback",
+            element: <VnPayCallback />,
           },
         ],
       },

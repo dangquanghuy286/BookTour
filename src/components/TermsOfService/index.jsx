@@ -18,6 +18,7 @@ import AdditionalTerms from "./AdditionalTerms";
 import ChangePolicy from "./ChangePolicy";
 import Contact from "./Contact";
 import ConfirmPolicy from "./ConfirmPolicy";
+import GoBack from "../GoBack/Goback";
 
 const TermsOfService = () => {
   return (
@@ -53,6 +54,7 @@ const TermsOfService = () => {
         <Contact />
         {/* Chấp nhận điều khoản */}
         <ConfirmPolicy />
+        <GoBack />
       </div>
     </div>
   );
