@@ -13,6 +13,8 @@ const PlacesCard = ({
   left = false,
   star = true,
 }) => {
+  console.log(item);
+
   const sizeClasses =
     size === "small"
       ? "w-full max-w-[90%] sm:max-w-[280px]"
@@ -72,13 +74,16 @@ const PlacesCard = ({
         )}
       </div>
       {/* Phần nội dung */}
-      <div className="flex-grow p-2 sm:p-3 mt-2 space-y-1.5 sm:space-y-2 ">
+      <div className="flex-grow p-2 sm:p-3 mt-2 space-y-1.5 sm:space-y-2">
+        {/* Điểm đến */}
         <div className="flex gap-1.5 sm:gap-2 opacity-70 items-center">
           <IoLocationOutline className="w-5 h-5 sm:w-6 sm:h-6" />
           <p className="text-xs sm:text-sm md:text-base line-clamp-1">
             {item.destination}
           </p>
         </div>
+
+        {/* Tiêu đề tour */}
         <Link
           to={`/tours/${slug}`}
           onClick={() => window.scrollTo(0, 0)}
@@ -86,17 +91,26 @@ const PlacesCard = ({
         >
           {item.title}
         </Link>
+
+        {/* Nơi khởi hành */}
+        <div className="flex gap-1.5 sm:gap-2 items-center text-xs sm:text-sm text-black">
+          <span className="font-medium">Nơi khởi hành:</span>
+          <p className="line-clamp-1">{item.departurePoint}</p>
+        </div>
+
+        {/* Thời lượng & chỗ trống */}
         <div className="flex items-center justify-between text-xs sm:text-sm">
           <div className="flex items-center gap-1">
             <FiClock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <p>{item.duration}</p>
           </div>
-          <div className="flex items-center ">
+          <div className="flex items-center">
             <FaRegUser className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span className="ml-1">{item.availableSlots}</span>
           </div>
         </div>
       </div>
+
       {/* Phần giá và nút */}
       <div className="flex items-center justify-between py-2 sm:py-3 mt-2 sm:mt-3 border-t-2 ">
         <div className="opacity-70">

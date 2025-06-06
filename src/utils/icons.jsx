@@ -33,6 +33,7 @@ import {
   FaTag,
   FaEye,
   FaEyeSlash,
+  FaEnvelope,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
@@ -126,5 +127,7 @@ const icons = {
   IoMdCreate,
   MdOutlineAttachFile,
   AiOutlineArrowLeft,
+
+  FaEnvelope,
 };
 export default icons;

@@ -2,10 +2,11 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/NavBar";
 import Footer from "../components/Footer";
-import ChatBox from "../components/ChatBox";
+
 import Breadcrumb from "../components/Breadcrumb";
 import BackToTop from "../components/BackToTop";
 import { useSelector } from "react-redux";
+import ChatBoxContainer from "../components/ChatBox";
 
 function Layout() {
   const isLogin = useSelector((state) => state.login);
@@ -20,7 +21,7 @@ function Layout() {
         </main>
         <Footer />
         <BackToTop />
-        <ChatBox />
+        <ChatBoxContainer />
       </div>
     </>
   );

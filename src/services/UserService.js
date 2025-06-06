@@ -34,6 +34,22 @@ export const login = async (user_name, password) => {
     };
   }
 };
+export const register = async (formData) => {
+  try {
+    const response = await post("users/register", formData);
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    console.error("Lỗi", error);
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Something went wrong",
+    };
+  }
+};
+
 // Get admin information
 export const getInfoUser = async (id) => {
   try {

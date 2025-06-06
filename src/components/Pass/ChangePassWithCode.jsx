@@ -72,6 +72,7 @@ const ChangePassWithCode = () => {
           timer: 1500,
           showConfirmButton: false,
         }).then(() => {
+          localStorage.removeItem("code");
           navigate("/login");
         });
       } else {

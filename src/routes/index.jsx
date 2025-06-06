@@ -1,7 +1,6 @@
 import AboutUs from "../components/About/AboutUs";
 import CancellationPolicy from "../components/TermsOfService/CancellationPolicy";
 import PrivacyPolicy from "../components/About/PrivacyPolicy";
-
 import BlogDetail from "../components/Blogs/BlogDetail";
 import TermsOfService from "../components/TermsOfService";
 import Layout from "../Layout";
@@ -24,10 +23,11 @@ import TourSearch from "../pages/SearchPage";
 import RedirectPage from "../pages/Login/RedirectPage";
 import UserForm from "../pages/User";
 import ChangePass from "../components/User/ChangePass";
-
 import SendCodeEmail from "../components/Pass/SendCodeEmail";
 import VerifyCode from "../components/Pass/VerifyCode";
 import ChangePassWithCode from "../components/Pass/ChangePassWithCode";
+import RegisterPage from "../pages/Register";
+import PrivateRoutes from "../components/PrivateRoutes";
 
 export const routes = [
   {
@@ -67,6 +67,23 @@ export const routes = [
         element: <TourSearch />,
       },
       {
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: "user",
+            element: <UserForm />,
+          },
+          {
+            path: "user/changepassword",
+            element: <ChangePass />,
+          },
+          {
+            path: "logout",
+            element: <Logout />,
+          },
+        ],
+      },
+      {
         path: "tour",
         element: <Tours />,
         children: [
@@ -92,7 +109,6 @@ export const routes = [
         path: "destination",
         element: <Destination />,
       },
-
       {
         path: "contact",
         element: <Contact />,
@@ -107,17 +123,12 @@ export const routes = [
       },
       {
         path: "register",
-        element: <Register />,
-      },
-      {
-        path: "logout",
-        element: <Logout />,
+        element: <RegisterPage />,
       },
       {
         path: "redirect",
         element: <RedirectPage />,
       },
-
       {
         path: "blog",
         element: <Blog />,
@@ -127,15 +138,6 @@ export const routes = [
         element: <BlogDetail />,
       },
 
-      {
-        path: "user",
-        element: <UserForm />,
-      },
-
-      {
-        path: "user/changepassword",
-        element: <ChangePass />,
-      },
       {
         path: "sendEmail",
         element: <SendCodeEmail />,

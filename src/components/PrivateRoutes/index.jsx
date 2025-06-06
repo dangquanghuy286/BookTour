@@ -4,11 +4,7 @@ import Layout from "../../Layout";
 function PrivateRoutes() {
   const token = localStorage.getItem("token");
   if (token) {
-    return (
-      <Layout>
-        <Outlet />
-      </Layout>
-    );
+    return <Outlet />;
   }
 
   return <Navigate to="/login" replace />;
