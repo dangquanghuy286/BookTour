@@ -63,7 +63,7 @@ const Login = () => {
           position: "top-end",
         });
         disPatch(checkLogin(true));
-        setTimeout(() => navigate("/"), 1600);
+        navigate("/");
       } else {
         throw new Error("No token received");
       }

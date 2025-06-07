@@ -27,6 +27,7 @@ const Places = ({
       setIsLoading(true);
       setError(null);
       const res = await getDataTour(page, limit);
+      console.log("Response from getDataTour:", res);
 
       if (res.status !== 200) {
         throw new Error(res.data?.error || "Lỗi không xác định");

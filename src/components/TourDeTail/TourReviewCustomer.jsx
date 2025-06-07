@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Img from "../../assets/Img/dauphay.webp";
 import StarDisplay from "../Star";
 import icons from "../../utils/icons";
+
 const { FaUserAlt, FaEllipsisV } = icons;
 
 const TourReviewCustomer = ({ tour }) => {
@@ -24,6 +25,7 @@ const TourReviewCustomer = ({ tour }) => {
     // Thêm logic xóa đánh giá tại đây
     setOpenMenuIndex(null); // Đóng menu sau khi chọn
   };
+  const userInfo = JSON.parse(localStorage.getItem("user_id"));
 
   return (
     <div className="pt-6 bg-white dark:bg-slate-900">
@@ -83,30 +85,33 @@ const TourReviewCustomer = ({ tour }) => {
                     </div>
                   </div>
                   {/* Nút menu toggle */}
-                  <div className="relative">
-                    <button
-                      onClick={() => toggleMenu(index)}
-                      className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none"
-                    >
-                      <FaEllipsisV className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-300" />
-                    </button>
-                    {openMenuIndex === index && (
-                      <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg shadow-lg z-10">
-                        <button
-                          onClick={() => handleEdit(fb.id)}
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-slate-700"
-                        >
-                          Sửa
-                        </button>
-                        <button
-                          onClick={() => handleDelete(fb.id)}
-                          className="block w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-slate-700"
-                        >
-                          Xóa
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  {/* Chỉ hiện nếu user hiện tại là người đã viết đánh giá */}
+                  {fb.user_id === userInfo && (
+                    <div className="relative">
+                      <button
+                        onClick={() => toggleMenu(index)}
+                        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none"
+                      >
+                        <FaEllipsisV className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-300" />
+                      </button>
+                      {openMenuIndex === index && (
+                        <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-lg shadow-lg z-10">
+                          <button
+                            onClick={() => handleEdit(fb.id)}
+                            className="block w-full text-left px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-slate-700"
+                          >
+                            Sửa
+                          </button>
+                          <button
+                            onClick={() => handleDelete(fb.id)}
+                            className="block w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-slate-700"
+                          >
+                            Xóa
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             ))

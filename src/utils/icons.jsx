@@ -53,6 +53,7 @@ import {
   MdAccessTime,
   MdAttachMoney,
   MdOutlineAttachFile,
+  MdOutlinePayment,
 } from "react-icons/md";
 import {
   FiMenu,
@@ -132,5 +133,6 @@ const icons = {
   FaPlus,
   FaMinus,
   FaEnvelope,
+  MdOutlinePayment,
 };
 export default icons;

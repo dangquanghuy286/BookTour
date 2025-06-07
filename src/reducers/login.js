@@ -1,4 +1,4 @@
-const loginReducers = (state = false, action) => {
+const loginReducer = (state = false, action) => {
   switch (action.type) {
     case "CHECK_LOGIN":
       return action.status;
@@ -7,4 +7,4 @@ const loginReducers = (state = false, action) => {
   }
 };
 
-export default loginReducers;
+export default loginReducer;

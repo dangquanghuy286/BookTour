@@ -19,7 +19,6 @@ const PaymentSidebar = ({
   const [discount, setDiscount] = useState(0); // Phần trăm giảm giá
   const [discountAmount, setDiscountAmount] = useState(0); // Số tiền giảm giá
   const navigate = useNavigate();
-  console.log(tour);
 
   // Hàm chuyển chuỗi giá tiền sang số
   const cleanPrice = (priceStr) => {
@@ -27,10 +26,11 @@ const PaymentSidebar = ({
     return Number(priceStr.replace(/[^0-9]/g, "")) || 0;
   };
 
+  // Tính toán tổng tiền
   const priceAdult = cleanPrice(tour?.price_adult);
   const priceChild = cleanPrice(tour?.price_child);
   const subtotal = countAdults * priceAdult + countChildren * priceChild;
-  const total = subtotal - discountAmount; // Tổng tiền sau giảm giá
+  const total = subtotal - discountAmount;
   const total_quality = countAdults + countChildren;
 
   // Hàm áp dụng mã giảm giá
@@ -49,9 +49,9 @@ const PaymentSidebar = ({
       const response = await getPromotion(promoInput);
       if (response.status === 200) {
         const promotion = response.data;
-        setDiscount(promotion.discount); // Lưu % giảm giá
+        setDiscount(promotion.discount);
         const calculatedDiscountAmount = (subtotal * promotion.discount) / 100;
-        setDiscountAmount(calculatedDiscountAmount); // Lưu số tiền giảm
+        setDiscountAmount(calculatedDiscountAmount);
       } else {
         throw new Error(response.data.message || "Mã giảm giá không hợp lệ!");
       }
@@ -158,9 +158,7 @@ const PaymentSidebar = ({
         special_requests: specialRequests,
       };
 
-      console.log("Booking data to submit:", bookingData);
       const res = await postBooking(bookingData);
-      console.log("Booking response:", res);
 
       if (res.status === 200) {
         const { paymentUrl, bookingId } = res.data;
@@ -192,7 +190,7 @@ const PaymentSidebar = ({
           Swal.fire({
             icon: "error",
             title: "Lỗi",
-            text: "Không nhận được booking ID từ server!",
+            text: "Đặt tour thất bại!",
             confirmButtonColor: "#00c0d1",
           });
         }

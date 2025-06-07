@@ -93,7 +93,7 @@ export const routes = [
             element: <TourBooked />,
           },
           {
-            path: "/vnPayCallback",
+            path: "/vnpay-payment-callback",
             element: <VnPayCallback />,
           },
         ],

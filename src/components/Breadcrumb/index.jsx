@@ -31,6 +31,7 @@ function Breadcrumb() {
       changepassword: "Thay Đổi Mật Khẩu",
       sendEmail: "Tìm Email",
       changePasswordCode: "Đặt Lại Mật Khẩu Mới",
+      tourBooked: "Tour Đã Đặt",
     };
 
     if (nameMap[name]) return nameMap[name];

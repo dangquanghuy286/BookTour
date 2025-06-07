@@ -29,3 +29,21 @@ export const getPromotion = async (code) => {
     };
   }
 };
+export const getBookingById = async (userId, status = "") => {
+  try {
+    // Thêm tham số status vào query string nếu có
+    const url = status
+      ? `bookings/user/${userId}?status=${status}`
+      : `bookings/user/${userId}`;
+    const response = await get(url);
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Không thể lấy thông tin đặt chỗ",
+    };
+  }
+};

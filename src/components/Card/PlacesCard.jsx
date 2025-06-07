@@ -13,7 +13,7 @@ const PlacesCard = ({
   left = false,
   star = true,
 }) => {
-  console.log(item);
+
 
   const sizeClasses =
     size === "small"
