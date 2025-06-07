@@ -1,4 +1,4 @@
-import { get, post } from "../utils/requestserver";
+import { edit, get, post } from "../utils/requestserver";
 
 export const postBooking = async (bookingData) => {
   try {
@@ -44,6 +44,34 @@ export const getBookingById = async (userId, status = "") => {
     return {
       status: error.response?.status || 500,
       data: error.response?.data || "Không thể lấy thông tin đặt chỗ",
+    };
+  }
+};
+export const getBookingDetailById = async (bookingId) => {
+  try {
+    const response = await get(`bookings/${bookingId}`);
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Không thể lấy thông tin đặt chỗ",
+    };
+  }
+};
+export const cancelBooking = async (bookingId) => {
+  try {
+    const response = await edit(`bookings/${bookingId}/cancel`, {});
+    return {
+      status: response.status,
+      data: response.data,
+    };
+  } catch (error) {
+    return {
+      status: error.response?.status || 500,
+      data: error.response?.data || "Không thể hủy đặt chỗ",
     };
   }
 };

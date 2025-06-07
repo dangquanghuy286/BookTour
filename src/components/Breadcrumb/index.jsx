@@ -32,6 +32,7 @@ function Breadcrumb() {
       sendEmail: "Tìm Email",
       changePasswordCode: "Đặt Lại Mật Khẩu Mới",
       tourBooked: "Tour Đã Đặt",
+      payment: "Thanh Toán",
     };
 
     if (nameMap[name]) return nameMap[name];

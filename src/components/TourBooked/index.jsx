@@ -33,8 +33,8 @@ const TourBooked = () => {
         <div className="pt-6 dark:bg-slate-900 dark:text-white">
           <div className="flex flex-col justify-center">
             {/* Vùng chọn trạng thái */}
-            <div className="w-full px-2 sm:px-4 lg:px-6">
-              <div className="flex flex-wrap justify-center gap-2 p-2 sm:p-3 md:p-3 bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-6 sm:mb-8 md:mb-10 max-w-full sm:max-w-3xl md:max-w-3xl">
+            <div className="w-full px-2 sm:px-2 lg:px-2">
+              <div className="flex flex-wrap justify-center gap-2 p-2 sm:p-2 md:p-2 bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-6 sm:mb-8 md:mb-10 max-w-full sm:max-w-3xl md:max-w-3xl">
                 <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-3 w-full">
                   {statuses.map((status) => (
                     <button

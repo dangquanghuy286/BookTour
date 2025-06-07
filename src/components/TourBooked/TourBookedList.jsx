@@ -62,9 +62,18 @@ const TourBookedList = ({ bookings }) => {
                       <p className="text-xs sm:text-sm text-gray-500 mb-1">
                         Booking ID: #{booking.booking_id}
                       </p>
-                      <Link className="flex items-start gap-2 group">
+                      <Link
+                        to={`/tourBooked/${booking.booking_id}`}
+                        onClick={() => {
+                          localStorage.setItem(
+                            "booking_id",
+                            booking.booking_id
+                          );
+                        }}
+                        className="flex items-start gap-2 group"
+                      >
                         <MdLocationOn className="text-base sm:text-lg lg:text-xl text-red-500 mt-0.5 flex-shrink-0" />
-                        <h1 className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-gray-800 dark:text-white leading-tight group-hover:text-blue-600 transition-colors break-words">
+                        <h1 className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-gray-800 dark:text-white leading-tight group-hover:text-[#00c0d1] hover:underline transition-colors break-words">
                           {booking.title}
                         </h1>
                       </Link>

@@ -31,6 +31,7 @@ import PrivateRoutes from "../components/PrivateRoutes";
 import Booking from "../pages/Booking";
 import TourBooked from "../components/TourBooked";
 import VnPayCallback from "../components/Payment/VnPayCallback";
+import TourBookedDetail from "../components/TourBookedDetail/infdex";
 
 export const routes = [
   {
@@ -85,15 +86,19 @@ export const routes = [
             element: <Logout />,
           },
           {
-            path: "/payment",
+            path: "payment",
             element: <Booking />,
           },
           {
-            path: "/tourBooked",
+            path: "tourBooked",
             element: <TourBooked />,
           },
           {
-            path: "/vnpay-payment-callback",
+            path: "tourBooked/:id",
+            element: <TourBookedDetail />,
+          },
+          {
+            path: "vnpay-payment-callback",
             element: <VnPayCallback />,
           },
         ],
