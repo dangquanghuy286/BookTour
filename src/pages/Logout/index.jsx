@@ -21,10 +21,7 @@ const Logout = () => {
       position: "top",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user_id");
-        localStorage.removeItem("email");
-        localStorage.removeItem("user_name");
+        localStorage.clear();
 
         Swal.fire({
           title: "Đăng xuất",

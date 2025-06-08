@@ -6,10 +6,10 @@ import icons from "../../utils/icons";
 import StarRating from "../Star/StarRating";
 import { postReview } from "../../services/ReviewService";
 const { FiArrowUpRight } = icons;
-const AddComment = () => {
+const AddComment = ({ tour }) => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
-  const tour_id = localStorage.getItem("tour_id");
+
   const user_id = localStorage.getItem("user_id");
 
   const handleCommentSubmit = async (e) => {
@@ -31,7 +31,7 @@ const AddComment = () => {
     try {
       // Tạo dữ liệu đánh giá
       const data = {
-        tour_id: tour_id,
+        tour_id: tour.id,
         user_id: user_id,
         booking_id: localStorage.getItem("booking_id"),
         comment: comment,

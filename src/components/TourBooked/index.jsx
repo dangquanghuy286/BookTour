@@ -33,23 +33,21 @@ const TourBooked = () => {
         <div className="pt-6 dark:bg-slate-900 dark:text-white">
           <div className="flex flex-col justify-center">
             {/* Vùng chọn trạng thái */}
-            <div className="w-full px-2 sm:px-2 lg:px-2">
-              <div className="flex flex-wrap justify-center gap-2 p-2 sm:p-2 md:p-2 bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-6 sm:mb-8 md:mb-10 max-w-full sm:max-w-3xl md:max-w-3xl">
-                <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-3 w-full">
-                  {statuses.map((status) => (
-                    <button
-                      key={status}
-                      onClick={() => setSelectedStatus(status)}
-                      className={`px-1.5 sm:px-2 md:px-3 lg:px-4 py-0.5 sm:py-1 md:py-1.5 lg:py-2 text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg rounded-full font-semibold transition-all duration-300 ${
-                        selectedStatus === status
-                          ? "bg-[#00c0d1] text-white"
-                          : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-                      }`}
-                    >
-                      {status}
-                    </button>
-                  ))}
-                </div>
+            <div className="flex flex-wrap justify-center gap-3 p-3  bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-6 sm:mb-8 md:mb-10 max-w-full sm:max-w-3xl md:max-w-3xl">
+              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-3 w-full">
+                {statuses.map((status) => (
+                  <button
+                    key={status}
+                    onClick={() => setSelectedStatus(status)}
+                    className={`px-1.5 sm:px-2 md:px-3 lg:px-4 py-0.5 sm:py-1 md:py-1.5 lg:py-2 text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg rounded-full font-semibold transition-all duration-300 ${
+                      selectedStatus === status
+                        ? "bg-[#00c0d1] text-white"
+                        : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                  >
+                    {status}
+                  </button>
+                ))}
               </div>
             </div>
             {loading ? (

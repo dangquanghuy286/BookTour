@@ -91,7 +91,7 @@ const DetailTour = () => {
               <TourFAQ />
               <TourReview tour={tour} />
               <TourReviewCustomer tour={tour} />
-              <AddComment />
+              <AddComment tour={tour} />
               <GoBack />
             </div>
           </>

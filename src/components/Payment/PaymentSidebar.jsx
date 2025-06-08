@@ -174,13 +174,13 @@ const PaymentSidebar = ({
             return;
           }
 
-          const bookedTours = JSON.parse(
-            localStorage.getItem("booked_tours") || "[]"
-          );
-          if (!bookedTours.includes(tour?.id.toString())) {
-            bookedTours.push(tour?.id.toString());
-            localStorage.setItem("booked_tours", JSON.stringify(bookedTours));
-          }
+          // const bookedTours = JSON.parse(
+          //   localStorage.getItem("booked_tours") || "[]"
+          // );
+          // if (!bookedTours.includes(tour?.id.toString())) {
+          //   bookedTours.push(tour?.id.toString());
+          //   localStorage.setItem("booked_tours", JSON.stringify(bookedTours));
+          // }
 
           setTimeout(() => {
             navigate("/tourBooked");
