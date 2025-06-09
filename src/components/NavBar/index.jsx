@@ -12,6 +12,7 @@ const { FiMenu, FiX, FiChevronDown } = icons;
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTourDropdownOpen, setIsTourDropdownOpen] = useState(false); // Thêm state cho dropdown
 
   const isLogin = useSelector((state) => state.login);
 
@@ -20,7 +21,22 @@ function Header() {
       isActive ? "text-[#00c0d1] dark:text-[#00c0d1]" : ""
     } before:absolute before:left-0 before:top-full before:w-0 before:h-[2px] before:bg-[#00c0d1] before:transition-all before:duration-500 hover:before:w-full transition-colors duration-300`;
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    // Đóng dropdown khi đóng menu chính
+    if (isMenuOpen) {
+      setIsTourDropdownOpen(false);
+    }
+  };
+
+  const toggleTourDropdown = (e) => {
+    e.preventDefault();
+    setIsTourDropdownOpen(!isTourDropdownOpen);
+  };
+
+  const closeTourDropdown = () => {
+    setIsTourDropdownOpen(false);
+  };
 
   return (
     <header className="w-full flex flex-wrap items-center justify-between px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-[140px] py-2 xs:py-3 sm:py-4 md:py-[15px] font-medium sticky top-0 z-[999] shadow-[0_2px_8px_rgba(0,0,0,0.1)] sm:shadow-[0_4px_12px_rgba(0,0,0,0.1)] bg-white dark:bg-slate-900 transition-all duration-300">
@@ -94,22 +110,55 @@ function Header() {
             </NavLink>
           </li>
 
-          {/* Tour Dropdown */}
+          {/* Tour Dropdown - Updated */}
           <li className="relative group">
-            <NavLink className={getNavLinkClass} onClick={toggleMenu}>
+            <button
+              className={`${getNavLinkClass({
+                isActive: false,
+              })} xl:hidden w-full text-left flex items-center justify-between`}
+              onClick={toggleTourDropdown}
+              aria-expanded={isTourDropdownOpen}
+            >
               <span className="flex items-center gap-1">
+                Tour
+                <FiChevronDown
+                  className={`text-sm sm:text-lg transition-transform duration-300 ${
+                    isTourDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </span>
+            </button>
+
+            {/* Desktop Tour Link */}
+            <div className="hidden xl:block">
+              <span
+                className={`${getNavLinkClass({
+                  isActive: false,
+                })} cursor-pointer flex items-center gap-1`}
+              >
                 Tour
                 <FiChevronDown className="text-sm sm:text-lg transition-transform duration-300 group-hover:rotate-180" />
               </span>
-            </NavLink>
+            </div>
 
             {/* Dropdown Menu */}
-            <ul className="xl:absolute xl:top-full xl:left-0 bg-white dark:bg-slate-900 xl:shadow-lg xl:rounded-md xl:border xl:border-gray-200 xl:dark:border-slate-700 min-w-[180px] sm:min-w-[200px] flex-col hidden group-hover:flex z-50 xl:mt-[2px] ml-4 xl:ml-0 mt-2 ">
+            <ul
+              className={`
+              xl:absolute xl:top-full xl:left-0 bg-white dark:bg-slate-900 xl:shadow-lg xl:rounded-md xl:border xl:border-gray-200 xl:dark:border-slate-700 min-w-[180px] sm:min-w-[200px] z-50 xl:mt-[2px] ml-4 xl:ml-0 mt-2
+              ${
+                isTourDropdownOpen ? "flex" : "hidden"
+              } xl:hidden xl:group-hover:flex
+              flex-col
+            `}
+            >
               <li>
                 <NavLink
                   to="/tour/getalltour"
                   className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-black dark:text-white hover:text-[#00c0d1] dark:hover:text-[#00c0d1] hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-300 xl:first:rounded-t-md xl:last:rounded-b-md"
-                  onClick={toggleMenu}
+                  onClick={() => {
+                    toggleMenu();
+                    closeTourDropdown();
+                  }}
                 >
                   Tất Cả Tour
                 </NavLink>
@@ -118,7 +167,10 @@ function Header() {
                 <NavLink
                   to="/tour/feature_tours"
                   className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-black dark:text-white hover:text-[#00c0d1] dark:hover:text-[#00c0d1] hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-300 xl:first:rounded-t-md xl:last:rounded-b-md"
-                  onClick={toggleMenu}
+                  onClick={() => {
+                    toggleMenu();
+                    closeTourDropdown();
+                  }}
                 >
                   Tour Nổi Bật
                 </NavLink>
@@ -127,7 +179,10 @@ function Header() {
                 <NavLink
                   to="/tour/latest_tours"
                   className="block px-3 sm:px-4 py-2 text-sm sm:text-base text-black dark:text-white hover:text-[#00c0d1] dark:hover:text-[#00c0d1] hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-300 xl:first:rounded-t-md xl:last:rounded-b-md"
-                  onClick={toggleMenu}
+                  onClick={() => {
+                    toggleMenu();
+                    closeTourDropdown();
+                  }}
                 >
                   Tour Mới Nhất
                 </NavLink>

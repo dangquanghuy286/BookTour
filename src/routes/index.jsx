@@ -12,7 +12,7 @@ import Home from "../pages/Home";
 import Intro from "../pages/Intro";
 import Login from "../pages/Login";
 import Logout from "../pages/Logout";
-import Register from "../pages/Register";
+
 import Tours from "../pages/Tours";
 import TourPopuLar from "../components/Tour/TourPopuLar";
 import DetailTour from "../components/Tour/DetailTour";
