@@ -12,7 +12,7 @@ const { FiMenu, FiX, FiChevronDown } = icons;
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isTourDropdownOpen, setIsTourDropdownOpen] = useState(false); // Thêm state cho dropdown
+  const [isTourDropdownOpen, setIsTourDropdownOpen] = useState(false);
 
   const isLogin = useSelector((state) => state.login);
 
