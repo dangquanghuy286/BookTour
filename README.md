@@ -1,12 +1,44 @@
-# React + Vite
+#  BookTour Website  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-18-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-5-purple?logo=vite)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-06B6D4?logo=tailwindcss)
+![AOS](https://img.shields.io/badge/AOS-animate-orange)
+![React Icons](https://img.shields.io/badge/React%20Icons-Available-green)
 
-Currently, two official plugins are available:
+Dự án **BookTour** được phát triển bằng **ReactJS + Vite**, sử dụng **TailwindCSS, AOS, React Icons** để xây dựng website đặt tour du lịch hiện đại, tối ưu trải nghiệm người dùng.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+##  Demo
+👉 [Xem demo tại đây](https://book-tour-coral.vercel.app/)  
+![Screenshot](https://res.cloudinary.com/dhl6tbhdh/image/upload/v1757174155/screencapture-localhost-3000-2025-09-06-22_51_24_covsrw.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+##  Công nghệ
+-  ReactJS + Vite  
+-  TailwindCSS  
+-  AOS (Animate On Scroll)  
+-  React Icons  
+
+---
+
+## ⚙️ Cài đặt & Chạy dự án
+
+```bash
+# Clone repo
+git clone https://github.com/dangquanghuy286/BookTour.git
+cd booktour
+
+# Cài dependencies
+npm install
+
+# Chạy development
+npm run dev   
+
+# Build production
+npm run build
+
+# Preview bản build
+npm run preview
