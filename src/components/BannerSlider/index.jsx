@@ -4,72 +4,64 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BannerSlider = ({ banners }) => {
-  // Cấu hình slider
+const BannerSlider = ({ banners = [] }) => {
   const sliderSettings = {
-    dots: false,
-    infinite: banners.length > 1, // Chỉ bật infinite nếu có nhiều hơn 1 banner
+    dots: true,
+    infinite: banners.length > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    cssEase: "linear",
+    cssEase: "ease-in-out",
     arrows: false,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          dots: true,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          dots: false,
-        },
-      },
-    ],
+    dotsClass: "slick-dots !bottom-3 !right-4 !left-auto !w-auto",
   };
 
   return (
-    <Slider {...sliderSettings}>
-      {banners.map((banner) => (
-        <div
-          key={banner.id}
-          className="relative w-full group overflow-hidden rounded-xl shadow-xl"
-        >
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-
-          <img
-            src={banner.imageUrl}
-            alt={banner.title}
-            className="object-cover w-full max-h-[800px] md:max-h-[700px] sm:max-h-[600px] group-hover:scale-105 transition-transform duration-500"
-          />
-
+    <div className="rounded-2xl overflow-hidden shadow-2xl">
+      <Slider {...sliderSettings}>
+        {banners.map((banner) => (
           <div
-            className="absolute left-4 right-4 sm:left-10 sm:right-auto bottom-10 sm:bottom-16 z-20 max-w-[90%] sm:max-w-[70%]"
-            data-aos="fade-right"
+            key={banner.id}
+            className="relative w-full group overflow-hidden"
           >
-            <h2 className="text-lg sm:text-2xl md:text-4xl font-bold mb-3 leading-tight">
-              <span className="bg-gradient-to-r from-amber-200 via-yellow-400 to-orange-400 bg-clip-text text-transparent drop-shadow-lg">
-                {banner.title}
-              </span>
-            </h2>
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10" />
 
-            <a
-              href={banner.link}
-              className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-            >
-              🌟 Khám phá ngay
-            </a>
+            <img
+              src={banner.imageUrl}
+              alt={banner.title}
+              className="w-full object-cover
+                aspect-[16/5] sm:aspect-[16/6] xs:aspect-[16/7]
+                group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+            />
+
+            <div className="absolute left-6 bottom-6 sm:left-8 sm:bottom-8 z-20 max-w-[55%]">
+              <h2 className="text-base sm:text-xl md:text-2xl font-bold mb-3 leading-snug">
+                <span className="bg-gradient-to-r from-amber-200 via-yellow-300 to-orange-400 bg-clip-text text-transparent drop-shadow">
+                  {banner.title}
+                </span>
+              </h2>
+
+              <a
+                href={banner.link}
+                className="inline-flex items-center gap-2
+                  px-4 py-2 sm:px-5 sm:py-2.5
+                  text-xs sm:text-sm font-semibold text-white
+                  bg-gradient-to-r from-teal-500 to-blue-600
+                  hover:from-teal-600 hover:to-blue-700
+                  rounded-full shadow-lg hover:shadow-xl
+                  hover:scale-105 transition-all duration-300"
+              >
+                🌟 Khám phá ngay
+              </a>
+            </div>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

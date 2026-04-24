@@ -39,7 +39,7 @@ export const routes = [
     element: <Layout />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
@@ -150,7 +150,7 @@ export const routes = [
         element: <RedirectPage />,
       },
       {
-        path: "blog",
+        path: "blogs",
         element: <Blog />,
       },
       {

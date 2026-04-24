@@ -210,7 +210,7 @@ function Header() {
           </li>
           <li>
             <NavLink
-              to="/blog"
+              to="/blogs"
               className={getNavLinkClass}
               onClick={toggleMenu}
             >

@@ -5,6 +5,16 @@ import ErrorMessage from "../ErrorMessage";
 import LoadingSpinner from "../LoadingSniper";
 import BannerSlider from "../BannerSlider";
 
+const DEFAULT_BANNERS = [
+  {
+    id: "default-1",
+    imageUrl:
+      "https://vn.freepik.com/psd-mien-phi/mau-banner-bia-facebook-ve-du-lich-va-du-lich_417538029.htm#fromView=keyword&page=1&position=1&uuid=cc3a807c-cadd-45b0-ab3e-62078fa56b22&query=Tour+banner", // thay bằng ảnh mặc định của bạn
+    title: "Banner mặc định 1",
+    link: "/",
+  },
+];
+
 const HeaderImg = () => {
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,14 +32,16 @@ const HeaderImg = () => {
               banner.isActive &&
               new Date(banner.startDate) <= new Date() &&
               new Date(banner.endDate) >= new Date() &&
-              banner.position?.toUpperCase() === "SIDEBAR"
+              banner.position?.toUpperCase() === "SIDEBAR",
           );
-          setBanners(activeBanners || []);
+          setBanners(
+            activeBanners.length > 0 ? activeBanners : DEFAULT_BANNERS,
+          );
         } else {
           setError(res.data?.error || "Không thể tải banner!");
         }
       } catch (error) {
-        setError(error.message || "Đã xảy ra lỗi!");
+        setBanners(DEFAULT_BANNERS); // lỗi cũng hiện banner mặc định
       } finally {
         setLoading(false);
       }
@@ -43,8 +55,6 @@ const HeaderImg = () => {
         <LoadingSpinner message="Đang tải banner!" />
       ) : error ? (
         <ErrorMessage error={error} />
-      ) : banners.length === 0 ? (
-        <ErrorMessage error="Không tìm thấy banner nào" isWarning={true} />
       ) : (
         <BannerSlider banners={banners} />
       )}

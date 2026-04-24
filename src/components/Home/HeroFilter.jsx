@@ -29,6 +29,7 @@ const HeroFilter = () => {
       setLoading(true);
       try {
         const res = await getLocations();
+
         if (res.status === 200) {
           setLocations({
             departurePoints: [
