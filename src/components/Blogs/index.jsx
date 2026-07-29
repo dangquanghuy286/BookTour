@@ -14,10 +14,10 @@ const BlogCard = ({ blog, size = "default", left = false }) => {
   // Size classes - Loại bỏ max-width để card có thể rộng theo grid
   const sizeClasses =
     size === "small"
-      ? "w-full max-w-sm" // Chỉ giới hạn cho small size
+      ? "w-full max-w-sm"
       : size === "large"
-      ? "w-full" // Full width
-      : "w-full"; // Default cũng full width để grid quyết định
+        ? "w-full"
+        : "w-full";
 
   return (
     <div
@@ -50,7 +50,13 @@ const BlogCard = ({ blog, size = "default", left = false }) => {
           {blog.title}
         </Link>
         <div className="flex gap-2 opacity-70 items-center text-sm text-gray-500 dark:text-gray-400">
-          <span>✍ {blog.author}</span> | <span>📅 {formattedDate}</span>
+          <span>
+            <MdFavorite /> {blog.author}
+          </span>{" "}
+          |{" "}
+          <span>
+            <MdCalendar /> {formattedDate}
+          </span>
         </div>
         <p className="text-base text-gray-700 dark:text-gray-300 line-clamp-3 leading-relaxed">
           {blog.content}
