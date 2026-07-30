@@ -6,7 +6,7 @@ function Breadcrumb() {
   // Không hiển thị breadcrumb ở trang chủ
   if (location.pathname === "/") return null;
 
-  // Chuyển path thành mảng các phần tử
+  // Chuyển path thành mảng các phần tử, loại bỏ các phần tử rỗng
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   // Hàm chuyển đổi tên hiển thị từ slug
