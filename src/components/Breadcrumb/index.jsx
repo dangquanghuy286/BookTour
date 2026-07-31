@@ -3,13 +3,13 @@ import { useLocation, Link } from "react-router-dom";
 function Breadcrumb() {
   const location = useLocation();
 
-  // Không hiển thị breadcrumb ở trang chủ
+  // Không hiển thị
   if (location.pathname === "/") return null;
 
   // Chuyển path thành mảng các phần tử, loại bỏ các phần tử rỗng
   const pathnames = location.pathname.split("/").filter((x) => x);
 
-  // Hàm chuyển đổi tên hiển thị từ slug
+  // tên hiển thị từ slug
   const formatDisplayName = (name) => {
     const nameMap = {
       tour: "Danh mục",
