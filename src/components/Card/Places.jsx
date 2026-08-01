@@ -87,7 +87,7 @@ const Places = ({
               <div
                 key={item.id}
                 data-aos="fade-up"
-                data-aos-delay={index * 100} // delay tăng dần theo index
+                data-aos-delay={index * 100} 
                 data-aos-duration="600"
               >
                 <PlacesCard
