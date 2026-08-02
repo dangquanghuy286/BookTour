@@ -13,24 +13,22 @@ const PlacesCard = ({
   left = false,
   star = true,
 }) => {
-
-
   const sizeClasses =
     size === "small"
       ? "w-full max-w-[90%] sm:max-w-[280px]"
       : size === "large"
-      ? "w-full"
-      : "w-full max-w-[95%] sm:max-w-[320px] md:max-w-[350px]";
+        ? "w-full"
+        : "w-full max-w-[95%] sm:max-w-[320px] md:max-w-[350px]";
 
-  // Tạo slug từ title và id (để đảm bảo tính duy nhất)
+  // Tạo slug từ title và id
   const slug = `${toSlug(item.title)}-${item.id}`;
 
   return (
     <div
       className={`p-3 sm:p-4 md:p-5 dark:bg-slate-950 text-base transition-all duration-500 shadow-[0_1px_4px_rgba(0,0,0,0.16)]
  cursor-pointer rounded-2xl sm:rounded-3xl border border-gray-300 flex flex-col h-full ${sizeClasses} ${
-        left ? "sm:ml-2 md:ml-4" : ""
-      }`}
+   left ? "sm:ml-2 md:ml-4" : ""
+ }`}
     >
       <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl group">
         {/* Container cho tag */}
@@ -41,19 +39,19 @@ const PlacesCard = ({
           item.tag === "Economy"
             ? "bg-green-500/80"
             : item.tag === "Standard"
-            ? "bg-red-500/80"
-            : item.tag === "Premium"
-            ? "bg-yellow-500/80 text-black"
-            : ""
+              ? "bg-red-500/80"
+              : item.tag === "Premium"
+                ? "bg-yellow-500/80 text-black"
+                : ""
         } transition-transform duration-700 group-hover:scale-110`}
           >
             {item.tag === "Economy"
               ? "Tiết kiệm"
               : item.tag === "Standard"
-              ? "Tiêu chuẩn"
-              : item.tag === "Premium"
-              ? "Cao cấp"
-              : item.tag}
+                ? "Tiêu chuẩn"
+                : item.tag === "Premium"
+                  ? "Cao cấp"
+                  : item.tag}
           </div>
         )}
 

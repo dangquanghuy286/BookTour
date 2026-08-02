@@ -127,7 +127,7 @@ const ChatBoxContainer = () => {
       if (!res.ok) {
         const errorText = await res.text();
         throw new Error(
-          `Status ${res.status}: ${errorText || "Không tìm thấy endpoint"}`
+          `Status ${res.status}: ${errorText || "Không tìm thấy endpoint"}`,
         );
       }
     } catch (err) {
@@ -145,12 +145,12 @@ const ChatBoxContainer = () => {
     setTimeout(() => {
       setIsTyping(false);
       addBotMessage(
-        `Tuyệt vời! Tôi sẽ giới thiệu cho bạn các tour ${option} phù hợp nhất.`
+        `Tuyệt vời! Tôi sẽ giới thiệu cho bạn các tour ${option} phù hợp nhất.`,
       );
     }, 1500);
   };
 
-  // Parse và render rich text (links, images, formatting)
+  // Parse và render rich text
   const renderMessageText = (text) => {
     const urlRegex = /(https?:\/\/[^\s]+)/gi;
     const imageRegex = /(https?:\/\/\S+\.(?:jpg|jpeg|png|gif))(?![^<]*>)/gi;
