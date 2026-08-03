@@ -2,11 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import ChatBoxPresentational from "./ChatBoxPresentational";
 
 const ChatBoxContainer = () => {
-  // State quản lý UI
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // State quản lý tin nhắn
   const [messages, setMessages] = useState([
     {
       id: 1,
