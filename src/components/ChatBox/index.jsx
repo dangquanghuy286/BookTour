@@ -24,12 +24,12 @@ const ChatBoxContainer = () => {
   const CHAT_ID = "user-123";
   const BASE_URL = "http://localhost:8088/api/v1";
 
-  // Cuộn xuống cuối tin nhắn
+  // Cuộn xuống cuối khi có tin nhắn mới
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Auto scroll khi có tin nhắn mới
+  // Auto scroll khi có tin nhắn mới hoặc khi bot đang gõ
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping, typingDots]);
