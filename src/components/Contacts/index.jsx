@@ -1,6 +1,7 @@
 // components/Contact/ContactInfo.jsx
 import React from "react";
 import { company } from "../../contexts/TourContext";
+import { FaAddressBook } from "react-icons/fa";
 
 const ContactInfo = () => {
   return (
@@ -9,13 +10,13 @@ const ContactInfo = () => {
         {company.companyName} Liên Hệ
       </h2>
       <p className="text-gray-600 dark:text-gray-300 mb-2 flex items-center gap-2">
-        📍 Địa chỉ: {company.address}
+        <FaAddressBook /> Địa chỉ: {company.address}
       </p>
       <p className="text-gray-600 dark:text-gray-300 mb-2 flex items-center gap-2">
-        📱 Số điện thoại: {company.phone}
+        <FaPhone /> Số điện thoại: {company.phone}
       </p>
       <p className="text-gray-600 dark:text-gray-300 flex items-center gap-2">
-        ✉️ Email: {company.email}
+        <FaEnvelope /> Email: {company.email}
       </p>
     </div>
   );
