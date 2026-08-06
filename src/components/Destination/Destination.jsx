@@ -6,7 +6,7 @@ import { getDataTour } from "../../services/TourService";
 import EntriesFilter from "../Pagination";
 
 const DestinationCard = () => {
-  // State quản lý dữ liệu, phân trang, trạng thái tải và lỗi
+  // State quản lý dữ liệu
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -17,7 +17,7 @@ const DestinationCard = () => {
   const regions = ["Tất cả", "Miền Bắc", "Miền Trung", "Miền Nam"];
   const limit = 8;
 
-  // Bản đồ ánh xạ tên vùng sang giá trị tương ứng với backend
+  // Bản đồ ánh xạ tên vùng
   const regionMapping = {
     "Miền Bắc": "NORTH",
     "Miền Trung": "CENTRAL",
