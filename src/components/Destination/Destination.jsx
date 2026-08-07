@@ -71,7 +71,7 @@ const DestinationCard = () => {
           data-aos="fade-right"
           data-aos-delay="200"
         >
-          Khám phá các điểm đến phổ biến
+          Khám phá các điểm đến phổ biến tại Việt Nam
         </h2>
 
         <div className="pt-6 dark:bg-slate-900 dark:text-white">
