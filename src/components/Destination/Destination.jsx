@@ -76,7 +76,7 @@ const DestinationCard = () => {
 
         <div className="pt-6 dark:bg-slate-900 dark:text-white">
           <div className="flex flex-col justify-center">
-            {/* Vùng chọn miền - có responsive */}
+            {/* Vùng chọn miền */}
             <div className="flex flex-wrap justify-center gap-3 p-3 bg-white border border-gray-300 dark:border-gray-700 rounded-full dark:bg-slate-950 shadow-[0_1px_4px_rgba(0,0,0,0.16)] dark:shadow-[0_1px_4px_rgba(0,0,0,0.4)] mx-auto mb-10 max-w-4xl">
               <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
                 {regions.map((region) => (
@@ -98,7 +98,7 @@ const DestinationCard = () => {
               </div>
             </div>
 
-            {/* Hiển thị trạng thái tải, lỗi hoặc dữ liệu */}
+            {/* Hiển thị trạng thái tải */}
             {isLoading ? (
               <LoadingSpinner message="Đang tải danh sách tour..." />
             ) : error ? (
@@ -127,7 +127,7 @@ const DestinationCard = () => {
               </div>
             )}
 
-            {/* Phân trang nếu có nhiều hơn 1 trang */}
+            {/* Phân trang  */}
             {totalPages > 1 && (
               <EntriesFilter
                 currentPage={currentPage}
