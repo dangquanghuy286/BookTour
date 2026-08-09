@@ -19,7 +19,7 @@ function Footer() {
             </h3>
             <p className="text-xs sm:text-sm md:text-sm leading-relaxed text-gray-700 dark:text-gray-300">
               GoViet là nền tảng chuyên cung cấp các tour du lịch đa dạng và
-              chất lượng, với trụ sở đặt tại tỉnh Quảng Nam. Đến với GoViet,
+              chất lượng, với trụ sở đặt tại thành phố Đà Nẵng. Đến với GoViet,
               khách hàng thỏa sức khám phá, GoViet tận tâm tư vấn và đồng hành
               cùng bạn trên mọi hành trình.
             </p>
@@ -149,7 +149,7 @@ function Footer() {
       <hr className="border-gray-300 dark:border-gray-700 mt-8 sm:mt-10 lg:mt-12" />
       <div className="text-center pt-4 sm:pt-6">
         <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          Copyright © 2025 by{" "}
+          Copyright © {new Date().getFullYear()} by{" "}
           <span className="font-semibold text-gray-800 dark:text-gray-300">
             Quang Huy
           </span>

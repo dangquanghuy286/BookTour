@@ -25,7 +25,6 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
   const [rating, setRating] = useState(0);
   const [tag, setTag] = useState("");
 
-  // Kiểm tra xem các component có được import đúng không
   if (!FilterSelect || !FilterRadioGroup || !StarDisplay) {
     console.error("Missing components:", {
       FilterSelect,
