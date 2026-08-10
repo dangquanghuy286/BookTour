@@ -7,7 +7,6 @@ const Tape = () => {
       <div className="bg-gradient-to-r from-teal-300 to-[#03a0c5]">
         <div className="relative flex">
           <div className="animate-scroll flex flex-none gap-6 py-3 will-change-transform">
-            {/* Tạo 3 bản sao để đảm bảo animation liền mạch */}
             {[...new Array(3)].map((_, setIndex) => (
               <Fragment key={setIndex}>
                 {data.map((item) => (

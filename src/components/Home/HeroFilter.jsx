@@ -72,7 +72,7 @@ const HeroFilter = () => {
     setLoading(true);
     setError(null);
 
-    // Tạo URL query từ các tiêu chí đã chọn
+    // Tạo URL query 
     const params = new URLSearchParams();
     if (destination) params.append("destination", destination);
     if (duration) params.append("duration", duration);
