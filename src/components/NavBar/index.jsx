@@ -23,7 +23,7 @@ function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    // Đóng dropdown khi đóng menu chính
+
     if (isMenuOpen) {
       setIsTourDropdownOpen(false);
     }
