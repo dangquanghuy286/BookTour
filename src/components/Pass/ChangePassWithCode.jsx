@@ -31,7 +31,7 @@ const ChangePassWithCode = () => {
   //   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     const token = localStorage.getItem("code");
 
     if (!newPassword || !confirmPassword) {

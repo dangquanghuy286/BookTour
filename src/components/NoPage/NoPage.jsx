@@ -7,7 +7,7 @@ const NoPage = () => {
       <div className="w-[1200px]   rounded-2xl  bg-white dark:bg-slate-900  p-4 text-center">
         <img src={Logo2} alt="Logo" className=" mx-auto" />
         <p className="text-2xl font-semibold text-gray-800 dark:text-white">
-          Rất tiếc, GoViet không tìm thấy kết quả cho bạn
+          Rất tiếc, GoViet không tìm thấy kết quả cho bạn !
         </p>
       </div>
     </div>

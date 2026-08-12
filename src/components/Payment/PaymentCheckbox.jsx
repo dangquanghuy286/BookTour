@@ -9,11 +9,10 @@ const PaymentCheckbox = (props) => {
           Điều khoản và điều kiện
         </h2>
         <div className=" p-4 w-full  ">
-          <p className="text-lg text-gray-700  dark:text-white tmb-4">
-            Bằng cách nhấp chuột vào nút <b>ĐỒNG Ý</b> dưới đây, Khách hàng đồng
-            ý rằng các Điều kiện điều khoản này sẽ được áp dụng. Vui lòng đọc kỹ
-            Điều kiện điều khoản trước khi lựa chọn sử dụng dịch vụ của GoViet
-            Tours.
+          <p className="text-lg text-gray-700 dark:text-white mb-4">
+            Bằng cách nhấp <b>ĐỒNG Ý</b>, Khách hàng xác nhận đã đọc và đồng ý
+            với các Điều khoản của GoViet Tour. Nếu không đồng ý, vui lòng không
+            sử dụng dịch vụ.
           </p>
           <div className="flex items-center  gap-2 mt-2">
             <input
