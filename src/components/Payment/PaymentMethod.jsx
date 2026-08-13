@@ -15,7 +15,7 @@ const paymentOptions = [
     label: "Thanh toán bằng VNPay",
     img: VNPayImg,
   },
-  // Bạn có thể thêm các phương thức khác như Momo ở đây
+  
 ];
 
 const PaymentMethod = ({ paymentMethod, setPaymentMethod }) => {
