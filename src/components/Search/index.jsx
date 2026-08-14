@@ -16,11 +16,11 @@ function Search() {
       setDebouncedTerm(searchTerm);
     }, 300); // Delay 300ms
 
-    // Hàm cleanup để xóa timer khi searchTerm thay đổi
+    // Hàm cleanup để xóa timer
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  // Effect để xử lý tìm kiếm khi debouncedTerm thay đổi
+  // Effect để xử lý tìm kiếm
   useEffect(() => {
     if (debouncedTerm.trim() && debouncedTerm !== "") {
       // Chỉ điều hướng khi thực sự có từ khóa tìm kiếm
@@ -28,7 +28,7 @@ function Search() {
     }
   }, [debouncedTerm, navigate]);
 
-  // Hàm xử lý khi người dùng submit form tìm kiếm (for manual search)
+  // Hàm xử lý khi người dùng submit form tìm kiếm
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -37,7 +37,7 @@ function Search() {
     }
   };
 
-  // // Phương án khác: Sử dụng useCallback để tối ưu hiệu suất
+  // // Phương án khác: Sử dụng useCallback
   // const debouncedSearch = useCallback(
   //   (term) => {
   //     const timer = setTimeout(() => {
