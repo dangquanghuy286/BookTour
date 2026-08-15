@@ -12,7 +12,7 @@ function SectionVideo() {
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source src={MainVD} type="video/mp4" />
-        Trình duyệt của bạn không hỗ trợ video HTML5.
+        Trình duyệt của bạn không hỗ trợ video .
       </video>
       <HeroFilter />
     </div>
