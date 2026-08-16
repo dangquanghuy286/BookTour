@@ -32,27 +32,26 @@ const TermsOfService = () => {
         >
           Điều Khoản & Dịch Vụ
         </h1>
-        {/*Giới thiệu */}
+  
         <Intro />
-        {/* Hướng dẫn đặt tour */}
+        
         <Instruction />
 
-        {/* Chính sách thanh toán */}
         <PaymentPolicy />
 
-        {/* Chính sách hủy tour */}
+  
         <CancellationPolicy />
-        {/* Quy tắc và trách nhiệm */}
+      
         <Rules />
-        {/* Đảm bảo an toàn */}
+    
         <Ensure />
-        {/* Điều khoản bổ sung */}
+        
         <AdditionalTerms />
-        {/* Điều khoản thay đổi */}
+      
         <ChangePolicy />
-        {/* Thông tin liên hệ */}
+        
         <Contact />
-        {/* Chấp nhận điều khoản */}
+        
         <ConfirmPolicy />
         <GoBack />
       </div>
