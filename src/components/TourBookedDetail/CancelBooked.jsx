@@ -9,7 +9,6 @@ const { FaSyncAlt } = icons;
 const CancelBooked = ({ data }) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  console.log(data);
 
   const handleCancel = async () => {
     const confirm = await Swal.fire({
@@ -25,26 +24,37 @@ const CancelBooked = ({ data }) => {
 
     if (!confirm.isConfirmed) return;
 
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const response = await cancelBooking(data.booking_id);
+      const response = await cancelBooking(data?.booking_id);
+
       if (response.status === 200) {
-        setTimeout(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Thành công",
-            text: "Hủy tour thành công!",
-            confirmButtonColor: "#00c0d1",
-          });
-          navigate("/tourBooked");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 1200);
+        await Swal.fire({
+          icon: "success",
+          title: "Thành công",
+          text: "Hủy tour thành công!",
+          confirmButtonColor: "#00c0d1",
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate("/tourBooked");
+      } else {
+        Swal.fire({
+          icon: "warning",
+          title: "Không thành công",
+          text: "Không thể hủy tour, vui lòng thử lại!",
+          confirmButtonColor: "#00c0d1",
+        });
       }
     } catch (error) {
+      const message =
+        typeof error?.response?.data === "string"
+          ? error.response.data
+          : error?.response?.data?.message || "Không thể hủy tour!";
+
       Swal.fire({
         icon: "error",
         title: "Lỗi",
-        text: error.response?.data || "Không thể hủy tour!",
+        text: message,
         confirmButtonColor: "#00c0d1",
       });
     } finally {
@@ -53,14 +63,16 @@ const CancelBooked = ({ data }) => {
   };
 
   const isDisabled =
-    data?.booking_status === "COMPLETED" || data?.booking_status === "CANCELED";
+    isLoading ||
+    data?.booking_status === "COMPLETED" ||
+    data?.booking_status === "CANCELED";
 
   return (
     <div className="w-full">
       <button
         disabled={isDisabled}
         onClick={handleCancel}
-        className={`flex items-center justify-center gap-2 w-full px-4 py-2 text-base font-semibold rounded-full transition-all duration-300 
+        className={`flex items-center justify-center gap-2 w-full px-4 py-2 text-base font-semibold rounded-full transition-all duration-300
           ${
             isDisabled
               ? "bg-gray-400 text-white cursor-not-allowed"
