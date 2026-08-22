@@ -6,16 +6,20 @@ import icons from "../../utils/icons";
 import StarRating from "../Star/StarRating";
 import { postReview } from "../../services/ReviewService";
 const { FiArrowUpRight } = icons;
+
 const AddComment = ({ tour }) => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const user_id = localStorage.getItem("user_id");
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
-    if (!comment || !rating) {
+    const trimmedComment = comment.trim();
+
+    if (!trimmedComment || !rating) {
       Swal.fire({
         icon: "warning",
         title: "Thiếu thông tin",
@@ -28,13 +32,34 @@ const AddComment = ({ tour }) => {
       });
       return;
     }
+
+    const booking_id = localStorage.getItem("booking_id");
+
+    if (!user_id || !booking_id) {
+      Swal.fire({
+        icon: "warning",
+        title: "Chưa thể đánh giá",
+        text: "Bạn cần đăng nhập và đặt tour trước khi đánh giá.",
+        confirmButtonText: "OK",
+        customClass: {
+          popup: "dark:bg-slate-800 dark:text-white",
+          confirmButton: "bg-primary text-white px-4 py-2 rounded-lg",
+        },
+      });
+      return;
+    }
+
+    if (isSubmitting) return;
+
     try {
+      setIsSubmitting(true);
+
       // Tạo dữ liệu đánh giá
       const data = {
         tour_id: tour.id,
         user_id: user_id,
-        booking_id: localStorage.getItem("booking_id"),
-        comment: comment,
+        booking_id: booking_id,
+        comment: trimmedComment,
         rating: rating,
       };
 
@@ -77,6 +102,8 @@ const AddComment = ({ tour }) => {
         },
       });
       console.error("Error submitting review:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -107,7 +134,10 @@ const AddComment = ({ tour }) => {
             <h1 className="text-lg sm:text-xl md:text-2xl font-semibold">
               Đánh giá
             </h1>
-            <StarRating onRatingChange={(rating) => setRating(rating)} />
+            <StarRating
+              rating={rating}
+              onRatingChange={(rating) => setRating(rating)}
+            />
           </div>
 
           <hr className="mt-6 sm:mt-8 md:mt-10 border-gray-400 dark:border-gray-600" />
@@ -128,17 +158,23 @@ const AddComment = ({ tour }) => {
               placeholder="Nhập đánh giá của bạn..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              disabled={isSubmitting}
             />
           </div>
 
           <button
             onClick={handleCommentSubmit}
+            disabled={isSubmitting}
             className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 mt-4 
         font-semibold text-white transition duration-300 
         rounded-lg bg-[#00c0d1] 
-        text-sm sm:text-base"
+        text-sm sm:text-base
+        disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Gửi Đánh Giá <FiArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            {isSubmitting ? "Đang gửi..." : "Gửi Đánh Giá"}
+            {!isSubmitting && (
+              <FiArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            )}
           </button>
         </div>
       </div>
