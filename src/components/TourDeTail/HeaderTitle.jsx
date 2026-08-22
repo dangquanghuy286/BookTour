@@ -7,7 +7,6 @@ const { IoLocationOutline, FaFacebook, MdFavorite } = icons;
 const HeaderTitle = ({ tour }) => {
   return (
     <div className="flex justify-between flex-wrap items-start pb-10 gap-6">
-      {/* Bên trái: Tiêu đề + sao + địa điểm */}
       <div
         data-aos="fade-left"
         className="space-y-4 bg-white dark:bg-slate-900 p-4 rounded-xl flex-1 min-w-[300px]"
@@ -29,7 +28,6 @@ const HeaderTitle = ({ tour }) => {
         </div>
       </div>
 
-      {/* Bên phải: Giá phía trên, 2 nút phía dưới */}
       <div className="flex flex-col items-end gap-3 bg-white dark:bg-slate-900 p-4 rounded-xl min-w-[300px]">
         {/* Giá */}
         <div className="text-lg sm:text-xl md:text-2xl font-bold text-[#00c0d1]">
