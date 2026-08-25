@@ -24,8 +24,18 @@ const ChangePass = () => {
   // Lấy user_id từ localStorage khi component được mount
   useEffect(() => {
     const id = localStorage.getItem("user_id");
-    if (id) setUserId(id);
-  }, []);
+    if (id) {
+      setUserId(id);
+    } else {
+      // Không có user_id -> không thể đổi mật khẩu, đưa về trang login
+      Swal.fire(
+        "Phiên đăng nhập hết hạn",
+        "Vui lòng đăng nhập lại để tiếp tục",
+        "warning",
+      );
+      navigate("/login");
+    }
+  }, [navigate]);
 
   // Cập nhật dữ liệu form khi người dùng nhập liệu
   const handleChange = (e) => {
@@ -63,7 +73,7 @@ const ChangePass = () => {
       Swal.fire(
         "Thiếu thông tin",
         "Vui lòng nhập mật khẩu hiện tại",
-        "warning"
+        "warning",
       );
       newErrors.currentPassword = "Vui lòng nhập mật khẩu hiện tại";
     }
@@ -74,9 +84,17 @@ const ChangePass = () => {
       Swal.fire(
         "Mật khẩu yếu",
         "Mật khẩu mới phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt",
-        "warning"
+        "warning",
       );
       newErrors.newPassword = "Mật khẩu không đủ mạnh";
+    } else if (currentPassword && newPassword === currentPassword) {
+      // Mật khẩu mới không được trùng mật khẩu cũ
+      Swal.fire(
+        "Trùng mật khẩu",
+        "Mật khẩu mới phải khác mật khẩu hiện tại",
+        "warning",
+      );
+      newErrors.newPassword = "Mật khẩu mới trùng mật khẩu hiện tại";
     }
     if (!confirmPassword) {
       Swal.fire("Thiếu thông tin", "Vui lòng xác nhận mật khẩu mới", "warning");
@@ -92,14 +110,22 @@ const ChangePass = () => {
   // Xử lý sự kiện submit form để đổi mật khẩu
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm(formData);
+
+    // Trim dữ liệu trước khi validate/gửi đi để tránh khoảng trắng thừa
+    const trimmedData = {
+      currentPassword: formData.currentPassword.trim(),
+      newPassword: formData.newPassword.trim(),
+      confirmPassword: formData.confirmPassword.trim(),
+    };
+
+    const newErrors = validateForm(trimmedData);
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       const data = {
-        old_password: formData.currentPassword,
-        new_password: formData.newPassword,
-        confirm_password: formData.confirmPassword,
+        old_password: trimmedData.currentPassword,
+        new_password: trimmedData.newPassword,
+        confirm_password: trimmedData.confirmPassword,
       };
       try {
         setLoading(true);
@@ -121,14 +147,31 @@ const ChangePass = () => {
           Swal.fire("Thất bại", "Mật khẩu hiện tại không đúng", "warning");
         }
       } catch (error) {
-        Swal.fire("Lỗi", "Không thể kết nối tới máy chủ", "error");
+        // Phân biệt lỗi do server phản hồi (vd: sai mật khẩu hiện tại)
+        // với lỗi không kết nối được tới server
+        const status = error?.response?.status;
+        const serverMessage = error?.response?.data?.message;
+
+        if (status === 401 || status === 400) {
+          Swal.fire(
+            "Thất bại",
+            serverMessage || "Mật khẩu hiện tại không đúng",
+            "warning",
+          );
+          setErrors((prev) => ({
+            ...prev,
+            currentPassword: "Mật khẩu hiện tại không đúng",
+          }));
+        } else {
+          Swal.fire("Lỗi", "Không thể kết nối tới máy chủ", "error");
+        }
       } finally {
         setLoading(false);
       }
     }
   };
 
-  // Nếu không có userId thì hiển thị thông báo lỗi
+  // Nếu không có userId thì hiển thị thông báo lỗi (trong lúc chờ redirect ở useEffect)
   if (!userId) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-white px-4 font-sans lg:col-span-8 dark:bg-slate-900 dark:text-white">
@@ -151,6 +194,8 @@ const ChangePass = () => {
               value={formData.currentPassword}
               onChange={handleChange}
               placeholder="Mật khẩu hiện tại"
+              autoComplete="current-password"
+              disabled={loading}
             />
             {errors.currentPassword && (
               <p className="text-red-500 text-sm mt-1">
@@ -164,6 +209,8 @@ const ChangePass = () => {
               value={formData.newPassword}
               onChange={handleChange}
               placeholder="Mật khẩu mới"
+              autoComplete="new-password"
+              disabled={loading}
             />
             {errors.newPassword && (
               <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>
@@ -175,6 +222,8 @@ const ChangePass = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Xác nhận mật khẩu mới"
+              autoComplete="new-password"
+              disabled={loading}
             />
             {errors.confirmPassword && (
               <p className="text-red-500 text-sm mt-1">
@@ -191,7 +240,7 @@ const ChangePass = () => {
             </div>
             <button
               type="submit"
-              className="flex-1 rounded-md bg-gradient-to-r from-[#019fb5] to-[#00c0d1] px-6 py-2 text-white shadow-md transition duration-300 hover:scale-105"
+              className="flex-1 rounded-md bg-gradient-to-r from-[#019fb5] to-[#00c0d1] px-6 py-2 text-white shadow-md transition duration-300 hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
               disabled={loading}
             >
               {loading ? "Đang Xử Lý..." : "Đổi Mật Khẩu"}
