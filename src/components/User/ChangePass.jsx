@@ -147,8 +147,7 @@ const ChangePass = () => {
           Swal.fire("Thất bại", "Mật khẩu hiện tại không đúng", "warning");
         }
       } catch (error) {
-        // Phân biệt lỗi do server phản hồi (vd: sai mật khẩu hiện tại)
-        // với lỗi không kết nối được tới server
+        // Phân biệt lỗi do server phản hồi
         const status = error?.response?.status;
         const serverMessage = error?.response?.data?.message;
 
@@ -180,7 +179,6 @@ const ChangePass = () => {
     );
   }
 
-  // Giao diện form đổi mật khẩu
   return (
     <div className="bg-white dark:bg-slate-900 min-h-screen flex items-center justify-center p-4">
       <div className="w-full bg-white dark:bg-slate-950 max-w-md rounded-2xl border border-gray-300 p-8 shadow-[0_1px_4px_rgba(0,0,0,0.16)]">
