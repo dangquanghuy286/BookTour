@@ -7,12 +7,12 @@ import Swal from "sweetalert2";
 import { putChangeInfo } from "../../services/UserService";
 
 const ChangePass = () => {
-  // Quản lý trạng thái lỗi, trạng thái loading, và ID người dùng
+  // Quản lý trạng thái
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState(null);
 
-  // Dữ liệu form gồm mật khẩu hiện tại, mật khẩu mới và xác nhận mật khẩu
+  // Dữ liệu form
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -170,7 +170,7 @@ const ChangePass = () => {
     }
   };
 
-  // Nếu không có userId thì hiển thị thông báo lỗi (trong lúc chờ redirect ở useEffect)
+  // Nếu không có userId thì hiển thị thông báo lỗi
   if (!userId) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-white px-4 font-sans lg:col-span-8 dark:bg-slate-900 dark:text-white">
