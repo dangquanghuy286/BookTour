@@ -16,6 +16,13 @@ const formatPrice = (value) =>
 
 const labelClass = "font-semibold text-[#00c0d1]";
 
+const InfoRow = ({ label, value }) => (
+  <div className="flex gap-3">
+    <span className={labelClass}>{label}:</span>
+    <p>{value ?? "N/A"}</p>
+  </div>
+);
+
 const TourSidebar = ({ tour }) => {
   const navigate = useNavigate();
 
@@ -38,32 +45,17 @@ const TourSidebar = ({ tour }) => {
         <hr className="mt-5 border-gray-300 dark:border-gray-600" />
 
         <div className="flex flex-col pt-5 space-y-10">
-          <div className="flex gap-3">
-            <label className={labelClass}>Điểm xuất phát:</label>
-            <p>{tour.departurePoint}</p>
-          </div>
-
-          <div className="flex gap-3">
-            <label className={labelClass}>Điểm đến:</label>
-            <p>{tour.destination}</p>
-          </div>
-
-          <div className="flex gap-3">
-            <label className={labelClass}>Ngày bắt đầu:</label>
-            <p>{tour.startDate}</p>
-          </div>
-
-          <div className="flex gap-3">
-            <label className={labelClass}>Ngày kết thúc:</label>
-            <p>{tour.endDate}</p>
-          </div>
+          <InfoRow label="Điểm xuất phát" value={tour?.departurePoint} />
+          <InfoRow label="Điểm đến" value={tour?.destination} />
+          <InfoRow label="Ngày bắt đầu" value={tour?.startDate} />
+          <InfoRow label="Ngày kết thúc" value={tour?.endDate} />
         </div>
 
         <hr className="mt-5 border-gray-300 dark:border-gray-600" />
 
         <div className="flex items-center justify-between mt-5">
           <p className={labelClass}>Thời gian:</p>
-          <p className="text-base">{tour.duration}</p>
+          <p className="text-base">{tour?.duration ?? "N/A"}</p>
         </div>
 
         <hr className="mt-5 border-gray-300 dark:border-gray-600" />
@@ -71,29 +63,26 @@ const TourSidebar = ({ tour }) => {
         <div className="mt-5 space-y-4">
           <div className="flex items-center justify-between">
             <h1 className={labelClass}>Hạng Vé</h1>
-
             <span className="font-medium text-base">
-              {TAG_LABELS[tour.tag] || tour.tag || "Không xác định"}
+              {TAG_LABELS[tour?.tag] || tour?.tag || "Không xác định"}
             </span>
           </div>
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <p className={labelClass}>Người lớn:</p>
-              <p className="text-base">{formatPrice(tour.price_adult)}</p>
+              <p className="text-base">{formatPrice(tour?.price_adult)}</p>
             </div>
 
             <div className="flex items-center justify-between">
               <p className={labelClass}>Trẻ em (3 đến 11 tuổi):</p>
-
               <p className="text-base">
-                {formatPrice(tour.price_child ?? tour.price_children)}
+                {formatPrice(tour?.price_child ?? tour?.price_children)}
               </p>
             </div>
 
             <div className="flex items-center justify-between">
               <p className={labelClass}>Trẻ em (3 tuổi trở xuống):</p>
-
               <p className="text-base">Free</p>
             </div>
           </div>
@@ -107,9 +96,9 @@ const TourSidebar = ({ tour }) => {
         </button>
 
         <Link to="/contact">
-          <p className="mt-2 text-center cursor-pointer hover:underline">
+          <span className="mt-2 block text-center cursor-pointer hover:underline">
             Bạn cần trợ giúp không?
-          </p>
+          </span>
         </Link>
       </div>
 
@@ -120,22 +109,20 @@ const TourSidebar = ({ tour }) => {
         <div className="mt-8 space-y-6">
           {/* Email */}
           <a
-            href={`mailto:${company.email}`}
+            href={company?.email ? `mailto:${company.email}` : "#"}
             className="flex items-center gap-2 hover:underline"
           >
             <MdEmail className="w-6 h-6 text-[#00c0d1]" />
-
-            <p className="text-base">{company.email}</p>
+            <p className="text-base">{company?.email ?? "Đang cập nhật"}</p>
           </a>
 
           {/* Phone */}
           <a
-            href={`tel:${company.phone}`}
+            href={company?.phone ? `tel:${company.phone}` : "#"}
             className="flex items-center gap-2 hover:underline"
           >
             <FiPhoneCall className="w-6 h-6 text-[#00c0d1]" />
-
-            <p className="text-base">{company.phone}</p>
+            <p className="text-base">{company?.phone ?? "Đang cập nhật"}</p>
           </a>
         </div>
       </div>
