@@ -4,16 +4,18 @@ import { getDataBanner } from "../../services/BannerService";
 import ErrorMessage from "../ErrorMessage";
 import LoadingSpinner from "../LoadingSniper";
 import BannerSlider from "../BannerSlider";
+import ImgDefault from "../../assets/Img/banner-default.png";
 
 const DEFAULT_BANNERS = [
   {
     id: "default-1",
-    imageUrl:
-      "https://vn.freepik.com/psd-mien-phi/mau-banner-bia-facebook-ve-du-lich-va-du-lich_417538029.htm#fromView=keyword&page=1&position=1&uuid=cc3a807c-cadd-45b0-ab3e-62078fa56b22&query=Tour+banner", // thay bằng ảnh mặc định của bạn
+    imageUrl: ImgDefault,
     title: "Banner mặc định 1",
     link: "/",
   },
 ];
+
+const HANNER_POSITION = "SIDEBAR"; // đổi thành "HEADER" nếu đây thực sự là banner header
 
 const HeaderImg = () => {
   const [banners, setBanners] = useState([]);
@@ -21,32 +23,48 @@ const HeaderImg = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchApi = async () => {
       try {
         setLoading(true);
         setError(null);
+
         const res = await getDataBanner();
+
+        if (!isMounted) return;
+
         if (res.status === 200) {
-          const activeBanners = res.data.content.filter(
+          const now = new Date();
+          const activeBanners = (res.data?.content || []).filter(
             (banner) =>
               banner.isActive &&
-              new Date(banner.startDate) <= new Date() &&
-              new Date(banner.endDate) >= new Date() &&
-              banner.position?.toUpperCase() === "SIDEBAR",
+              new Date(banner.startDate) <= now &&
+              new Date(banner.endDate) >= now &&
+              banner.position?.toUpperCase() === HANNER_POSITION,
           );
+
           setBanners(
             activeBanners.length > 0 ? activeBanners : DEFAULT_BANNERS,
           );
         } else {
-          setError(res.data?.error || "Không thể tải banner!");
+          // Lỗi từ API vẫn nên hiện banner mặc định thay vì để trắng trang
+          setBanners(DEFAULT_BANNERS);
         }
-      } catch (error) {
-        setBanners(DEFAULT_BANNERS); // lỗi cũng hiện banner mặc định
+      } catch (err) {
+        if (!isMounted) return;
+        console.error("Lỗi khi tải banner:", err);
+        setBanners(DEFAULT_BANNERS);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
+
     fetchApi();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
