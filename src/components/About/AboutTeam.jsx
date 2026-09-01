@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { getDataGuide } from "../../services/GuideService";
 import LoadingSpinner from "../LoadingSniper";
@@ -27,7 +26,7 @@ const AboutTeam = ({
       const res = await getDataGuide(page, limit);
       if (res.status !== 200) {
         throw new Error(
-          res.data?.error || "Không tìm thấy hướng dẫn viên nào!"
+          res.data?.error || "Không tìm thấy hướng dẫn viên nào!",
         );
       }
       setData(res.data.guides || []);
@@ -50,6 +49,7 @@ const AboutTeam = ({
     } else {
       fetchApi(currentPage);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guides, currentPage]);
 
   const handlePageChange = (page) => {
@@ -83,7 +83,7 @@ const AboutTeam = ({
           <div className="grid items-center justify-center grid-cols-1 gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {data.map((member, index) => (
               <div
-                key={member.guideId}
+                key={member.guideId ?? index}
                 className="w-[240px] bg-white dark:bg-slate-950 rounded-xl shadow-[0_1px_4px_rgba(0,0,0,0.16)] overflow-hidden transform transition duration-300"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
@@ -108,12 +108,16 @@ const AboutTeam = ({
                   <div className="flex justify-center space-x-4 mt-2 text-[#00c0d1]">
                     <a
                       href={`mailto:${member.gmailLink}`}
+                      aria-label={`Gửi email cho ${member.fullName}`}
                       className="hover:text-[#008c9e] transition-colors"
                     >
                       <MdEmail className="text-xl" />
                     </a>
                     <a
                       href={member.databaseLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Facebook của ${member.fullName}`}
                       className="hover:text-[#008c9e] transition-colors"
                     >
                       <FaFacebook className="text-xl" />

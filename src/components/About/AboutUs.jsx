@@ -3,13 +3,20 @@ import { Link } from "react-router-dom";
 import icons from "../../utils/icons";
 const { FaRegCheckCircle } = icons;
 
+const features = [
+  "Cơ quan trải nghiệm",
+  "Du lịch chi phí thấp",
+  "Đội ngũ chuyên nghiệp",
+  "Hỗ trợ trực tuyến 24/7",
+];
+
 const AboutUs = () => {
   return (
     <div className="bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="container mx-auto px-4 py-2">
         {/* Tiêu đề */}
         <h1
-          className="py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 border-b-blue-300 text-[#00c0d1]"
+          className="py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 border-l-blue-300 text-[#00c0d1]"
           data-aos="fade-right"
           data-aos-delay="200"
         >
@@ -64,30 +71,19 @@ const AboutUs = () => {
             </p>
 
             <div
-              className="flex flex-col sm:flex-row justify-between pt-10 gap-6 sm:gap-10"
+              className="grid grid-cols-1 sm:grid-cols-2 pt-10 gap-4 sm:gap-x-10 sm:gap-y-4"
               data-aos="fade-up"
               data-aos-delay="700"
             >
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FaRegCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-                  <p className="text-sm sm:text-base">Cơ quan trải nghiệm</p>
+              {features.map((text) => (
+                <div
+                  key={text}
+                  className="flex items-center gap-3 text-gray-800 dark:text-gray-200"
+                >
+                  <FaRegCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 shrink-0" />
+                  <p className="text-sm sm:text-base">{text}</p>
                 </div>
-                <div className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FaRegCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-                  <p className="text-sm sm:text-base">Du lịch chi phí thấp</p>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FaRegCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-                  <p className="text-sm sm:text-base">Đội ngũ chuyên nghiệp</p>
-                </div>
-                <div className="flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                  <FaRegCheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-                  <p className="text-sm sm:text-base">Hỗ trợ trực tuyến 24/7</p>
-                </div>
-              </div>
+              ))}
             </div>
 
             <div
@@ -95,21 +91,18 @@ const AboutUs = () => {
               data-aos="fade-up"
               data-aos-delay="800"
             >
-              <div
-                className="p-2 border text-center border-gray-300 w-full sm:w-[200px] rounded-full 
-                transition-all duration-300 
-                bg-[#00c0d1] hover:bg-[#0090a0] 
-                text-white hover:text-white 
+              <Link
+                to="/tour"
+                onClick={() => window.scrollTo(0, 0)}
+                className="p-2 border text-center border-gray-300 w-full sm:w-[200px] rounded-full
+                font-semibold block
+                transition-all duration-300
+                bg-[#00c0d1] hover:bg-[#0090a0]
+                text-white hover:text-white
                 shadow-sm hover:shadow-lg"
               >
-                <Link
-                  to="/tour"
-                  onClick={() => window.scrollTo(0, 0)}
-                  className="font-semibold block"
-                >
-                  Khám phá Tour
-                </Link>
-              </div>
+                Khám phá Tour
+              </Link>
             </div>
           </div>
         </div>
