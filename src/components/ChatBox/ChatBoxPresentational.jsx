@@ -25,13 +25,22 @@ const ChatBoxPresentational = ({
   setInput,
   renderMessageText,
   messagesEndRef,
+  onAttachClick,
+  onImageClick,
 }) => {
+  const handleSend = () => {
+    if (!input.trim()) return; // Chặn gửi tin nhắn rỗng/khoảng trắng
+    sendMessage();
+  };
+
   return (
     <div className="fixed bottom-4 left-4 z-50 sm:bottom-6 sm:left-6">
       {/* Floating chat button */}
       {!isOpen && (
         <div className="relative">
-          <div
+          <button
+            type="button"
+            aria-label="Mở chat"
             className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#00c0d1] to-[#00a8b8] rounded-full cursor-pointer shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             onClick={toggleChat}
           >
@@ -40,7 +49,7 @@ const ChatBoxPresentational = ({
               alt="Chat"
               className="w-6 h-6 sm:w-8 sm:h-8 rounded-full"
             />
-          </div>
+          </button>
 
           {/* Tooltip */}
           <div className="hidden sm:block absolute left-16 sm:left-20 top-1/2 transform -translate-y-1/2 bg-white px-5 py-1 sm:px-6 sm:py-2 rounded-lg shadow-lg border animate-pulse">
@@ -63,19 +72,19 @@ const ChatBoxPresentational = ({
       {/* Chat window */}
       {isOpen && (
         <div
-          className={`bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 
-            w-[90vw] h-[80vh] sm:w-[400px] sm:h-[550px] md:w-[450px] md:h-[600px] lg:w-[500px] lg:h-[650px] 
-            ${
-              isExpanded
-                ? "w-[85vw] h-[80vh] sm:w-[450px] sm:h-[600px] md:w-[520px] md:h-[650px] lg:w-[600px] lg:h-[680px]"
-                : ""
-            }`}
+          className={
+            isExpanded
+              ? "bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 w-[85vw] h-[80vh] sm:w-[450px] sm:h-[600px] md:w-[520px] md:h-[650px] lg:w-[600px] lg:h-[680px]"
+              : "bg-white rounded-2xl shadow-2xl flex flex-col transition-all duration-300 w-[90vw] h-[80vh] sm:w-[400px] sm:h-[550px] md:w-[450px] md:h-[600px] lg:w-[500px] lg:h-[650px]"
+          }
         >
           {/* Header */}
           <div className="relative bg-gradient-to-r from-[#00c0d1] to-[#00a8b8] text-white rounded-t-2xl">
             {/* Control buttons */}
             <div className="absolute -top-10 sm:-top-12 left-0 flex gap-2">
               <button
+                type="button"
+                aria-label={isExpanded ? "Thu nhỏ" : "Mở rộng"}
                 className="p-1.5 sm:p-2 bg-gray-600 bg-opacity-80 rounded-full hover:bg-opacity-100 transition-all"
                 onClick={toggleExpand}
                 title={isExpanded ? "Thu nhỏ" : "Mở rộng"}
@@ -83,6 +92,8 @@ const ChatBoxPresentational = ({
                 <IoExpandOutline className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
               <button
+                type="button"
+                aria-label="Đóng chat"
                 className="p-1.5 sm:p-2 bg-gray-600 bg-opacity-80 rounded-full hover:bg-opacity-100 transition-all"
                 onClick={toggleChat}
                 title="Đóng chat"
@@ -262,6 +273,7 @@ const ChatBoxPresentational = ({
                       <div className="mt-2 sm:mt-3 space-y-1 sm:space-y-2">
                         {msg.options.map((opt, i) => (
                           <button
+                            type="button"
                             key={i}
                             className="flex items-center justify-start w-full px-2 sm:px-3 py-1 sm:py-2 text-xs sm:text-sm bg-cyan-50 hover:bg-cyan-100 text-cyan-700 rounded-lg border border-cyan-200 transition-colors"
                             onClick={() => handleOptionClick(opt)}
@@ -327,22 +339,35 @@ const ChatBoxPresentational = ({
           {/* Input area */}
           <div className="p-3 sm:p-4 bg-white border-t rounded-b-2xl">
             <div className="flex items-center space-x-2 sm:space-x-3 bg-gray-100 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-              <button className="text-gray-500 hover:text-gray-700 transition-colors">
+              <button
+                type="button"
+                aria-label="Đính kèm tệp"
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+                onClick={onAttachClick}
+              >
                 <FaPaperclip className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
-              <button className="text-gray-500 hover:text-gray-700 transition-colors">
+              <button
+                type="button"
+                aria-label="Gửi hình ảnh"
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+                onClick={onImageClick}
+              >
                 <FaRegImage className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Nhập tin nhắn..."
+                aria-label="Nhập tin nhắn"
                 className="flex-1 bg-transparent outline-none text-xs sm:text-sm placeholder-gray-500"
               />
               <button
-                onClick={sendMessage}
+                type="button"
+                aria-label="Gửi tin nhắn"
+                onClick={handleSend}
                 disabled={!input.trim()}
                 className={`p-1.5 sm:p-2 rounded-full transition-all ${
                   input.trim()
