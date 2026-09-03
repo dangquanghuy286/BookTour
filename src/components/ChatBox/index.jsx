@@ -85,7 +85,7 @@ const ChatBoxContainer = () => {
         console.error("Invalid SSE data", err);
         clearTypingSafetyTimeout();
         setIsTyping(false);
-        addBotMessage("Xin lỗi, có lỗi xảy ra khi xử lý dữ liệu từ server.");
+        addBotMessage("Xin lỗi, có lỗi xảy ra khi xử lý dữ liệu từ server");
       }
     };
 
