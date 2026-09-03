@@ -6,7 +6,6 @@ import {
   FaPaperPlane,
   FaRegImage,
   FaRobot,
-  FaUser,
 } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoExpandOutline } from "react-icons/io5";
@@ -127,33 +126,31 @@ const ChatBoxPresentational = ({
               <div
                 key={msg.id}
                 className={`flex items-start space-x-2 sm:space-x-3 ${
-                  msg.type === "user" ? "flex-row-reverse space-x-reverse" : ""
+                  msg.type === "user" ? "justify-end" : ""
                 }`}
               >
-                {/* Avatar */}
-                <div className="flex-shrink-0">
-                  <div
-                    className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center ${
-                      msg.type === "user"
-                        ? "bg-[#00c0d1] text-white"
-                        : "bg-gradient-to-r from-[#00c0d1] to-[#00a8b8] text-white"
-                    }`}
-                  >
-                    {msg.type === "user" ? (
-                      <FaUser className="w-3 h-3 sm:w-4 sm:h-4" />
-                    ) : (
+                {/* Avatar - chỉ hiển thị cho bot, ẩn hoàn toàn phía người dùng */}
+                {msg.type !== "user" && (
+                  <div className="flex-shrink-0">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center bg-gradient-to-r from-[#00c0d1] to-[#00a8b8] text-white">
                       <FaRobot className="w-3 h-3 sm:w-4 sm:h-4" />
-                    )}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                {/* Message content */}
-                <div className="flex-1 max-w-[85%]">
+                {/* Message content — flex-col + items-end/start để bong bóng co theo
+                    nội dung thay vì kéo giãn hết chiều rộng container (nguyên nhân
+                    gây cảm giác "khít" ở phía user trước đây). */}
+                <div
+                  className={`flex flex-col max-w-[85%] ${
+                    msg.type === "user" ? "items-end" : "items-start"
+                  }`}
+                >
                   <div
-                    className={`rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 shadow-sm ${
+                    className={`inline-block w-fit max-w-full rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 shadow-sm ${
                       msg.type === "user"
-                        ? "bg-[#00c0d1] text-white ml-auto rounded-br-sm sm:rounded-br-md"
-                        : "bg-white text-gray-800 mr-auto rounded-bl-sm sm:rounded-bl-md border"
+                        ? "bg-[#00c0d1] text-white rounded-br-md"
+                        : "bg-white text-gray-800 rounded-bl-md border"
                     }`}
                   >
                     {/* Message text */}
@@ -163,14 +160,18 @@ const ChatBoxPresentational = ({
                           return (
                             <hr
                               key={item.key}
-                              className="my-2 sm:my-3 border-t-2 border-cyan-100"
+                              className={`my-2 sm:my-3 border-t-2 ${
+                                msg.type === "user"
+                                  ? "border-white/30"
+                                  : "border-cyan-100"
+                              }`}
                             />
                           );
                         }
                         return (
                           <div
                             key={item.key}
-                            className="mb-1 sm:mb-2 whitespace-pre-wrap"
+                            className="mb-1 sm:mb-2 last:mb-0 whitespace-pre-wrap"
                           >
                             {item.parts.map((part) => {
                               if (part.type === "image") {
@@ -213,7 +214,11 @@ const ChatBoxPresentational = ({
                                     href={part.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-[#00c0d1] underline hover:text-[#00a8b8] transition-colors text-xs sm:text-sm"
+                                    className={`underline transition-colors text-xs sm:text-sm ${
+                                      msg.type === "user"
+                                        ? "text-white hover:text-cyan-100"
+                                        : "text-[#00c0d1] hover:text-[#00a8b8]"
+                                    }`}
                                   >
                                     {part.text}
                                   </a>
@@ -248,7 +253,11 @@ const ChatBoxPresentational = ({
                                 return (
                                   <span
                                     key={part.key}
-                                    className="inline-block ml-1 sm:ml-2 mt-1 sm:mt-2 px-2 sm:px-3 py-1 bg-gray-100 rounded-lg text-xs sm:text-sm"
+                                    className={`inline-block ml-1 sm:ml-2 mt-1 sm:mt-2 px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm ${
+                                      msg.type === "user"
+                                        ? "bg-white/20"
+                                        : "bg-gray-100"
+                                    }`}
                                   >
                                     {part.text}
                                   </span>
@@ -287,11 +296,7 @@ const ChatBoxPresentational = ({
                   </div>
 
                   {/* Timestamp and status */}
-                  <div
-                    className={`flex items-center mt-1 space-x-1 text-xs text-gray-500 ${
-                      msg.type === "user" ? "justify-end" : "justify-start"
-                    }`}
-                  >
+                  <div className="flex items-center mt-1 space-x-1 text-xs text-gray-500">
                     <span>
                       {new Date(msg.timestamp).toLocaleTimeString("vi-VN", {
                         hour: "2-digit",
@@ -312,7 +317,7 @@ const ChatBoxPresentational = ({
                 <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-[#00c0d1] to-[#00a8b8] flex items-center justify-center text-white">
                   <FaRobot className="w-3 h-3 sm:w-4 sm:h-4" />
                 </div>
-                <div className="bg-white rounded-xl sm:rounded-2xl rounded-bl-sm sm:rounded-bl-md px-3 sm:px-4 py-2 sm:py-3 shadow-sm border">
+                <div className="bg-white rounded-2xl rounded-bl-md px-3 sm:px-4 py-2 sm:py-3 shadow-sm border">
                   <div className="flex items-center space-x-2">
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
