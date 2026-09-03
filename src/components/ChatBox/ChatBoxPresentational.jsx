@@ -1,12 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import chatbox from "../../assets/Img/chatbox.png";
-import {
-  FaPaperclip,
-  FaPaperPlane,
-  FaRegImage,
-  FaRobot,
-} from "react-icons/fa";
+import { FaPaperclip, FaPaperPlane, FaRegImage, FaRobot } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { IoExpandOutline } from "react-icons/io5";
 import { BsCheckAll } from "react-icons/bs";
