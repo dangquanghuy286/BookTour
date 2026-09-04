@@ -63,9 +63,8 @@ const ChatBoxContainer = () => {
   useEffect(() => {
     const evtSource = new EventSource(`${BASE_URL}/events`);
 
-    // EventSource tự động reconnect ngầm mỗi khi mất kết nối (readyState = CONNECTING),
-    // nên onerror có thể bắn liên tục trong lúc nó đang tự retry.
-    // Dùng cờ này để chỉ báo lỗi cho user ĐÚNG 1 LẦN, tránh spam message mỗi lần retry.
+    // EventSource tự động reconnect ngầm mỗi khi mất kết nối,
+
     let hasNotifiedDisconnect = false;
 
     evtSource.onopen = () => {
@@ -99,7 +98,7 @@ const ChatBoxContainer = () => {
       }
 
       // readyState === CLOSED (2): kết nối đã đóng hẳn, không tự retry nữa
-      // -> đây mới là lúc cần báo cho user, và chỉ báo 1 lần.
+
       if (!hasNotifiedDisconnect) {
         hasNotifiedDisconnect = true;
         clearTypingSafetyTimeout();
