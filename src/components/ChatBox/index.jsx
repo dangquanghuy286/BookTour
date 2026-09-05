@@ -186,7 +186,6 @@ const ChatBoxContainer = () => {
           `Status ${res.status}: ${errorText || "Không tìm thấy endpoint"}`,
         );
       }
-      // Thành công: chờ phản hồi thật sự đến qua SSE (onmessage sẽ tắt isTyping)
     } catch (err) {
       clearTypingSafetyTimeout();
       setIsTyping(false);
@@ -214,14 +213,12 @@ const ChatBoxContainer = () => {
       addBotMessage(`Lỗi kết nối: ${err.message}`);
       console.error("Error:", err);
     });
-    // Phản hồi thật sự sẽ đến qua SSE (onmessage sẽ tắt isTyping)
   };
 
   // Parse và render rich text
   const renderMessageText = (text) => {
     // Không dùng flag "g" cho các regex dùng trong .test()/kiểm tra từng phần tử,
-    // vì flag "g" khiến lastIndex bị lưu trạng thái giữa các lần gọi .test()
-    // liên tiếp, dẫn tới nhận diện URL/ảnh sai khi có nhiều URL trong 1 tin nhắn.
+
     const splitUrlRegex = /(https?:\/\/[^\s]+)/gi; // chỉ dùng để split, an toàn
     const isUrlRegex = /^https?:\/\/[^\s]+$/i; // dùng để test từng phần, không có "g"
     const isImageRegex = /^https?:\/\/\S+\.(?:jpg|jpeg|png|gif)$/i; // không có "g"
