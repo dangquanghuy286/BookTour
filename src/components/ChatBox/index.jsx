@@ -110,7 +110,7 @@ const ChatBoxContainer = () => {
     return () => evtSource.close();
   }, []);
 
-  // Bắt đầu đếm ngược an toàn: nếu SSE không phản hồi kịp, tự tắt "đang gõ"
+  // Bắt đầu đếm ngược an toàn
   const startTypingSafetyTimeout = () => {
     clearTypingSafetyTimeout();
     typingTimeoutRef.current = setTimeout(() => {
@@ -128,7 +128,7 @@ const ChatBoxContainer = () => {
     }
   };
 
-  // Thêm tin nhắn bot
+  // Thêm tin nhắn
   const addBotMessage = (text) => {
     setMessages((prev) => [
       ...prev,
@@ -217,7 +217,7 @@ const ChatBoxContainer = () => {
 
   // Parse và render rich text
   const renderMessageText = (text) => {
-    // Không dùng flag "g" cho các regex dùng trong .test()/kiểm tra từng phần tử,
+    //  Regex patterns
 
     const splitUrlRegex = /(https?:\/\/[^\s]+)/gi; // chỉ dùng để split, an toàn
     const isUrlRegex = /^https?:\/\/[^\s]+$/i; // dùng để test từng phần, không có "g"
