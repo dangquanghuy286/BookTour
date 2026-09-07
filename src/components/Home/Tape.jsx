@@ -23,7 +23,6 @@ const Tape = () => {
             ))}
           </div>
 
-          {/* Gradient overlay để tạo hiệu ứng fade */}
           <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#03a0c5] to-transparent pointer-events-none z-10"></div>
           <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#03a0c5] to-transparent pointer-events-none z-10"></div>
         </div>
