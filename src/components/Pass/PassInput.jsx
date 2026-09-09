@@ -8,33 +8,40 @@ function InputPassword({
   onChange,
   placeholder = "Mật khẩu",
   error,
+  autoComplete = "current-password",
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="relative">
-      <div className="absolute left-3 top-0 h-12 flex items-center">
-        <RiLockPasswordFill className="text-xl text-[#019fb5]" />
+    <div>
+      <div className="relative">
+        <div className="absolute left-3 top-0 h-12 flex items-center">
+          <RiLockPasswordFill className="text-xl text-[#019fb5]" />
+        </div>
+        <input
+          id={name}
+          type={showPassword ? "text" : "password"}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          autoComplete={autoComplete}
+          className={`h-12 w-full rounded-2xl border-2 bg-transparent px-12 text-lg dark:text-white text-black border-[#00c0d1] placeholder-[#00c0d1] focus:outline-none ${
+            error ? "border-red-500" : ""
+          }`}
+        />
+        <div className="absolute right-4 top-0 h-12 flex items-center">
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+            className="text-xl text-[#019fb5] focus:outline-none"
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
       </div>
-      <input
-        type={showPassword ? "text" : "password"}
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={`h-12 w-full rounded-2xl border-2 bg-transparent px-12 text-lg dark:text-white text-black border-[#00c0d1] placeholder-[#00c0d1] focus:outline-none ${
-          error ? "border-red-500" : ""
-        }`}
-      />
-      <div className="absolute right-4 top-0 h-12 flex items-center">
-        <button
-          type="button"
-          onClick={() => setShowPassword(!showPassword)}
-          className="text-xl text-[#019fb5] focus:outline-none"
-        >
-          {showPassword ? <FaEyeSlash /> : <FaEye />}
-        </button>
-      </div>
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 }

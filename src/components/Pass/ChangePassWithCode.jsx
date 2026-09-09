@@ -7,63 +7,67 @@ import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
 import { changePassword } from "../../services/UserService";
 
+const isStrongPassword = (password) => {
+  const minLength = 6;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumbers = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  return (
+    password.length >= minLength &&
+    hasUpperCase &&
+    hasLowerCase &&
+    hasNumbers &&
+    hasSpecialChar
+  );
+};
+
 const ChangePassWithCode = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({}); // Added errors state
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  // Kiểm tra độ mạnh của mật khẩu mới
-  //   const isStrongPassword = (password) => {
-  //     const minLength = 8;
-  //     const hasUpperCase = /[A-Z]/.test(password);
-  //     const hasLowerCase = /[a-z]/.test(password);
-  //     const hasNumbers = /\d/.test(password);
-  //     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  //     return (
-  //       password.length >= minLength &&
-  //       hasUpperCase &&
-  //       hasLowerCase &&
-  //       hasNumbers &&
-  //       hasSpecialChar
-  //     );
-  //   };
+  const validate = () => {
+    const newErrors = {};
+
+    if (!newPassword) {
+      newErrors.newPassword = "Vui lòng nhập mật khẩu mới";
+    } else if (newPassword.length < 6) {
+      newErrors.newPassword = "Mật khẩu ít nhất 6 ký tự";
+    }
+
+    if (!confirmPassword) {
+      newErrors.confirmPassword = "Vui lòng xác nhận mật khẩu";
+    } else if (newPassword && newPassword !== confirmPassword) {
+      newErrors.confirmPassword = "Mật khẩu xác nhận không khớp";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validate()) return;
+
     const token = localStorage.getItem("code");
-
-    if (!newPassword || !confirmPassword) {
-      Swal.fire({
-        icon: "warning",
-        title: "Cảnh báo",
-        text: "Vui lòng nhập đầy đủ thông tin",
-      });
-      return;
-    }
-
-    if (newPassword.length < 6) {
-      Swal.fire({
-        icon: "warning",
-        title: "Cảnh báo",
-        text: "Mật khẩu ít nhất 6 ký tự",
-      });
-      return;
-    }
-
-    if (newPassword !== confirmPassword) {
+    if (!token) {
       Swal.fire({
         icon: "error",
         title: "Lỗi",
-        text: "Mật khẩu xác nhận không khớp",
+        text: "Không tìm thấy mã xác nhận, vui lòng thử lại từ đầu.",
       });
+      navigate("/login");
       return;
     }
 
     try {
       setLoading(true);
       const res = await changePassword(token, newPassword);
+
       if (res.status === 200) {
         Swal.fire({
           icon: "success",
@@ -90,6 +94,7 @@ const ChangePassWithCode = () => {
         title: "Lỗi",
         text: "Có lỗi xảy ra khi thay đổi mật khẩu",
       });
+    } finally {
       setLoading(false);
     }
   };
@@ -101,30 +106,30 @@ const ChangePassWithCode = () => {
           Đặt Lại Mật Khẩu Mới
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="relative">
-            <InputPassword
-              name="newPassword"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              placeholder="Mật khẩu mới"
-            />
-            {errors.newPassword && (
-              <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>
-            )}
-          </div>
-          <div className="relative">
-            <InputPassword
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Xác nhận mật khẩu mới"
-            />
-            {errors.confirmPassword && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.confirmPassword}
-              </p>
-            )}
-          </div>
+          <InputPassword
+            name="newPassword"
+            value={newPassword}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+              if (errors.newPassword)
+                setErrors((prev) => ({ ...prev, newPassword: undefined }));
+            }}
+            placeholder="Mật khẩu mới"
+            autoComplete="new-password"
+            error={errors.newPassword}
+          />
+          <InputPassword
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+              if (errors.confirmPassword)
+                setErrors((prev) => ({ ...prev, confirmPassword: undefined }));
+            }}
+            placeholder="Xác nhận mật khẩu mới"
+            autoComplete="new-password"
+            error={errors.confirmPassword}
+          />
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1">
               <GoBack
@@ -134,7 +139,7 @@ const ChangePassWithCode = () => {
             </div>
             <button
               type="submit"
-              className="flex-1 rounded-md bg-gradient-to-r from-[#019fb5] to-[#00c0d1] px-6 py-2 text-white shadow-md transition duration-300 hover:scale-105"
+              className="flex-1 rounded-md bg-gradient-to-r from-[#019fb5] to-[#00c0d1] px-6 py-2 text-white shadow-md transition duration-300 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={loading}
             >
               {loading ? "Đang Xử Lý..." : "Đổi Mật Khẩu"}

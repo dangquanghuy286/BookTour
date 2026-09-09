@@ -6,8 +6,11 @@ import Swal from "sweetalert2";
 import "sweetalert2/src/sweetalert2.scss";
 import { getCode } from "../../services/UserService";
 const { AiOutlineArrowLeft } = icons;
+
+const CODE_LENGTH = 6;
+
 const VerifyCode = () => {
-  const [code, setCode] = useState(Array(6).fill(""));
+  const [code, setCode] = useState(Array(CODE_LENGTH).fill(""));
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const inputRefs = useRef([]);
@@ -15,22 +18,45 @@ const VerifyCode = () => {
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
-    if (storedEmail) setEmail(storedEmail);
-  }, []);
+    if (storedEmail) {
+      setEmail(storedEmail);
+    } else {
+      navigate("/sendEmail");
+    }
+  }, [navigate]);
 
   const handleInputChange = (index, value) => {
     const numericValue = value.replace(/\D/g, "");
+
     if (numericValue.length <= 1) {
       const newCode = [...code];
       newCode[index] = numericValue;
       setCode(newCode);
 
-      if (numericValue && index < 5) {
+      if (numericValue && index < CODE_LENGTH - 1) {
         inputRefs.current[index + 1].focus();
       }
+      return;
     }
+
+    // Người dùng paste nhiều số liên tiếp vào một ô
+    const pasted = numericValue.slice(0, CODE_LENGTH - index).split("");
+    const newCode = [...code];
+    pasted.forEach((digit, i) => {
+      newCode[index + i] = digit;
+    });
+    setCode(newCode);
+
+    const nextIndex = Math.min(index + pasted.length, CODE_LENGTH - 1);
+    inputRefs.current[nextIndex]?.focus();
   };
-  // Xóa số
+
+  const handlePaste = (index, e) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData("text");
+    handleInputChange(index, pastedText);
+  };
+
   const handleKeyDown = (index, e) => {
     if (e.key === "Backspace" && !code[index] && index > 0) {
       inputRefs.current[index - 1].focus();
@@ -39,27 +65,27 @@ const VerifyCode = () => {
 
   const handleSubmit = async () => {
     const verificationCode = code.join("");
-    if (verificationCode.length !== 6) {
+    if (verificationCode.length !== CODE_LENGTH) {
       Swal.fire({
         icon: "warning",
         title: "Chưa nhập đủ mã",
-        text: "Vui lòng nhập đủ 6 số",
+        text: `Vui lòng nhập đủ ${CODE_LENGTH} số`,
       });
       return;
     }
 
     setIsLoading(true);
-    try {
-      Swal.fire({
-        title: "Đang kiểm tra...",
-        allowOutsideClick: false,
-        didOpen: () => Swal.showLoading(),
-      });
+    Swal.fire({
+      title: "Đang kiểm tra...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
 
+    try {
       const response = await getCode(verificationCode);
 
       if (response.status === 200) {
-        Swal.fire({
+        await Swal.fire({
           icon: "success",
           title: "Thành công",
           text: "Mã xác nhận hợp lệ",
@@ -77,6 +103,8 @@ const VerifyCode = () => {
         title: "Lỗi",
         text: "Mã xác nhận không hợp lệ",
       });
+      setCode(Array(CODE_LENGTH).fill(""));
+      inputRefs.current[0]?.focus();
     } finally {
       setIsLoading(false);
     }
@@ -118,10 +146,14 @@ const VerifyCode = () => {
                 key={index}
                 ref={(el) => (inputRefs.current[index] = el)}
                 type="text"
-                maxLength={1}
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={CODE_LENGTH}
                 value={digit}
+                autoFocus={index === 0}
                 onChange={(e) => handleInputChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
+                onPaste={(e) => handlePaste(index, e)}
                 className="h-12 w-10 rounded border-b-2 border-gray-600 text-center text-xl font-semibold focus:border-orange-500 focus:outline-none dark:bg-white dark:text-black"
                 disabled={isLoading}
                 aria-label={`Mã xác nhận số ${index + 1}`}
