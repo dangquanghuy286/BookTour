@@ -12,7 +12,7 @@ const items = [
     icon: FaAward,
     color: "blue",
     aos: "slide-right",
-    delay: 500,
+    delay: 100,
   },
   {
     number: "24/7",
@@ -22,7 +22,7 @@ const items = [
     icon: FaUsers,
     color: "green",
     aos: "slide-left",
-    delay: 600,
+    delay: 200,
   },
   {
     number: "#1",
@@ -32,7 +32,7 @@ const items = [
     icon: FaTags,
     color: "purple",
     aos: "slide-right",
-    delay: 700,
+    delay: 300,
   },
   {
     number: "∞",
@@ -42,7 +42,7 @@ const items = [
     icon: FaHeart,
     color: "orange",
     aos: "slide-left",
-    delay: 800,
+    delay: 400,
   },
 ];
 
@@ -78,12 +78,16 @@ const WhyChooseUs = () => {
       <section
         className="container mx-auto px-4 py-2"
         data-aos="fade-up"
-        data-aos-delay="300"
+        data-aos-delay="100"
+        data-aos-duration="800"
+        data-aos-offset="50"
       >
         <h2
           className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00c0d1] mt-4 mb-4 border-l-8 border-b-4 border-b-blue-300 pl-3"
           data-aos="fade-right"
-          data-aos-delay="200"
+          data-aos-delay="50"
+          data-aos-duration="700"
+          data-aos-offset="50"
         >
           Tại Sao Nên Chọn Công Ty Chúng Tôi
         </h2>
@@ -92,7 +96,9 @@ const WhyChooseUs = () => {
         <div
           className="text-center mb-8"
           data-aos="fade-up"
-          data-aos-delay="300"
+          data-aos-delay="100"
+          data-aos-duration="700"
+          data-aos-offset="50"
         >
           <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
             Chúng tôi tự hào là đối tác đáng tin cậy trong hành trình khám phá
@@ -101,7 +107,13 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Main content - Timeline style layout */}
-        <div className="space-y-6" data-aos="fade-up" data-aos-delay="400">
+        <div
+          className="space-y-6"
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-duration="700"
+          data-aos-offset="50"
+        >
           {items.map((item, index) => {
             const Icon = item.icon;
             const colors = colorClasses[item.color];
@@ -113,6 +125,9 @@ const WhyChooseUs = () => {
                 className="flex flex-col lg:flex-row items-center gap-6"
                 data-aos={item.aos}
                 data-aos-delay={item.delay}
+                data-aos-duration="900"
+                data-aos-offset="50"
+                data-aos-easing="ease-out-cubic"
               >
                 {/* Card */}
                 <div
@@ -165,7 +180,9 @@ const WhyChooseUs = () => {
         <div
           className="text-center mt-12"
           data-aos="fade-up"
-          data-aos-delay="900"
+          data-aos-delay="100"
+          data-aos-duration="700"
+          data-aos-offset="50"
         >
           <div className="bg-gradient-to-r from-[#00c0d1] to-blue-500 dark:from-[#00a0b1] dark:to-blue-600 text-white px-6 py-3 rounded-full inline-block shadow-lg">
             <p className="text-base font-semibold">
