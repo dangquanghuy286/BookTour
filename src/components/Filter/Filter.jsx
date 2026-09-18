@@ -3,7 +3,6 @@ import icons from "../../utils/icons";
 import {
   durations,
   priceRanges,
-  // regions,
   sortOptions,
 } from "../../contexts/TourContext";
 import StarDisplay from "../Star";
@@ -99,15 +98,7 @@ const Filter = ({ onFilterChange, totalResults = 0 }) => {
             options={sortOptions}
             onChange={(val) => handleChange("sortBy", val)}
           />
-          {/* <FilterSelect
-            label="Khu vực"
-            icon={<IoLocationOutline className="text-[#00c0d1] w-4 h-4" />}
-            options={regions.map((r) => ({
-              value: r === "Tất cả khu vực" ? "" : r,
-              label: r,
-            }))}
-            onChange={(val) => handleChange("region", val)}
-          /> */}
+
           <FilterSelect
             label="Thời gian tour"
             icon={<FiClock className="text-[#00c0d1] w-4 h-4" />}
