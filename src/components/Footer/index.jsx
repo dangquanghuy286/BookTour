@@ -104,7 +104,6 @@ function Footer() {
                 </p>
               </div>
 
-              {/* Address */}
               <div className="flex items-start gap-2 group">
                 <FaLocationDot className="text-gray-600 dark:text-gray-400 group-hover:text-[#00c0d1] w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5 transition-colors duration-300" />
                 <p className="text-xs sm:text-sm md:text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -112,7 +111,6 @@ function Footer() {
                 </p>
               </div>
 
-              {/* Phone */}
               <div className="flex items-start gap-2 group">
                 <FaPhone className="text-gray-600 dark:text-gray-400 group-hover:text-[#00c0d1] w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5 transition-colors duration-300" />
                 <div className="text-xs sm:text-sm md:text-sm">
