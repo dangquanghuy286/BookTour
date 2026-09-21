@@ -36,6 +36,9 @@ import {
   FaEnvelope,
   FaPlus,
   FaMinus,
+  FaAward,
+  FaHandHoldingHeart,
+  FaHeadset,
 } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaLocationDot, FaArrowRightLong } from "react-icons/fa6";
@@ -134,5 +137,8 @@ const icons = {
   FaMinus,
   FaEnvelope,
   MdOutlinePayment,
+  FaAward,
+  FaHandHoldingHeart,
+  FaHeadset,
 };
 export default icons;

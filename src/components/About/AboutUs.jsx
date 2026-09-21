@@ -16,7 +16,7 @@ const AboutUs = () => {
       <div className="container mx-auto px-4 py-2">
         {/* Tiêu đề */}
         <h1
-          className="py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 border-l-blue-300 text-[#00c0d1]"
+          className="py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 text-[#00c0d1]"
           data-aos="fade-right"
           data-aos-delay="200"
         >

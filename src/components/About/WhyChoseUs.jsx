@@ -1,7 +1,7 @@
 import React from "react";
 
 import icons from "../../utils/icons";
-const { FaAward, FaUsers, FaTags, FaHeart } = icons;
+const { FaAward, FaUsers, FaTag, FaHandHoldingHeart, FaHeadset } = icons;
 
 const items = [
   {
@@ -29,7 +29,7 @@ const items = [
     label: "Giá tốt nhất",
     title: "Giá Cả Cạnh Tranh",
     desc: "Cam kết mang đến những tour du lịch chất lượng cao với mức giá hợp lý nhất, cùng nhiều ưu đãi hấp dẫn cho khách hàng thân thiết.",
-    icon: FaTags,
+    icon: FaTag,
     color: "purple",
     aos: "slide-right",
     delay: 300,
@@ -39,7 +39,7 @@ const items = [
     label: "Sự hài lòng",
     title: "Dịch Vụ Tận Tâm",
     desc: 'Từ khâu tư vấn, đặt tour đến hậu mãi, chúng tôi luôn đặt sự hài lòng của khách hàng lên hàng đầu với phương châm "Khách hàng là ưu tiên số 1".',
-    icon: FaHeart,
+    icon: FaHandHoldingHeart,
     color: "orange",
     aos: "slide-left",
     delay: 400,
@@ -83,7 +83,7 @@ const WhyChooseUs = () => {
         data-aos-offset="50"
       >
         <h2
-          className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00c0d1] mt-4 mb-4 border-l-8 border-b-4 border-b-blue-300 pl-3"
+          className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00c0d1] mt-4 mb-4 border-l-8  pl-3"
           data-aos="fade-right"
           data-aos-delay="50"
           data-aos-duration="700"

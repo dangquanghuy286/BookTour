@@ -10,7 +10,7 @@ const DEFAULT_BANNERS = [
   {
     id: "default-1",
     imageUrl: ImgDefault,
-    title: "Banner mặc định 1",
+    title: "Khám phá điều tuyệt vời mỗi ngày",
     link: "/",
   },
 ];
