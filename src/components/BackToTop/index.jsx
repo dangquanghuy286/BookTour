@@ -88,7 +88,6 @@ const BackToTop = () => {
         "
       />
 
-      {/* Arrow */}
       <FaArrowUp
         className="relative z-10 text-sm sm:text-base"
         aria-hidden="true"
