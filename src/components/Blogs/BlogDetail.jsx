@@ -31,15 +31,12 @@ const BlogDetail = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 py-6 sm:py-8 lg:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main content card */}
         <article className="bg-white dark:bg-slate-950 rounded-xl border border-gray-200  shadow-[rgba(0,0,0,0.16)_0px_1px_4px] overflow-hidden">
-          {/* Header section */}
           <div className="p-6 sm:p-8 lg:p-10">
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-[#00c0d1] leading-tight">
               {blog.title}
             </h1>
 
-            {/* Meta information */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8">
               <div className="flex items-center gap-2">
                 <span className="text-lg">✍</span>
@@ -79,7 +76,7 @@ const BlogDetail = () => {
                       <p key={index} className="mb-4 last:mb-0">
                         {paragraph}
                       </p>
-                    )
+                    ),
                 )}
               </div>
             </div>
