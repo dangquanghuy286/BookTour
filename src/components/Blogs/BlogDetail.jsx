@@ -39,17 +39,19 @@ const BlogDetail = () => {
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8">
               <div className="flex items-center gap-2">
-                <span className="text-lg">✍</span>
-                <span className="font-medium">{blog.author}</span>
+                <icons.IoMdCreate className="text-lg" />{" "}
+                <span className="font-medium">{blog.author}</span>{" "}
               </div>
               <div className="hidden sm:block text-gray-300 dark:text-gray-600">
                 |
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-lg">📅</span>
+                {" "}
+                <icons.FaCalendarAlt className="text-lg" />{" "}
                 <span>
-                  {new Date(blog.createdAt).toLocaleDateString("vi-VN")}
-                </span>
+                  {" "}
+                  {new Date(blog.createdAt).toLocaleDateString("vi-VN")}{" "}
+                </span>{" "}
               </div>
             </div>
 
