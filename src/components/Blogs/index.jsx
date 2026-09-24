@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import icons from "../../utils/icons";
-const { MdFavorite } = icons;
+const { MdFavorite, FaCalendarAlt } = icons;
 
 const BlogCard = ({ blog, size = "default", left = false }) => {
   // Format the createdAt date
@@ -49,13 +49,17 @@ const BlogCard = ({ blog, size = "default", left = false }) => {
         >
           {blog.title}
         </Link>
-        <div className="flex gap-2 opacity-70 items-center text-sm text-gray-500 dark:text-gray-400">
-          <span>
-            <MdFavorite /> {blog.author}
-          </span>{" "}
-          |{" "}
-          <span>
-            <MdCalendar /> {formattedDate}
+        <div className="flex items-center justify-between gap-2 text-sm text-gray-500 opacity-70 dark:text-gray-400">
+          <span className="flex items-center gap-1.5">
+            <MdFavorite className="shrink-0 text-base" />
+            <span>{blog.author}</span>
+          </span>
+
+          <span aria-hidden="true">|</span>
+
+          <span className="flex items-center gap-1.5">
+            <FaCalendarAlt className="shrink-0 text-sm" />
+            <span>{formattedDate}</span>
           </span>
         </div>
         <p className="text-base text-gray-700 dark:text-gray-300 line-clamp-3 leading-relaxed">

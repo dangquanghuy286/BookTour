@@ -2,7 +2,8 @@
 import React from "react";
 import { company } from "../../contexts/TourContext";
 import { FaAddressBook } from "react-icons/fa";
-
+import { FaPhone } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 const ContactInfo = () => {
   return (
     <div className="bg-white dark:bg-slate-950 p-8 rounded-lg shadow-md">
