@@ -47,7 +47,7 @@ const AllTour = () => {
             {loading ? (
               <LoadingSpinner message="Đang tải danh sách tour..." />
             ) : error ? (
-              <ErrorMessage error={error} />
+              <ErrorMessage message={error} />
             ) : tours.length === 0 ? (
               <NoPage />
             ) : (

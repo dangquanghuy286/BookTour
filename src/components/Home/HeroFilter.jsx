@@ -7,8 +7,14 @@ import { prices, durations } from "../../contexts/TourContext";
 import { getLocations } from "../../services/TourService";
 import { StoreContext } from "../../contexts/storeUser";
 
-const { MdLocationOn, MdAccessTime, MdAttachMoney, FaSyncAlt, FaMapMarkerAlt } =
-  icons;
+const {
+  MdLocationOn,
+  MdAccessTime,
+  MdAttachMoney,
+  FaSyncAlt,
+  FaMapMarkerAlt,
+  CiSearch,
+} = icons;
 
 const HeroFilter = () => {
   const [destination, setDestination] = useState("");
@@ -72,7 +78,7 @@ const HeroFilter = () => {
     setLoading(true);
     setError(null);
 
-    // Tạo URL query 
+    // Tạo URL query
     const params = new URLSearchParams();
     if (destination) params.append("destination", destination);
     if (duration) params.append("duration", duration);
@@ -222,7 +228,10 @@ const HeroFilter = () => {
                       <LoadingSpinner />
                     ) : (
                       <>
-                        <span className="text-sm sm:text-base">🔍</span>
+                        <CiSearch
+                          className="w-4 h-4 sm:w-5 sm:h-5"
+                          strokeWidth={1}
+                        />
                         <span>Tìm kiếm ngay</span>
                       </>
                     )}
@@ -233,7 +242,8 @@ const HeroFilter = () => {
                     onClick={resetFilters}
                     disabled={loading}
                   >
-                    Đặt lại bộ lọc
+                    <FaSyncAlt className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span>Đặt lại bộ lọc</span>
                   </button>
                 </div>
               </div>

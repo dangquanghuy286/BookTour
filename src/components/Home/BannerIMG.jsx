@@ -3,7 +3,14 @@ import Banner from "@/assets/Img/banner-img.png";
 
 const BannerIMG = () => {
   return (
-    <div className="w-full" data-aos="zoom-out-up" data-aos-duration="2000">
+    <div
+      className="w-full"
+      data-aos="fade-up"
+      data-aos-duration="1200"
+      data-aos-easing="ease-out-cubic"
+      data-aos-offset="0"
+      data-aos-once="true"
+    >
       <img
         src={Banner}
         alt="Banner"

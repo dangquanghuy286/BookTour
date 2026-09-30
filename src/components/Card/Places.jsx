@@ -18,7 +18,8 @@ const Places = ({
   const [placesData, setPlaceData] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  // Nếu phải tự fetch thì bắt đầu ở trạng thái loading để không bị nháy cảnh báo
+  const [isLoading, setIsLoading] = useState(!tours);
   const [error, setError] = useState(null);
   const limit = 8;
 
@@ -78,16 +79,23 @@ const Places = ({
         {isLoading ? (
           <LoadingSpinner message="Đang tải danh sách tour..." />
         ) : error ? (
-          <ErrorMessage error={error} />
+          <ErrorMessage
+            message={error}
+            onRetry={() => getAllTours(currentPage)}
+          />
         ) : placesData.length === 0 ? (
-          <ErrorMessage error="Không tìm thấy tour nào." isWarning={true} />
+          <ErrorMessage
+            isWarning
+            title="Không có tour"
+            message="Không tìm thấy tour nào."
+          />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 min-w-0">
             {placesData.map((item, index) => (
               <div
                 key={item.id}
                 data-aos="fade-up"
-                data-aos-delay={index * 100} 
+                data-aos-delay={index * 100}
                 data-aos-duration="600"
               >
                 <PlacesCard

@@ -19,7 +19,6 @@ const VARIANTS = {
     button:
       "text-yellow-800 border-yellow-300 hover:bg-yellow-100 dark:text-yellow-200 dark:border-yellow-700 dark:hover:bg-yellow-900/40",
     defaultTitle: "Cảnh báo",
-    defaultMessage: "Dữ liệu có thể chưa đầy đủ hoặc chưa được cập nhật.",
   },
 };
 
@@ -30,6 +29,9 @@ function ErrorMessage({
   onRetry,
   className = "",
 }) {
+  // Warning không có nội dung cụ thể thì không hiển thị gì
+  if (isWarning && !message) return null;
+
   const v = isWarning ? VARIANTS.warning : VARIANTS.error;
 
   return (
