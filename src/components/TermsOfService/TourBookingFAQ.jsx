@@ -12,7 +12,6 @@ const {
   FaEnvelope,
   FaShieldAlt,
   FaChevronDown,
-  FaChevronUp,
 } = icons;
 
 const TourBookingFAQ = () => {
@@ -128,12 +127,15 @@ const TourBookingFAQ = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-slate-900">
+    <div className="bg-white dark:bg-slate-900 overflow-hidden">
       <div className="container px-4 py-2 mx-auto space-y-8">
         <section
           className="bg-white dark:bg-slate-950 rounded-lg p-6 border border-gray-200 dark:border-gray-600 shadow-[0_1px_4px_rgba(0,0,0,0.16)]"
           data-aos="fade-up"
-          data-aos-delay="1000"
+          data-aos-duration="900"
+          data-aos-delay="100"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
         >
           {/* Header */}
           <div className="mb-6">
@@ -192,30 +194,36 @@ const TourBookingFAQ = () => {
                             </span>
 
                             <span className="flex-shrink-0">
-                              {isExpanded ? (
-                                <FaChevronUp
-                                  className="text-[#00c0d1]"
-                                  size={20}
-                                />
-                              ) : (
-                                <FaChevronDown
-                                  className="text-[#00c0d1]"
-                                  size={20}
-                                />
-                              )}
+                              <FaChevronDown
+                                size={20}
+                                className={`text-[#00c0d1] transition-transform duration-300 ease-in-out motion-reduce:transition-none ${
+                                  isExpanded ? "rotate-180" : "rotate-0"
+                                }`}
+                              />
                             </span>
                           </button>
 
-                          {/* Answer */}
-                          {isExpanded && (
-                            <div id={`answer-${itemId}`} className="px-4 pb-4">
-                              <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border-l-4 border-[#00c0d1]">
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                  {item.a}
-                                </p>
+                          {/* Answer (Collapsible mượt) */}
+                          <div
+                            id={`answer-${itemId}`}
+                            role="region"
+                            aria-hidden={!isExpanded}
+                            className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out motion-reduce:transition-none ${
+                              isExpanded
+                                ? "grid-rows-[1fr] opacity-100"
+                                : "grid-rows-[0fr] opacity-0"
+                            }`}
+                          >
+                            <div className="overflow-hidden">
+                              <div className="px-4 pb-4">
+                                <div className="bg-gray-50 dark:bg-slate-800 rounded-lg p-4 border-l-4 border-[#00c0d1]">
+                                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                    {item.a}
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          )}
+                          </div>
                         </div>
                       );
                     })}

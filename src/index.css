@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-@custom-variant dark (&:where(.dark, .dark *));
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 * {
   font-family: "Archivo", sans-serif;
@@ -62,4 +62,18 @@
       animation-duration: 20s; /* Tăng tốc độ cuộn nhẹ cho thiết bị nhỏ hơn */
     }
   }
+}
+/* ===== AOS: chuyển động gần, nhẹ ===== */
+
+[data-aos="fade-up"]:not(.aos-animate) {
+  transform: translate3d(0, 20px, 0);
+}
+[data-aos="fade-right"]:not(.aos-animate) {
+  transform: translate3d(-20px, 0, 0);
+}
+[data-aos="fade-left"]:not(.aos-animate) {
+  transform: translate3d(20px, 0, 0);
+}
+[data-aos="fade-down"]:not(.aos-animate) {
+  transform: translate3d(0, -20px, 0);
 }

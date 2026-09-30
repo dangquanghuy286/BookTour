@@ -11,7 +11,7 @@ const items = [
     desc: "Với hơn 5 năm kinh nghiệm trong ngành du lịch, chúng tôi hiểu rõ nhu cầu và mong muốn của khách hàng để tạo ra những chuyến đi hoàn hảo.",
     icon: FaAward,
     color: "blue",
-    aos: "slide-right",
+    aos: "fade-right",
     delay: 100,
   },
   {
@@ -21,8 +21,8 @@ const items = [
     desc: "Đội ngũ hướng dẫn viên được đào tạo bài bản, am hiểu văn hóa địa phương và luôn sẵn sàng hỗ trợ khách hàng 24/7.",
     icon: FaUsers,
     color: "green",
-    aos: "slide-left",
-    delay: 200,
+    aos: "fade-left",
+    delay: 100,
   },
   {
     number: "#1",
@@ -31,8 +31,8 @@ const items = [
     desc: "Cam kết mang đến những tour du lịch chất lượng cao với mức giá hợp lý nhất, cùng nhiều ưu đãi hấp dẫn cho khách hàng thân thiết.",
     icon: FaTag,
     color: "purple",
-    aos: "slide-right",
-    delay: 300,
+    aos: "fade-right",
+    delay: 100,
   },
   {
     number: "∞",
@@ -41,8 +41,8 @@ const items = [
     desc: 'Từ khâu tư vấn, đặt tour đến hậu mãi, chúng tôi luôn đặt sự hài lòng của khách hàng lên hàng đầu với phương châm "Khách hàng là ưu tiên số 1".',
     icon: FaHandHoldingHeart,
     color: "orange",
-    aos: "slide-left",
-    delay: 400,
+    aos: "fade-left",
+    delay: 100,
   },
 ];
 
@@ -72,22 +72,23 @@ const colorClasses = {
   },
 };
 
+// Cấu hình AOS dùng chung: chậm, mượt, chỉ chạy 1 lần
+const aosBase = {
+  "data-aos-duration": "900",
+  "data-aos-easing": "ease-out-cubic",
+  "data-aos-offset": "40",
+  "data-aos-once": "true",
+};
+
 const WhyChooseUs = () => {
   return (
-    <div className="bg-white dark:bg-slate-900">
-      <section
-        className="container mx-auto px-4 py-2"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-aos-duration="800"
-        data-aos-offset="50"
-      >
+    <div className="bg-white dark:bg-slate-900 overflow-hidden">
+      <section className="container mx-auto px-4 py-2">
         <h2
-          className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00c0d1] mt-4 mb-4 border-l-8  pl-3"
+          className="text-xl sm:text-2xl md:text-3xl font-bold text-[#00c0d1] mt-4 mb-4 border-l-8 pl-3"
           data-aos="fade-right"
           data-aos-delay="50"
-          data-aos-duration="700"
-          data-aos-offset="50"
+          {...aosBase}
         >
           Tại Sao Nên Chọn Công Ty Chúng Tôi
         </h2>
@@ -96,9 +97,8 @@ const WhyChooseUs = () => {
         <div
           className="text-center mb-8"
           data-aos="fade-up"
-          data-aos-delay="100"
-          data-aos-duration="700"
-          data-aos-offset="50"
+          data-aos-delay="150"
+          {...aosBase}
         >
           <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
             Chúng tôi tự hào là đối tác đáng tin cậy trong hành trình khám phá
@@ -107,13 +107,7 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Main content - Timeline style layout */}
-        <div
-          className="space-y-6"
-          data-aos="fade-up"
-          data-aos-delay="150"
-          data-aos-duration="700"
-          data-aos-offset="50"
-        >
+        <div className="space-y-6">
           {items.map((item, index) => {
             const Icon = item.icon;
             const colors = colorClasses[item.color];
@@ -125,9 +119,8 @@ const WhyChooseUs = () => {
                 className="flex flex-col lg:flex-row items-center gap-6"
                 data-aos={item.aos}
                 data-aos-delay={item.delay}
-                data-aos-duration="900"
-                data-aos-offset="50"
-                data-aos-easing="ease-out-cubic"
+                {...aosBase}
+                data-aos-duration="1000"
               >
                 {/* Card */}
                 <div
@@ -181,8 +174,7 @@ const WhyChooseUs = () => {
           className="text-center mt-12"
           data-aos="fade-up"
           data-aos-delay="100"
-          data-aos-duration="700"
-          data-aos-offset="50"
+          {...aosBase}
         >
           <div className="bg-gradient-to-r from-[#00c0d1] to-blue-500 dark:from-[#00a0b1] dark:to-blue-600 text-white px-6 py-3 rounded-full inline-block shadow-lg">
             <p className="text-base font-semibold">

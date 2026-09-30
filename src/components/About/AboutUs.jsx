@@ -12,21 +12,27 @@ const features = [
 
 const AboutUs = () => {
   return (
-    <div className="bg-white dark:bg-slate-900 transition-colors duration-300">
+    <div className="bg-white dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
       <div className="container mx-auto px-4 py-2">
         {/* Tiêu đề */}
         <h1
           className="py-2 pl-3 my-4 sm:my-6 md:my-8 text-xl sm:text-2xl md:text-3xl font-bold text-left border-l-8 text-[#00c0d1]"
           data-aos="fade-right"
-          data-aos-delay="200"
+          data-aos-duration="900"
+          data-aos-delay="100"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
         >
           Về Chúng Tôi !
         </h1>
 
         <div
           className="flex flex-col items-center text-center px-2"
-          data-aos="zoom-in"
-          data-aos-delay="300"
+          data-aos="fade-up"
+          data-aos-duration="900"
+          data-aos-delay="150"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
         >
           <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white max-w-4xl">
             Kinh Nghiệm Và Công Ty Du Lịch Chuyên Nghiệp Ở Việt Nam!
@@ -37,13 +43,19 @@ const AboutUs = () => {
         <div
           className="flex flex-col md:flex-row justify-center items-center mt-12 gap-10 px-2 md:px-0"
           data-aos="fade-up"
-          data-aos-delay="400"
+          data-aos-duration="900"
+          data-aos-delay="200"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
         >
           {/* Bên trái */}
           <div
             className="relative flex items-center justify-center w-40 h-40 sm:w-44 sm:h-44 bg-white dark:bg-slate-950 border border-gray-200 dark:border-gray-600 rounded-full shadow-lg"
-            data-aos="flip-left"
-            data-aos-delay="500"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="250"
+            data-aos-easing="ease-out-cubic"
+            data-aos-once="true"
           >
             <div className="text-center text-gray-800 dark:text-white">
               <p className="text-base sm:text-lg font-medium">Chúng tôi có</p>
@@ -60,7 +72,10 @@ const AboutUs = () => {
           <div
             className="w-full max-w-2xl text-center md:text-left px-2"
             data-aos="fade-left"
-            data-aos-delay="600"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+            data-aos-easing="ease-out-cubic"
+            data-aos-once="true"
           >
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">
               Chúng tôi chuyên tạo ra những trải nghiệm thành phố khó quên cho
@@ -73,7 +88,10 @@ const AboutUs = () => {
             <div
               className="grid grid-cols-1 sm:grid-cols-2 pt-10 gap-4 sm:gap-x-10 sm:gap-y-4"
               data-aos="fade-up"
-              data-aos-delay="700"
+              data-aos-duration="900"
+              data-aos-delay="350"
+              data-aos-easing="ease-out-cubic"
+              data-aos-once="true"
             >
               {features.map((text) => (
                 <div
@@ -89,7 +107,10 @@ const AboutUs = () => {
             <div
               className="relative flex items-center justify-center md:justify-start gap-2 mt-8 group"
               data-aos="fade-up"
-              data-aos-delay="800"
+              data-aos-duration="900"
+              data-aos-delay="400"
+              data-aos-easing="ease-out-cubic"
+              data-aos-once="true"
             >
               <Link
                 to="/tour"
